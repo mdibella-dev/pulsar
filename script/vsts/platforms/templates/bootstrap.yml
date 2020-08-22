@@ -31,4 +31,4 @@ steps:
     parameters:
       artifacts:
         - path: '.'
-          condition: and(succeeded(), eq(variables['Atom.AutoDraftRelease'], 'true'), eq(variables['IsReleaseBranch'], 'true'))
+          condition: succeeded()
