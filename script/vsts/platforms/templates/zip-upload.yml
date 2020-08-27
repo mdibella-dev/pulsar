@@ -3,14 +3,11 @@ parameters:
   # props:
   # - path
   # - condition
+  # - archiveFileName
+  # - archiveDir
   - name: artifacts
     type: object
     default: {}
-  # the path to store the 7z file
-  # the file is overwritten for each artifact
-  - name: uploadPath
-    type: string
-    default: $(Build.ArtifactStagingDirectory)/artifact_zip_upload.7z
 
 steps:
   - ${{ each artifact in parameters.artifacts }}:
@@ -19,16 +16,16 @@ steps:
         rootFolderOrFile: ${{artifact.path}}
         archiveType: 7z
         sevenZipCompression: ultra
-        archiveFile: ${{parameters.uploadPath}}
+        archiveFile: ${{artifact.archiveDir}}/${{artifact.archiveFileName}}
         replaceExistingArchive: true
       displayName: Compress ${{artifact.path}}
       ${{ if artifact.condition }}:
         condition: ${{artifact.condition}}
 
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: ${{parameters.uploadPath}}
-        ArtifactName: ${{artifact.path}}
-      displayName: Upload ${{artifact.path}}
-      ${{ if artifact.condition }}:
-        condition: ${{artifact.condition}}
+    - template: ./publish.yml
+      parameters:
+        artifacts:
+          - filename: ${{artifact.archiveFileName}}
+            dir: ${{artifact.archiveDir}}
+            ${{ if artifact.condition }}:
+              condition: ${{artifact.condition}}

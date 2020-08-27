@@ -32,3 +32,5 @@ steps:
       artifacts:
         - path: '.'
           condition: succeeded()
+          archiveFileName: bootstrapped_repository_$(AGENT_OS)_$(buildArch).7z
+          archiveDir: $(Build.ArtifactStagingDirectory)
