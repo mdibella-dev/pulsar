@@ -15,7 +15,7 @@ steps:
       inputs:
         rootFolderOrFile: ${{artifact.path}}
         archiveType: 7z
-        sevenZipCompression: ultra
+        sevenZipCompression: normal
         archiveFile: ${{artifact.archiveDir}}/${{artifact.archiveFileName}}
         replaceExistingArchive: true
       displayName: Compress ${{artifact.path}}
