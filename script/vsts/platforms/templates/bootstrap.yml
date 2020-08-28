@@ -32,5 +32,5 @@ steps:
       artifacts:
         - path: '.'
           condition: and(succeeded(), eq(variables.IsBuild, 'true'))
-          archiveFileName: bootstrapped_repository_$(AGENT_OS)_$(buildArch).7z
+          archiveFileName: bootstrapped_repository_$(Agent.OS)_$(buildArch).7z
           archiveDir: $(Build.ArtifactStagingDirectory)
