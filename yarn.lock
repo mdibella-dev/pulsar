@@ -1052,6 +1052,14 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
+"@playwright/test@^1.22.2":
+  version "1.22.2"
+  resolved "https://registry.yarnpkg.com/@playwright/test/-/test-1.22.2.tgz#b848f25f8918140c2d0bae8e9227a40198f2dd4a"
+  integrity sha512-cCl96BEBGPtptFz7C2FOSN3PrTnJ3rPpENe+gYCMx4GNNDlN4tmo2D89y13feGKTMMAIVrXfSQ/UmaQKLy1XLA==
+  dependencies:
+    "@types/node" "*"
+    playwright-core "1.22.2"
+
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
@@ -1149,10 +1157,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.44.tgz#16dd0bb5338f016d8ca10631789f0d0612fe5d5b"
   integrity sha512-gWYiOlu6Y4oyLYBvsJAPlwHbC8H4tX+tLsHy6Ee976wedwwZKrG2hFl3Y/HiH6bIyLTbDWQexQF/ohwKkOpUCg==
 
-"@types/node@^12.0.12":
-  version "12.20.55"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.20.55.tgz#c329cbd434c42164f846b909bd6f85b5537f6240"
-  integrity sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==
+"@types/node@^14.6.2":
+  version "14.18.21"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.21.tgz#0155ee46f6be28b2ff0342ca1a9b9fd4468bef41"
+  integrity sha512-x5W9s+8P4XteaxT/jKF0PSb7XEvo5VmqEWgsMlyeY4ZlLK8I6aH6g5TPPyDlLAep+GYf4kefb7HFyc7PAO3m+Q==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -2760,7 +2768,7 @@ dompurify@^1.0.2, dompurify@^1.0.3:
   resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-1.0.11.tgz#fe0f4a40d147f7cebbe31a50a1357539cfc1eb4d"
   integrity sha512-XywCTXZtc/qCX3iprD1pIklRVk/uhl8BKpkTxr+ZyMVUzSUg7wkQXRBp/euJ5J5moa1QvfpvaPQVP71z1O59dQ==
 
-dompurify@^2.0.7:
+dompurify@^2.0.17, dompurify@^2.0.7:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.3.8.tgz#224fe9ae57d7ebd9a1ae1ac18c1c1ca3f532226f"
   integrity sha512-eVhaWoVibIzqdGYjwsBWodIQIaXFSB+cKDf4cfxLMsK0xiud6SE+/WCVx/Xw/UwQsa4cS3T2eITcdtmTg2UKcw==
@@ -2861,13 +2869,13 @@ electron-to-chromium@^1.4.147:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.156.tgz#fc398e1bfbe586135351ebfaf198473a82923af5"
   integrity sha512-/Wj5NC7E0wHaMCdqxWz9B0lv7CcycDTiHyXCtbbu3pXM9TV2AOp8BtMqkVuqvJNdEvltBG6LxT2Q+BxY4LUCIA==
 
-electron@^11.0.4:
-  version "11.5.0"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-11.5.0.tgz#f1650543b9d8f2047d3807755bdb120153ed210f"
-  integrity sha512-WjNDd6lGpxyiNjE3LhnFCAk/D9GIj1rU3GSDealVShhkkkPR3Vh4q8ErXGDl1OAO/faomVa10KoFPUN/pLbNxg==
+electron@^12.0.0:
+  version "12.2.3"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-12.2.3.tgz#d426a7861e3c722f92c32153f11f7bbedf65b000"
+  integrity sha512-B27c7eqx1bC5kea6An8oVhk1pShNC4VGqWarHMhD47MDtmg54KepHO5AbAvmKKZK/jWN7NTC7wyCYTDElJNtQA==
   dependencies:
     "@electron/get" "^1.0.1"
-    "@types/node" "^12.0.12"
+    "@types/node" "^14.6.2"
     extract-zip "^1.0.3"
 
 emissary@^1, emissary@^1.0.0, emissary@^1.1.0, emissary@^1.2.0, emissary@^1.3.2:
@@ -3916,7 +3924,7 @@ home-or-tmp@^1.0.0:
     os-tmpdir "^1.0.1"
     user-home "^1.1.1"
 
-hosted-git-info@^2.1.4:
+hosted-git-info@^2.8.9:
   version "2.8.9"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.9.tgz#dffc0bf9a21c02209090f2aa69429e1414daf3f9"
   integrity sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==
@@ -4605,13 +4613,12 @@ kind-of@^3.0.2:
   dependencies:
     tree-sitter-java-dev "^0.16.0-dev2"
 
-"language-javascript@https://www.atom.io/api/packages/language-javascript/versions/0.134.1/tarball":
-  version "0.134.1"
-  resolved "https://www.atom.io/api/packages/language-javascript/versions/0.134.1/tarball#3d237c3c42f5f4d204e906d302175aa256dcc566"
+"language-javascript@file:packages/language-javascript":
+  version "0.134.2"
   dependencies:
-    tree-sitter-javascript "^0.15.2"
-    tree-sitter-jsdoc "^0.15.2"
-    tree-sitter-regex "^0.15.1"
+    tree-sitter-javascript "0.19.0"
+    tree-sitter-jsdoc "0.19.0"
+    tree-sitter-regex "0.19.0"
 
 "language-json@https://www.atom.io/api/packages/language-json/versions/1.0.5/tarball":
   version "1.0.5"
@@ -4960,11 +4967,6 @@ marked@^0.7.0:
   resolved "https://registry.yarnpkg.com/marked/-/marked-0.7.0.tgz#b64201f051d271b1edc10a04d1ae9b74bb8e5c0e"
   integrity sha512-c+yYdCZJQrsRjTPhUx7VKkApw9bwDkNbHUKo1ovgcfDjb2kc8rLuRbIFyXL5WOEUwzSSKo3IXpph2K6DqB/KZg==
 
-marked@^1.2.0:
-  version "1.2.9"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-1.2.9.tgz#53786f8b05d4c01a2a5a76b7d1ec9943d29d72dc"
-  integrity sha512-H8lIX2SvyitGX+TRdtS06m1jHMijKN/XjfH6Ooii9fvxMlh8QdqBfBDkGUpMWH2kQNrtixjzYUa3SH8ROTgRRw==
-
 marked@^4.0.10:
   version "4.0.17"
   resolved "https://registry.yarnpkg.com/marked/-/marked-4.0.17.tgz#1186193d85bb7882159cdcfc57d1dfccaffb3fe9"
@@ -5291,7 +5293,7 @@ nan@2.14.1:
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.1.tgz#d7be34dfa3105b91494c3147089315eff8874b01"
   integrity sha512-isWHgVjnFjh2x2yuJ/tj3JbwoHu3UC2dX5G/88Cm24yB6YopVgxvBObDY7n5xW6ExmFhJpSEQqFPvq9zaXc8Jw==
 
-nan@^2.0.0, nan@^2.10.0, nan@^2.11.1, nan@^2.12.1, nan@^2.13.2, nan@^2.14.0, nan@^2.14.1, nan@^2.14.2, nan@^2.8.0:
+nan@^2.0.0, nan@^2.10.0, nan@^2.12.1, nan@^2.13.2, nan@^2.14.0, nan@^2.14.1, nan@^2.14.2, nan@^2.8.0:
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.16.0.tgz#664f43e45460fb98faf00edca0bb0d7b8dce7916"
   integrity sha512-UdAqHyFngu7TfQKsCBgAA6pWDkT8MAO7d0jyOecVhN5354xbLqdn8mV9Tat9gepAupm0bt2DbeaSC8vS52MuFA==
@@ -5844,6 +5846,18 @@ pify@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-3.0.0.tgz#e5a4acd2c101fdf3d9a4d07f0dbc4db49dd28176"
   integrity sha512-C3FsVNH1udSEX48gGX1xfvwTWfsYWj5U+8/uK15BGzIGrKoUpghX8hWZwa/OFnakBiiVNmBvemTJR5mcy7iPcg==
+
+playwright-core@1.22.2, playwright-core@^1.22.2:
+  version "1.22.2"
+  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.22.2.tgz#ed2963d79d71c2a18d5a6fd25b60b9f0a344661a"
+  integrity sha512-w/hc/Ld0RM4pmsNeE6aL/fPNWw8BWit2tg+TfqJ3+p59c6s3B6C8mXvXrIPmfQEobkcFDc+4KirNzOQ+uBSP1Q==
+
+playwright@^1.22.2:
+  version "1.22.2"
+  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.22.2.tgz#353a7c29f89ca9600edc7a9a30aed790823c797d"
+  integrity sha512-hUTpg7LytIl3/O4t0AQJS1V6hWsaSY5uZ7w1oCC8r3a1AQN5d6otIdCkiB3cbzgQkcMaRxisinjMFMVqZkybdQ==
+  dependencies:
+    playwright-core "1.22.2"
 
 plist@^3.0.1:
   version "3.0.5"
@@ -6688,18 +6702,17 @@ setimmediate@^1.0.5:
   resolved "https://registry.yarnpkg.com/setimmediate/-/setimmediate-1.0.5.tgz#290cbb232e306942d7d7ea9b83732ab7856f8285"
   integrity sha512-MATJdZp8sLqDl/68LfQmbP8zKPLQNV6BIZoIgrscFDQ+RsvK/BxeDQOgyxKKoh0y/8h3BqVFnCqQ/gd+reiIXA==
 
-"settings-view@https://www.atom.io/api/packages/settings-view/versions/0.261.8/tarball":
+"settings-view@file:packages/settings-view":
   version "0.261.8"
-  resolved "https://www.atom.io/api/packages/settings-view/versions/0.261.8/tarball#11b469b815ff2dfed0159261875f0cde567a3a0d"
   dependencies:
     async "^3.2.0"
-    dompurify "^1.0.2"
+    dompurify "^2.0.17"
     etch "0.9.0"
     fs-plus "^3.0.0"
     fuzzaldrin "^2.1"
     glob "4.3.1"
-    hosted-git-info "^2.1.4"
-    marked "^1.2.0"
+    hosted-git-info "^2.8.9"
+    marked "^4.0.10"
     request "^2.83.0"
     season "^6.0.2"
     semver "^5.3.0"
@@ -7476,19 +7489,19 @@ tree-sitter-java-dev@^0.16.0-dev2:
   dependencies:
     nan "^2.12.1"
 
-tree-sitter-javascript@^0.15.2:
-  version "0.15.2"
-  resolved "https://registry.yarnpkg.com/tree-sitter-javascript/-/tree-sitter-javascript-0.15.2.tgz#3c2c2b7c20a183f9266c4abf531172913a14ba97"
-  integrity sha512-AwgnkVqxglpxWUH07CWq1CmZ1g3emFHCUlMT6hEwNrk5K62I3gmkqMFtzFqXos6U2sEkwBn7IWp753X13KiAdQ==
+tree-sitter-javascript@0.19.0:
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/tree-sitter-javascript/-/tree-sitter-javascript-0.19.0.tgz#20fc0da277502dac2bb3bf9ff75372268e761558"
+  integrity sha512-SNykDdNgmlJZhX02ZIu0TQF9P7t847jV7769SxA9XrZ2QXjofQsVTMEi9+LpXZKsI0UoFYI25FnZm3fFm0z2yw==
   dependencies:
     nan "^2.12.1"
 
-tree-sitter-jsdoc@^0.15.2:
-  version "0.15.2"
-  resolved "https://registry.yarnpkg.com/tree-sitter-jsdoc/-/tree-sitter-jsdoc-0.15.2.tgz#510eac71f57998feff381333fd2ee6028f0819e8"
-  integrity sha512-ERhddQ4nj3i4ayi0L09ic/CLtwH/A82iauGWev15NGuWCyUG7qw9rz2ZNxpmy9R6KG8kXK1MsFQj/pab8lm5/w==
+tree-sitter-jsdoc@0.19.0:
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/tree-sitter-jsdoc/-/tree-sitter-jsdoc-0.19.0.tgz#3f7731c9df61db5666b4a41d5ff3810fceac9d81"
+  integrity sha512-E2DgqInWSw+1wv+7uyJu0oYhWns0xaOSccqe4crLNnxo9uAQBjySaum8mNAfTu8Rh6jAnDr2DxuzKUBhOQxOwg==
   dependencies:
-    nan "^2.11.1"
+    nan "^2.14.1"
 
 tree-sitter-json@^0.15.1:
   version "0.15.1"
@@ -7504,12 +7517,12 @@ tree-sitter-python@^0.17.0:
   dependencies:
     nan "^2.14.0"
 
-tree-sitter-regex@^0.15.1:
-  version "0.15.1"
-  resolved "https://registry.yarnpkg.com/tree-sitter-regex/-/tree-sitter-regex-0.15.1.tgz#36c53ea064812f689c6ed097fb2101870ecd0aa2"
-  integrity sha512-ORspHauiPTw3+mCKBAAZqYH4vQOT6T2B2RcYDrWmYfwxSjA7Wg3HPiqzkuMVvDwl5Z491EYIBTUvHEaBLoGI7w==
+tree-sitter-regex@0.19.0:
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/tree-sitter-regex/-/tree-sitter-regex-0.19.0.tgz#b4b3f44dc742684881a7c05635e075d90ff5414d"
+  integrity sha512-hKaGO6ect2MuGwY+PU89JJdkgwRRseDgVNiRaZTLXQyW8vAsZLOb/tkphY9NF9U+ZOeLATotKwG+rLykYYWXyA==
   dependencies:
-    nan "^2.14.0"
+    nan "^2.14.1"
 
 tree-sitter-ruby@^0.17.0:
   version "0.17.0"
@@ -7533,7 +7546,7 @@ tree-sitter-typescript@^0.16.1:
   dependencies:
     nan "^2.14.0"
 
-tree-sitter@^0.20.0:
+tree-sitter@0.20.0:
   version "0.20.0"
   resolved "https://registry.yarnpkg.com/tree-sitter/-/tree-sitter-0.20.0.tgz#b24f4d0ce6b9fdd9e99101907c954c5d938cb82d"
   integrity sha512-tqTdtD1T2cN4aEES0sZCjKTQrc9Ls8H/iYlzpskhGy8yCwNPKBIbK9YuuCg/AxACr8RAY4wMoeCigM1X/A79yg==
