@@ -161,7 +161,7 @@
     "temp": "0.9.2",
     "text-buffer": "^13.18.5",
     "timecop": "https://www.atom.io/api/packages/timecop/versions/0.36.2/tarball",
-    "tree-sitter": "git+https://github.com/DeeDeeG/node-tree-sitter.git#bb298eaae66e0c4f11908cb6209f3e141884e88e",
+    "tree-sitter": "^0.20.0",
     "tree-view": "https://www.atom.io/api/packages/tree-view/versions/0.229.1/tarball",
     "typescript-simple": "8.0.6",
     "update-package-dependencies": "file:./packages/update-package-dependencies",
@@ -270,7 +270,9 @@
   "private": true,
   "scripts": {
     "preinstall": "node -e 'process.exit(0)'",
-    "test": "node script/test"
+    "test": "node script/test",
+    "build": "electron-rebuild",
+    "start": "electron --enable-logging src/main-process/main.js -f"
   },
   "standard-engine": "./script/node_modules/standard",
   "standard": {
@@ -284,5 +286,9 @@
       "atom",
       "snapshotResult"
     ]
+  },
+  "devDependencies": {
+    "electron": "^11.0.4",
+    "electron-rebuild": "^3.2.7"
   }
 }
