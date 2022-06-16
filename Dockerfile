@@ -22,5 +22,6 @@ WORKDIR /atom
 # FIXME: Remove the additional retries when we migrate away from it
 RUN yarn install || yarn install || yarn install ||  yarn install
 RUN yarn run build
+RUN yarn run build:apm
 
 CMD ["bash"]
