@@ -1,7 +1,7 @@
 version: 2.1
 defaults: &defaults
-  machine:
-    image: node:lts-slim
+  docker:
+    - image: node:lts-slim
 
 jobs:
   test:
