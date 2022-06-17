@@ -8,7 +8,7 @@ async function openAtom(profilePath, videoName) {
   env.APM_PATH = "apm/node_modules/.bin/apm"
 
   const config = {
-    args: ["src/main-process/main.js"],
+    args: ["--no-sandbox", "src/main-process/main.js"],
     cwd: "./",
     env: env,
     timeout: 10000
