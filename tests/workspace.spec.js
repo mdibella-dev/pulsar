@@ -9,12 +9,18 @@ const languages = [
 
 let editor
 test.describe('Opening Atom for the first time', () => {
-  test.beforeAll(() =>
-    openAtom("/tmp/atom-home-tests", "opening-first-time.mp4")
-      .then(res => editor = res))
+  test.beforeAll(async () => {
+    editor = await openAtom("/tmp/atom-home-tests", "opening-first-time.mp4")
+    editor.app.on('window', () => {console.log("WINDOW")})
+  })
 
-  test.afterAll(() => {
-    editor.app.close()
+  test.afterAll(async () => {
+    const closing = editor.app.close()
+    const i = setInterval(() => {V
+      console.log(editor.app.windows().length)
+    }, 100)
+    await closing
+    // clearInterval(i)
   })
 
   test('the editor opens at the welcome page', async () => {
@@ -31,6 +37,12 @@ test.describe('Opening Atom for the first time', () => {
         useInnerText: true,
       })
       await runCommand(editor, 'Tabs: Close All Tabs')
+    })
+
+    test.afterEach(async () => {
+      await editor.page.keyboard.press('Control+a')
+      await editor.page.keyboard.press('Delete')
+      await runCommand(editor, 'Tabs: Close Tab')
     })
 
     languages.forEach(({language, code, checks}) => {
