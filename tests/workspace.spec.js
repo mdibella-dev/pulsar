@@ -26,6 +26,7 @@ test.describe('Opening Atom for the first time', () => {
 
   test.describe('the editor have syntax highlight', async () => {
     test.beforeAll(async () => {
+      const workspace = editor.page.locator('atom-workspace')
       await expect(workspace).toHaveText(/A hackable text editor/, {
         useInnerText: true,
       })
