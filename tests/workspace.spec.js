@@ -10,7 +10,7 @@ const languages = [
 let editor
 test.describe('Opening Atom for the first time', () => {
   test.beforeAll(async () => {
-    editor = await openAtom("/tmp/atom-home-tests", "opening-first-time.mp4")
+    editor = await openAtom("/tmp/atom-home-tests", "opening-first-time")
     editor.app.on('window', () => {console.log("WINDOW")})
   })
 

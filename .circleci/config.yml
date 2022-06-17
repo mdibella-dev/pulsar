@@ -23,7 +23,7 @@ jobs:
                   libasound2-dev
                   libnss3
                   xvfb
-      - run: yarn install || sleep 1 && yarn install || sleep 2 && yarn install ||  sleep 10 && yarn install
+      - run: yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
       - run: yarn run build
       - run: yarn run build:apm
       - run: Xvfb :99 & DISPLAY=:99 npx playwright test --reporter=junit > /tmp/report.xml
