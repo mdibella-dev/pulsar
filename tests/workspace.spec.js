@@ -26,6 +26,9 @@ test.describe('Opening Atom for the first time', () => {
 
   test.describe('the editor have syntax highlight', async () => {
     test.beforeAll(async () => {
+      await expect(workspace).toHaveText(/A hackable text editor/, {
+        useInnerText: true,
+      })
       await runCommand(editor, 'Tabs: Close All Tabs')
     })
 
