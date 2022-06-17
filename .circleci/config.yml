@@ -29,6 +29,9 @@ jobs:
       - run: export DISPLAY=:99
       - run: nohup Xvfb :99 &
       - run: npx playwright test
+      - run: mkdir /tmp/videos && cp *mp4 /tmp/videos
+      - store_artifacts:
+          path: /tmp/videos
 
 workflows:
   version: 2
