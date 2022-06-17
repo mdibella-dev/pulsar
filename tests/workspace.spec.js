@@ -16,11 +16,7 @@ test.describe('Opening Atom for the first time', () => {
 
   test.afterAll(async () => {
     const closing = editor.app.close()
-    const i = setInterval(() => {V
-      console.log(editor.app.windows().length)
-    }, 100)
     await closing
-    // clearInterval(i)
   })
 
   test('the editor opens at the welcome page', async () => {
