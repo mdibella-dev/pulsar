@@ -30,6 +30,8 @@ jobs:
       - store_test_results:
           path: /tmp/report.xml
       - store_artifacts:
+          path: /tmp/report.xml
+      - store_artifacts:
           path: ./tests/videos
 
 workflows:
