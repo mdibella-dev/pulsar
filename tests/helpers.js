@@ -1,3 +1,4 @@
+const path = require('path')
 const p = require('playwright')
 const electron = p._electron
 const { expect } = require('@playwright/test')
@@ -15,7 +16,7 @@ async function openAtom(profilePath, videoName) {
   }
   if(process.env.CI) {
     config.recordVideo = {
-      dir: videoName
+      dir: path.join('tests', 'videos', videoName)
     }
   }
   const app = await electron.launch(config)

@@ -27,9 +27,8 @@ jobs:
       - run: yarn run build
       - run: yarn run build:apm
       - run: Xvfb :99 & DISPLAY=:99 npx playwright test
-      - run: mkdir /tmp/videos && cp *mp4 /tmp/videos
       - store_artifacts:
-          path: /tmp/videos
+          path: ./tests/videos
 
 workflows:
   version: 2
