@@ -26,7 +26,7 @@ jobs:
       - run: yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
       - run: yarn run build
       - run: yarn run build:apm
-      - run: Xvfb :99 & DISPLAY=:99 npx playwright test --reporter=junit > /tmp/report.xml
+      - run: Xvfb :99 & DISPLAY=:99 PLAYWRIGHT_JUNIT_OUTPUT_NAME=/tmp/report.xml npx playwright test --reporter=junit --reporter=list
       - store_test_results:
           path: /tmp/report.xml
       - store_artifacts:
