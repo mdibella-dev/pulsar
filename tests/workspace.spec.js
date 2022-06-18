@@ -5,13 +5,43 @@ const languages = [
   {language: "JavaScript", code: 'function aFunction() { 10 }', checks: {numeric: '10', name: 'aFunction'}},
   {language: "Ruby", code: 'def a_function\n  10\nend', checks: {numeric: '10', name: 'a_function'}},
   {language: "Java", code: 'public int blah { return 10; }', checks: {numeric: '10', type: 'int'}},
+  {language: "C", code: '10', checks: {numeric: '10'}},
+  {language: "Clojure", code: '10', checks: {numeric: '10'}},
+  {language: "CoffeeScript", code: '10', checks: {numeric: '10'}},
+  {language: "C#", code: '10', checks: {numeric: '10'}},
+  // {language: "css", code: '10', checks: {numeric: '10'}},
+  // {language: "gfm", code: '10', checks: {numeric: '10'}},
+  // {language: "git", code: '10', checks: {numeric: '10'}},
+  {language: "Go", code: '10', checks: {numeric: '10'}},
+  // {language: "html", code: '10', checks: {numeric: '10'}},
+  // {language: "hyperlink", code: '10', checks: {numeric: '10'}},
+  {language: "JSON", code: '10', checks: {numeric: '10'}},
+  // {language: "less", code: '10', checks: {numeric: '10'}},
+  // {language: "make", code: '10', checks: {numeric: '10'}},
+  // {language: "mustache", code: '10', checks: {numeric: '10'}},
+  {language: "Objective C", code: '10', checks: {numeric: '10'}},
+  {language: "Perl", code: '10', checks: {numeric: '10'}},
+  {language: "PHP", code: '<? 10 %>', checks: {numeric: '10'}},
+  // {language: "property-list", code: '10', checks: {numeric: '10'}},
+  {language: "Python", code: '10', checks: {numeric: '10'}},
+  {language: "Ruby on Rails", code: '10', checks: {numeric: '10'}},
+  // {language: "Rust", code: '10', checks: {numeric: '10'}},
+  // {language: "sass", code: '10', checks: {numeric: '10'}},
+  // {language: "Shell Script", code: '10', checks: {numeric: '10'}},
+  // {language: "source", code: '10', checks: {numeric: '10'}},
+  {language: "SQL", code: '10', checks: {numeric: '10'}},
+  // {language: "text", code: '10', checks: {numeric: '10'}},
+  // {language: "todo", code: '10', checks: {numeric: '10'}},
+  // {language: "toml", code: '10', checks: {numeric: '10'}},
+  {language: "Typescript", code: '10', checks: {numeric: '10'}},
+  // {language: "xml", code: '10', checks: {numeric: '10'}},
+  {language: "YAML", code: 'a: 10', checks: {numeric: '10'}},
 ]
 
 let editor
 test.describe('Opening Atom for the first time', () => {
   test.beforeAll(async () => {
     editor = await openAtom("/tmp/atom-home-tests", "opening-first-time")
-    editor.app.on('window', () => {console.log("WINDOW")})
   })
 
   test.afterAll(async () => {
