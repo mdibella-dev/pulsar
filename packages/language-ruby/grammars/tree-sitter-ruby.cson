@@ -3,6 +3,15 @@ scopeName: 'source.ruby'
 type: 'tree-sitter'
 parser: 'tree-sitter-ruby'
 
+fileTypes: [
+  'rb',
+  'rake',
+  'Podfile',
+  'Brewfile',
+  'Rakefile',
+  'Gemfile'
+]
+
 injectionRegex: 'rb|ruby'
 
 firstLineRegex: [
@@ -11,15 +20,6 @@ firstLineRegex: [
 
   # vim modeline
   'vim\\b.*\\bset\\b.*\\b(filetype|ft|syntax)=ruby'
-]
-
-fileTypes: [
-  'rb',
-  'rake',
-  'Podfile',
-  'Brewfile',
-  'Rakefile',
-  'Gemfile'
 ]
 
 comments:

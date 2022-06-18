@@ -3269,12 +3269,11 @@ kind-of@^3.0.2:
   dependencies:
     is-buffer "^1.1.5"
 
-"language-c@https://www.atom.io/api/packages/language-c/versions/0.60.19/tarball":
-  version "0.60.19"
-  resolved "https://www.atom.io/api/packages/language-c/versions/0.60.19/tarball#27e6c24739e0491111ee3cbd2c12283c07778ebc"
+"language-c@file:packages/language-c":
+  version "0.60.20"
   dependencies:
-    tree-sitter-c "^0.15.3"
-    tree-sitter-cpp "^0.15.1"
+    tree-sitter-c "0.20.1"
+    tree-sitter-cpp "0.20.0"
 
 "language-clojure@https://www.atom.io/api/packages/language-clojure/versions/0.22.8/tarball":
   version "0.22.8"
@@ -3302,11 +3301,10 @@ kind-of@^3.0.2:
   version "0.19.1"
   resolved "https://www.atom.io/api/packages/language-git/versions/0.19.1/tarball#4e42383312e9979f50968031d6e5e1dea9ffc98f"
 
-"language-go@https://www.atom.io/api/packages/language-go/versions/0.47.2/tarball":
-  version "0.47.2"
-  resolved "https://www.atom.io/api/packages/language-go/versions/0.47.2/tarball#726785ac72cb8e18f524835f27a7ef3834f705d5"
+"language-go@file:packages/language-go":
+  version "0.47.3"
   dependencies:
-    tree-sitter-go "^0.15.1"
+    tree-sitter-go "0.19.1"
 
 "language-html@https://www.atom.io/api/packages/language-html/versions/0.53.1/tarball":
   version "0.53.1"
@@ -3320,11 +3318,10 @@ kind-of@^3.0.2:
   version "0.17.1"
   resolved "https://www.atom.io/api/packages/language-hyperlink/versions/0.17.1/tarball#d43adf5639fcf426399496cf439f2b3270456f74"
 
-"language-java@https://www.atom.io/api/packages/language-java/versions/0.32.1/tarball":
+"language-java@file:packages/language-java":
   version "0.32.1"
-  resolved "https://www.atom.io/api/packages/language-java/versions/0.32.1/tarball#0b9604dc26b5df0e378cb43ef3637b8acf92b3cf"
   dependencies:
-    tree-sitter-java-dev "^0.16.0-dev2"
+    tree-sitter-java "0.19.1"
 
 "language-javascript@file:packages/language-javascript":
   version "0.134.2"
@@ -3333,11 +3330,10 @@ kind-of@^3.0.2:
     tree-sitter-jsdoc "0.19.0"
     tree-sitter-regex "0.19.0"
 
-"language-json@https://www.atom.io/api/packages/language-json/versions/1.0.5/tarball":
+"language-json@file:packages/language-json":
   version "1.0.5"
-  resolved "https://www.atom.io/api/packages/language-json/versions/1.0.5/tarball#2c1d86212f66606f0f2d63fe2ab1296c4208162a"
   dependencies:
-    tree-sitter-json "^0.15.1"
+    tree-sitter-json "0.20.0"
 
 "language-less@https://www.atom.io/api/packages/language-less/versions/0.34.3/tarball":
   version "0.34.3"
@@ -3359,35 +3355,32 @@ kind-of@^3.0.2:
   version "0.38.1"
   resolved "https://www.atom.io/api/packages/language-perl/versions/0.38.1/tarball#3fe16c1b24c5610082b9d0d1ad3ae838b06f7eb5"
 
-"language-php@https://www.atom.io/api/packages/language-php/versions/0.48.1/tarball":
+"language-php@file:packages/language-php":
   version "0.48.1"
-  resolved "https://www.atom.io/api/packages/language-php/versions/0.48.1/tarball#9606f7fd556f24d9fdf2aadfb8c59fd693cc0aac"
 
 "language-property-list@https://www.atom.io/api/packages/language-property-list/versions/0.9.1/tarball":
   version "0.9.1"
   resolved "https://www.atom.io/api/packages/language-property-list/versions/0.9.1/tarball#d8686d95e1e656c894d1f0079963cc1deceefcbc"
 
-"language-python@https://www.atom.io/api/packages/language-python/versions/0.53.6/tarball":
+"language-python@file:packages/language-python":
   version "0.53.6"
-  resolved "https://www.atom.io/api/packages/language-python/versions/0.53.6/tarball#3b09b0afa634b2f8b638c2797e1da61d9614ebfa"
   dependencies:
     atom-grammar-test "^0.6.4"
-    tree-sitter-python "^0.17.0"
+    tree-sitter-python "^0.19.0"
 
 "language-ruby-on-rails@https://www.atom.io/api/packages/language-ruby-on-rails/versions/0.25.3/tarball":
   version "0.25.3"
   resolved "https://www.atom.io/api/packages/language-ruby-on-rails/versions/0.25.3/tarball#a6ad61c1d7b0697bf31605b5db85c1e14af9ba00"
 
-"language-ruby@https://www.atom.io/api/packages/language-ruby/versions/0.73.0/tarball":
+"language-ruby@file:packages/language-ruby":
   version "0.73.0"
-  resolved "https://www.atom.io/api/packages/language-ruby/versions/0.73.0/tarball#1beac72d0ed4f8523117c02480e1320af857b585"
   dependencies:
-    tree-sitter-ruby "^0.17.0"
+    tree-sitter-ruby "^0.19.0"
 
 "language-rust-bundled@file:packages/language-rust-bundled":
   version "0.1.0"
   dependencies:
-    tree-sitter-rust "^0.20.1"
+    tree-sitter-rust "0.20.1"
 
 "language-sass@https://www.atom.io/api/packages/language-sass/versions/0.62.1/tarball":
   version "0.62.1"
@@ -3423,7 +3416,7 @@ kind-of@^3.0.2:
   version "0.6.3"
   resolved "https://www.atom.io/api/packages/language-typescript/versions/0.6.3/tarball#a315c84d29cdd1b29cded97ff13dd4e6ee0f4464"
   dependencies:
-    tree-sitter-typescript "^0.16.1"
+    tree-sitter-typescript "0.20.1"
 
 "language-xml@https://www.atom.io/api/packages/language-xml/versions/0.35.3/tarball":
   version "0.35.3"
@@ -5783,19 +5776,19 @@ tree-sitter-bash@^0.16.1:
     nan "^2.14.0"
     prebuild-install "^5.3.3"
 
-tree-sitter-c@^0.15.3:
-  version "0.15.3"
-  resolved "https://registry.yarnpkg.com/tree-sitter-c/-/tree-sitter-c-0.15.3.tgz#f195ce6ddafc2332b9c14e0da34d761bf1752f34"
-  integrity sha512-wNtYDKaJWFp4H9C9b1II54ku50ENI3OjBNCeiFDRjRVOZZHdMlgvK9eAKnF70GNOkWQLG1WcZp6PJlZDlfy3aA==
+tree-sitter-c@0.20.1:
+  version "0.20.1"
+  resolved "https://registry.yarnpkg.com/tree-sitter-c/-/tree-sitter-c-0.20.1.tgz#0f3b00f92ef8a67068e6a83fc066ca6dac029240"
+  integrity sha512-aKDkF8wj1dnAG4D4vSMYBF4Z2ALropFiVdbQbu8YpiQRFgc3wZtjGGowiwiBHaV+RqSF8x7JCek4+VqkBByW/Q==
   dependencies:
-    nan "^2.10.0"
+    nan "^2.14.0"
 
-tree-sitter-cpp@^0.15.1:
-  version "0.15.1"
-  resolved "https://registry.yarnpkg.com/tree-sitter-cpp/-/tree-sitter-cpp-0.15.1.tgz#c814e1178290e227bd746e5db4eda5975d0f9bff"
-  integrity sha512-Ki1X5AdnR9AC8EEjRvcIwJ8oNH6K6xJf19nKbu8vlCUwyupTco2YFKYrKY7Ow5dLTC7JNqjDLEZXy7EwHz/7xQ==
+tree-sitter-cpp@0.20.0:
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/tree-sitter-cpp/-/tree-sitter-cpp-0.20.0.tgz#42499b1f2d3f61f74703cc9f13fcaf65173c96a4"
+  integrity sha512-ka1KoFfmLX9dmus8S+NrXxEN+k2PWJOZi60vO3hnR2lnRIr4FYBSXZKmTgQnCd8/w0UM7sNtgETvW1SM1qJ9og==
   dependencies:
-    nan "^2.10.0"
+    nan "^2.14.0"
 
 tree-sitter-css@^0.19.0:
   version "0.19.0"
@@ -5811,12 +5804,12 @@ tree-sitter-embedded-template@^0.15.2:
   dependencies:
     nan "^2.0.0"
 
-tree-sitter-go@^0.15.1:
-  version "0.15.1"
-  resolved "https://registry.yarnpkg.com/tree-sitter-go/-/tree-sitter-go-0.15.1.tgz#51ad116d7fab4519d73b6381f608ee00d1fefa43"
-  integrity sha512-TCwvh7kz+2iMUjZI7aPnpImv5PFcWdbo8hJysjwV7FUlCTGeCgca2ItdxA5cdACcykRVLzoUTZN70qFGwYVQVw==
+tree-sitter-go@0.19.1:
+  version "0.19.1"
+  resolved "https://registry.yarnpkg.com/tree-sitter-go/-/tree-sitter-go-0.19.1.tgz#f23c84bff882eafa296ce2d307366e76f1f83e2d"
+  integrity sha512-qAHzfuddhbs3kPIW2vMBL5TqC5umhQ3NlDBPtdqlxE6tN2PKWHj0SZxXd/YrvqNUDrMmRpPBRg9W7JyCP/+n3A==
   dependencies:
-    nan "^2.10.0"
+    nan "^2.14.0"
 
 tree-sitter-html@^0.15.0:
   version "0.15.1"
@@ -5825,12 +5818,12 @@ tree-sitter-html@^0.15.0:
   dependencies:
     nan "^2.10.0"
 
-tree-sitter-java-dev@^0.16.0-dev2:
-  version "0.16.0-dev2"
-  resolved "https://registry.yarnpkg.com/tree-sitter-java-dev/-/tree-sitter-java-dev-0.16.0-dev2.tgz#4fba63da5648e4650364ac36c387fea16f3ff930"
-  integrity sha512-BilPJ2SwvRKMTeq2WZdvVX5HiMYTLSncJATkqWiPRGUl157FcBjY42mzm3M42/5QQybb1nDJjW0tAvVA5iEHmw==
+tree-sitter-java@0.19.1:
+  version "0.19.1"
+  resolved "https://registry.yarnpkg.com/tree-sitter-java/-/tree-sitter-java-0.19.1.tgz#c1bf59caaa81bf8a4a6dda99e7c97e51b3bd26d4"
+  integrity sha512-yVm+4q1D4niaHcEf2iqhOcIaiSp3wxHjeC4eoLAqSQNVxSrhThmT1FEfM4yDgHV4XaxH+62xpKHCwYG9NzRt6Q==
   dependencies:
-    nan "^2.12.1"
+    nan "^2.14.1"
 
 tree-sitter-javascript@0.19.0:
   version "0.19.0"
@@ -5846,17 +5839,17 @@ tree-sitter-jsdoc@0.19.0:
   dependencies:
     nan "^2.14.1"
 
-tree-sitter-json@^0.15.1:
-  version "0.15.1"
-  resolved "https://registry.yarnpkg.com/tree-sitter-json/-/tree-sitter-json-0.15.1.tgz#02bc1961b9de963d23e2fbeab7d360b1cbbcc50d"
-  integrity sha512-zSbxzlZlMuWEQ/WhyjR+AoECf/v9/dlE+6+0uxNgU5fb5m4kGc9Y0+HKWxLWZ4yhZNBdwCIrUQwo/oaBdmyXPg==
+tree-sitter-json@0.20.0:
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/tree-sitter-json/-/tree-sitter-json-0.20.0.tgz#e17bb4917e8d5fe9f2f0d5eaec603e2d3552b07c"
+  integrity sha512-PteOLH+Tx6Bz4ZA/d40/DbkiSXXRM/gKahhHI8hQ1lWNfFvdknnz9k3Mz84ol5srRyLboJ8wp8GSkhZ6ht9EGQ==
   dependencies:
-    nan "^2.0.0"
+    nan "^2.14.1"
 
-tree-sitter-python@^0.17.0:
-  version "0.17.1"
-  resolved "https://registry.yarnpkg.com/tree-sitter-python/-/tree-sitter-python-0.17.1.tgz#69e19599478fdc4288102adf82d24dc214ca1479"
-  integrity sha512-T4vvjAzd7piW66zKbJ/+4YgGk5wOtqNI25FGVsr947+EeZqdSAfwPsgSD1/I2NAVe3mdpOh/EQbfvq+EOfAiJA==
+tree-sitter-python@^0.19.0:
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/tree-sitter-python/-/tree-sitter-python-0.19.0.tgz#ad79a221fab7136559da0704f789173b81e0bdcd"
+  integrity sha512-UAJV73zCE+2b+X8XQOyL6C+MxVUV8BH0TxcOwhfgaDh6F6g4Ub0SqWGF19C1MDrGi25JNnZ8xlsH0aqrasyS3w==
   dependencies:
     nan "^2.14.0"
 
@@ -5867,24 +5860,24 @@ tree-sitter-regex@0.19.0:
   dependencies:
     nan "^2.14.1"
 
-tree-sitter-ruby@^0.17.0:
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/tree-sitter-ruby/-/tree-sitter-ruby-0.17.0.tgz#3da62b5cfdfe62ac2e0e2e04ca7220161e40cea6"
-  integrity sha512-Hpjnp7vfRjRsULeYWtDcwR6nb/lPeQfaY2jo9V3npUiaSlqYFJxlC5d45FfZ60aHxv74CI3ziocs9kMfjPS2oQ==
+tree-sitter-ruby@^0.19.0:
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/tree-sitter-ruby/-/tree-sitter-ruby-0.19.0.tgz#a5fd70c7653beaa89c7d643a9b04e0f71eb075bd"
+  integrity sha512-uzASkTuC6wXnnshfDgij/Q9FYWxODCyIKVb0eHVGX9G5Cu5iFPvgJQgWTKIft1zomTjKjD25YIwFUnXnzZf4Ew==
   dependencies:
-    nan "^2.12.1"
+    nan "^2.14.1"
     prebuild-install "^5.0.0"
 
-tree-sitter-rust@^0.20.1:
+tree-sitter-rust@0.20.1:
   version "0.20.1"
   resolved "https://registry.yarnpkg.com/tree-sitter-rust/-/tree-sitter-rust-0.20.1.tgz#3ff85edc85293797f88e7bdb29022d57a6a1e30f"
   integrity sha512-du8yLJBnjzjynQDPlt4IhbHgGHq2o/hdUGrHuedyAd5008i3ghB6trDB805B9qXNPFJGNy8gY0kxQPak2zOsFw==
   dependencies:
     nan "^2.14.0"
 
-tree-sitter-typescript@^0.16.1:
+tree-sitter-typescript@0.20.1:
   version "0.16.3"
-  resolved "https://registry.yarnpkg.com/tree-sitter-typescript/-/tree-sitter-typescript-0.16.3.tgz#920a0a41edca661221fa3b7fb4beedbbe76e3446"
+  resolved "https://registry.yarnpkg.com/tree-sitter-typescript/-/tree-sitter-typescript-0.20.1.tgz#920a0a41edca661221fa3b7fb4beedbbe76e3446"
   integrity sha512-qdRydjlnFuxwlkE/+oqOywzcKL2l3G1xkhR9DxDySGfF4JiMdYCTqJCWRUYaGnagJDZBF7wGWtHf5FGGXdLjNw==
   dependencies:
     nan "^2.14.0"
