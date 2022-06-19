@@ -3385,11 +3385,10 @@ kind-of@^3.0.2:
   version "0.62.1"
   resolved "https://www.atom.io/api/packages/language-sass/versions/0.62.1/tarball#a6cc2b197bc2e4c029c99f0737d5e79f148671f6"
 
-"language-shellscript@https://www.atom.io/api/packages/language-shellscript/versions/0.28.2/tarball":
+"language-shellscript@file:packages/language-shellscript":
   version "0.28.2"
-  resolved "https://www.atom.io/api/packages/language-shellscript/versions/0.28.2/tarball#58b43b0d239953d157d79c0dccb2db4bb745e90c"
   dependencies:
-    tree-sitter-bash "^0.16.1"
+    tree-sitter-bash "0.19.0"
 
 "language-source@https://www.atom.io/api/packages/language-source/versions/0.9.0/tarball":
   version "0.9.0"
@@ -5766,10 +5765,10 @@ tough-cookie@~2.5.0:
     psl "^1.1.28"
     punycode "^2.1.1"
 
-tree-sitter-bash@^0.16.1:
-  version "0.16.1"
-  resolved "https://registry.yarnpkg.com/tree-sitter-bash/-/tree-sitter-bash-0.16.1.tgz#7d171dfe3a912f7210cee2142804cba1f553939d"
-  integrity sha512-knkl96EkBSns9NSUmFVboOlnMNxkhHp/e7l5rKCt9kk7qZlT9NdCJQHsXLcjk8L2ameRnQFJfuSzCNG3DQeF7Q==
+tree-sitter-bash@0.19.0:
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/tree-sitter-bash/-/tree-sitter-bash-0.19.0.tgz#756332e3c5494a0b5ccda04c182e7206d65cf350"
+  integrity sha512-i/0NUZHSrxmYtQWMX+Tvuk9PBvsB0S3h0vD17qHSGuvPYgvpekRy8do75CAXyH6FlycMhejM39gNRppyvDeiVQ==
   dependencies:
     nan "^2.14.0"
     prebuild-install "^5.3.3"
