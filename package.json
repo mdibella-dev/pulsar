@@ -1,6 +1,6 @@
 {
   "name": "atom",
-  "author": "Atom Community",
+  "author": "Atom Community <atom@atom.com.br>",
   "productName": "Atom",
   "version": "1.63.0-dev",
   "description": "A hackable text editor for the 21st Century.",
@@ -290,6 +290,9 @@
       "target": [
         {
           "target": "appimage",
+          "arch": "x64"
+        }, {
+          "target": "deb",
           "arch": "x64"
         }
       ]
