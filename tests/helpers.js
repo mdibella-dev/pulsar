@@ -6,10 +6,10 @@ const { expect } = require('@playwright/test')
 async function openAtom(profilePath, videoName) {
   const env = process.env
   env.ATOM_HOME = profilePath
-  env.APM_PATH = "apm/node_modules/.bin/apm"
+  env.APM_PATH = "apm/node_modules/atom-package-manager/bin/apm"
 
   const config = {
-    args: ["--no-sandbox", "src/main-process/main.js"],
+    args: ["--no-sandbox", "."],
     cwd: "./",
     env: env,
     timeout: 10000
