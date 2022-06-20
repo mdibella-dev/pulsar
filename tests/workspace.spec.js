@@ -56,6 +56,13 @@ test.describe('Opening Atom for the first time', () => {
     })
   })
 
+  test('shows the current installed packages', async () => {
+    await runCommand(editor, 'Settings View: Open')
+    await editor.page.locator('a.icon', { hasText: 'Packages' }).click()
+    await expect(editor.page.locator('.package-name', { hasText: 'welcome' }))
+      .toBeVisible()
+  })
+
   test.describe('the editor have syntax highlight', async () => {
     test.beforeAll(async () => {
       const workspace = editor.page.locator('atom-workspace')
