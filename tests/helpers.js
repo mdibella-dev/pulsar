@@ -1,3 +1,4 @@
+const os=require('os')
 const path = require('path')
 const p = require('playwright')
 const electron = p._electron
@@ -25,8 +26,6 @@ async function openAtom(profilePath, videoName) {
   return {app, page}
 }
 
-// editor.page.evaluate(() => { eval(`atom.commands.dispatch(atom.views.getView(atom.workspace), "application:about")`) })
-
 function runWorkspaceCommand(editor, command) {
   return editor.page.evaluate(`
     atom.commands.dispatch(
@@ -46,7 +45,11 @@ function runEditorCommand(editor, command) {
 }
 
 async function runCommand({page}, command) {
-  await page.locator('atom-workspace').press('Control+Shift+p')
+  if(os.platform() === 'darwin') {
+    await page.locator('atom-workspace').press('Command+Shift+p')
+  } else {
+    await page.locator('atom-workspace').press('Control+Shift+p')
+  }
   const palette = page.locator('.command-palette atom-text-editor.is-focused')
   await palette.type(command)
   await page.locator('.selected div', { hasText: command }).first().click()
