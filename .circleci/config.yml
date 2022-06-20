@@ -4,26 +4,24 @@ defaults: &defaults
     - image: node:lts-slim
 
 jobs:
-  # mac:
-  #   macos:
-  #     xcode: 12.5.1 # indicate your selected version of Xcode
-  #   steps: # a series of commands to run
-  #     - checkout  # pull down code from your version control system.
-  #     - run: brew install nodejs
-  #     - run: npm install -g yarn
-  #     - run: yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
-  #     - run: yarn run build
-  #     - run: yarn run build:apm
-  #     - run: PLAYWRIGHT_JUNIT_OUTPUT_NAME=/tmp/report.xml npx playwright test --reporter=junit,list
-  #     - persist_to_workspace:
-  #         root: '.'
-  #     - store_test_results:
-  #         path: /tmp/report.xml
-  #     - store_artifacts:
-  #         path: /tmp/report.xml
-  #     - store_artifacts:
-  #         path: ./tests/videos
-  #
+  mac:
+    macos:
+      xcode: 12.5.1 # indicate your selected version of Xcode
+    steps: # a series of commands to run
+      - checkout  # pull down code from your version control system.
+      - run: brew install nodejs
+      - run: npm install -g yarn
+      - run: yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
+      - run: yarn run build
+      - run: yarn run build:apm
+      - run: PLAYWRIGHT_JUNIT_OUTPUT_NAME=/tmp/report.xml npx playwright test --reporter=junit,list
+      - store_test_results:
+          path: /tmp/report.xml
+      - store_artifacts:
+          path: /tmp/report.xml
+      - store_artifacts:
+          path: ./tests/videos
+
   linux:
     <<: *defaults
     steps:
@@ -47,8 +45,6 @@ jobs:
       - run: yarn run build
       - run: yarn run build:apm
       - run: Xvfb :99 & DISPLAY=:99 PLAYWRIGHT_JUNIT_OUTPUT_NAME=/tmp/report.xml npx playwright test --reporter=junit,list
-      - persist_to_workspace:
-          root: '.'
       - store_test_results:
           path: /tmp/report.xml
       - store_artifacts:
@@ -65,4 +61,4 @@ workflows:
   default-workflow:
     jobs:
       - linux
-      # - mac
+      - mac
