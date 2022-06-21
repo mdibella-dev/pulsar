@@ -1,3 +1,4 @@
+const os = require('os')
 const {openAtom, runCommand, typeInEditor} = require('./helpers')
 const { test, expect } = require('@playwright/test')
 
@@ -74,7 +75,11 @@ test.describe('Opening Atom for the first time', () => {
     })
 
     test.afterEach(async () => {
-      await editor.page.keyboard.press('Control+a')
+      if(os.platform() === 'darwin') {
+        await editor.page.keyboard.press('Meta+a')
+      } else {
+        await editor.page.keyboard.press('Control+a')
+      }
       await editor.page.keyboard.press('Delete')
       await runCommand(editor, 'Tabs: Close Tab')
     })
