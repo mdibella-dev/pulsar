@@ -1,9 +1,10 @@
 const path = require('path')
-let transformer = require('app-builder-lib/out/fileTransformer')
+const normalizePackageData = require('normalize-package-data');
+const fs = require("fs/promises");
 
 // Monkey-patch to not remove things I explicitly didn't say so
 // See: https://github.com/electron-userland/electron-builder/issues/6957
-const promises_1 = require("fs/promises");
+let transformer = require('app-builder-lib/out/fileTransformer')
 const builder_util_1 = require("builder-util");
 
 transformer.createTransformer = function(srcDir, configuration, extraMetadata, extraTransformer) {
@@ -24,7 +25,7 @@ transformer.createTransformer = function(srcDir, configuration, extraMetadata, e
     };
 }
 async function modifyMainPackageJson(file, extraMetadata, isRemovePackageScripts, isRemovePackageKeywords) {
-    const mainPackageData = JSON.parse(await promises_1.readFile(file, "utf-8"));
+    const mainPackageData = JSON.parse(await fs.readFile(file, "utf-8"));
     if (extraMetadata != null) {
         builder_util_1.deepAssign(mainPackageData, extraMetadata);
         return JSON.stringify(mainPackageData, null, 2);
@@ -35,7 +36,6 @@ async function modifyMainPackageJson(file, extraMetadata, isRemovePackageScripts
 
 const builder = require("electron-builder")
 const Platform = builder.Platform
-const fs = require('fs')
 
 const generate = require('./lib/generate-metadata.js')
 
@@ -68,18 +68,85 @@ let options = {
   }
 }
 
-generate()
-generatedPackage = JSON.parse(fs.readFileSync('out/app/package.json'))
-for(let k in generatedPackage) {
-  if(k.startsWith('_')) {
-    options.extraMetadata[k] = generatedPackage[k]
+// generate()
+// generatedPackage = JSON.parse(fs.readFileSync('out/app/package.json'))
+// for(let k in generatedPackage) {
+//   if(k.startsWith('_')) {
+//     options.extraMetadata[k] = generatedPackage[k]
+//   }
+// }
+// builder.build({
+//   // targets: Platform.LINUX.createTarget(),
+//   config: options
+// }).then((result) => {
+//   console.log(JSON.stringify(result))
+// }).catch((error) => {
+//   console.error(error)
+// })
+
+async function main() {
+  const packagesMeta = await packagesMetadata()
+  options.extraMetadata._atomPackages = packagesMeta
+  builder.build({
+    // targets: Platform.LINUX.createTarget(),
+    config: options
+  }).then((result) => {
+    console.log("Built binaries")
+    console.log(JSON.stringify(result))
+  }).catch((error) => {
+    console.error("Error building binaries")
+    console.error(error)
+  })
+}
+
+
+async function packagesMetadata() {
+  const package = await fs.readFile('package.json', "utf-8")
+  const parsed = JSON.parse(package)
+
+  let packagesMetadata = []
+  for(let name in parsed.packageDependencies) {
+    const version = parsed.packageDependencies[name]
+    packagesMetadata.push(readPackageData(name, version))
+  }
+
+  let metas = {}
+  const allMetas = await Promise.all(packagesMetadata)
+  allMetas.forEach(meta => {
+    metas[meta.metadata.name] = meta
+  })
+  return metas
+}
+
+function readPackageData(name, version) {
+  let filePath
+  if(version.startsWith('file:')) {
+    filePath = version.replace('file:./', '')
+  } else {
+    filePath = path.join('node_modules', name)
+  }
+  return readJSON(path.join(filePath, 'package.json'))
+    .then(data => makeNormalizedPackage(data, filePath))
+}
+
+
+function makeNormalizedPackage(packageData, path) {
+  normalizePackageData(packageData)
+  return {
+    metadata: packageData,
+    // "keymaps": {},
+    // "menus": {},
+    // "grammarPaths": [],
+    // "settings": {},
+    "rootDirPath": path,
+    // "styleSheetPaths": [
+    //   "index.less"
+    // ]
   }
 }
-builder.build({
-  // targets: Platform.LINUX.createTarget(),
-  config: options
-}).then((result) => {
-  console.log(JSON.stringify(result))
-}).catch((error) => {
-  console.error(error)
-})
+
+function readJSON(file) {
+  return fs.readFile(file, "utf-8").then(JSON.parse)
+}
+
+main()
