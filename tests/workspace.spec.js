@@ -1,4 +1,4 @@
-const {openAtom, runCommand} = require('./helpers')
+const {openAtom, runCommand, typeInEditor} = require('./helpers')
 const { test, expect } = require('@playwright/test')
 
 const languages = [
@@ -56,10 +56,11 @@ test.describe('Opening Atom for the first time', () => {
     })
   })
 
-  test('shows the current installed packages', async () => {
+  test('allows to search for packages', async () => {
     await runCommand(editor, 'Settings View: Open')
-    await editor.page.locator('a.icon', { hasText: 'Packages' }).click()
-    await expect(editor.page.locator('.package-name', { hasText: 'welcome' }))
+    await editor.page.locator('a.icon', { hasText: 'Install' }).click()
+    await typeInEditor(editor, '.packages', "language-javascript")
+    await expect(editor.page.locator('.package-name', { hasText: 'language-javascript' }).first())
       .toBeVisible()
   })
 
