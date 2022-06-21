@@ -26,30 +26,13 @@ async function openAtom(profilePath, videoName) {
   return {app, page}
 }
 
-function runWorkspaceCommand(editor, command) {
-  return editor.page.evaluate(`
-    atom.commands.dispatch(
-      atom.views.getView(atom.workspace),
-      "${command}"
-    )
-  `)
-}
-
-function runEditorCommand(editor, command) {
-  return editor.page.evaluate(`
-    atom.commands.dispatch(
-      atom.views.getView(atom.workspace.getActiveTextEditor()),
-      "${command}"
-    )
-  `)
-}
-
 async function runCommand({page}, command) {
   if(os.platform() === 'darwin') {
     await page.locator('atom-workspace').press('Meta+Shift+p')
   } else {
     await page.locator('atom-workspace').press('Control+Shift+p')
   }
+  await expect(page.locator('.modal:visible')).toBeVisible()
   const palette = page.locator('.command-palette atom-text-editor.is-focused')
   await palette.type(command)
   await page.locator('.selected div', { hasText: command }).first().click()
