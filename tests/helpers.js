@@ -46,7 +46,7 @@ function runEditorCommand(editor, command) {
 
 async function runCommand({page}, command) {
   if(os.platform() === 'darwin') {
-    await page.locator('atom-workspace').press('Command+Shift+p')
+    await page.locator('atom-workspace').press('Meta+Shift+p')
   } else {
     await page.locator('atom-workspace').press('Control+Shift+p')
   }
