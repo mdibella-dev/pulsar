@@ -273,30 +273,7 @@
     "build": "electron-rebuild",
     "build:apm": "cd apm; yarn install; ./node_modules/atom-package-manager/bin/npm rebuild",
     "start": "electron --enable-logging -f",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder"
-  },
-  "build": {
-    "appId": "link.mauricioszabo.pulsar",
-    "extraResources": [
-      {
-        "from": "apm",
-        "to": "app/apm"
-      }
-    ],
-    "linux": {
-      "icon": "resources/app-icons/atom-community.png",
-      "synopsis": "A hackable text editor for the 22nd century",
-      "target": [
-        {
-          "target": "appimage",
-          "arch": "x64"
-        }, {
-          "target": "deb",
-          "arch": "x64"
-        }
-      ]
-    }
+    "dist": "node script/electron-builder.js"
   },
   "standard-engine": "./script/node_modules/standard",
   "standard": {
@@ -314,7 +291,7 @@
   "devDependencies": {
     "@playwright/test": "^1.22.2",
     "electron": "12.2.3",
-    "electron-builder": "^23.0.3",
+    "electron-builder": "^23.2.0",
     "electron-rebuild": "^3.2.7",
     "playwright": "^1.22.2",
     "playwright-core": "^1.22.2"
