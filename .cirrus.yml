@@ -75,7 +75,7 @@ windows_task:
     - choco install python git -y
     - ls C:/Program\ Files/
     - ls C:/Program\ Files/*
-    - export PATH="C:/Programas/node/bin:C:/Programs/python:C:/Programas/git:$PATH"
+    - export PATH="C:/Program\ Files/Git/bin:C:/Program\ Files/nodejs:C:/Python310:C:/Python310/bin:$PATH"
     - npx yarn install || sleep 1 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install
     - npx yarn run build
     - npx yarn run build:apm
