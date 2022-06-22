@@ -71,11 +71,7 @@ let options = {
   },
   "mac": {
     "icon": "resources/app-icons/atom-community.png",
-    "category": "Development",
-    "target": {
-      "target": "default",
-      "arch": "universal"
-    }
+    "category": "Development"
   },
   "win": {
     // "icon": "resources/app-icons/atom-community.png",
