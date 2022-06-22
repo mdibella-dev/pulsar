@@ -42,6 +42,7 @@ const generate = require('./lib/generate-metadata.js')
 let options = {
   "appId": "link.mauricioszabo.pulsar",
   "npmRebuild": false,
+  "publish": null,
   "extraResources": [
     {
       "from": "apm",
