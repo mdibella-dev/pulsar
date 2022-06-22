@@ -36,6 +36,7 @@ mac_task:
   macos_instance:
     image: ghcr.io/cirruslabs/macos-monterey-base:latest
   test_script:
+    - echo A | softwareupdate --install-rosetta
     - brew install node@16 yarn git python
     - ln -s /opt/homebrew/bin/python3 /opt/homebrew/bin/python
     - export PATH="/opt/homebrew/bin:/opt/homebrew/opt/node@16/bin:$PATH"
@@ -49,9 +50,18 @@ mac_task:
     format: junit
   videos_artifacts:
     path: ./tests/videos/**
-  build_binary_script:
+  build_arm_binary_script:
     - export PATH="/opt/homebrew/bin:/opt/homebrew/opt/node@16/bin:$PATH"
     - yarn dist
+  build_x86_binary_script:
+    - arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    - export PATH="/usr/local/bin:$PATH"
+    - arch -x86_64 brew install node@16 yarn git python
+    - ln -s /usr/local/opt/python3 /usr/local/bin/python
+    - export PATH="/usr/local/bin/python3:$PATH"
+    - arch -x86_64 yarn run build
+    - arch -x86_64 yarn run build:apm
+    - arch -x86_64 yarn dist
   binary_artifacts:
     path: ./binaries/*
 
@@ -61,12 +71,10 @@ windows_task:
   env:
     CIRRUS_SHELL: bash
   test_script:
-    - choco install nodejs --version=16.15.1 -y --install-directory='C:\Programs\node'
-    - choco install python -y --install-directory='C:\Programs\python'
-    - choco install git -y --install-directory='C:\Programs\git'
-    - ls C:/Programas/node/bin
-    - ls C:/Programs/python
-    - ls C:/Programas/git
+    - choco install nodejs --version=16.15.1 -y
+    - choco install python git -y
+    - ls C:/Program\ Files/
+    - ls C:/Program\ Files/*
     - export PATH="C:/Programas/node/bin:C:/Programs/python:C:/Programas/git:$PATH"
     - npx yarn install || sleep 1 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install
     - npx yarn run build
