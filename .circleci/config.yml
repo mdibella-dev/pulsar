@@ -4,27 +4,6 @@ defaults: &defaults
     - image: node:lts-slim
 
 jobs:
-  mac:
-    macos:
-      xcode: 12.5.1 # indicate your selected version of Xcode
-    steps: # a series of commands to run
-      - checkout  # pull down code from your version control system.
-      - run: brew install nodejs
-      - run: yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
-      - run: yarn run build
-      - run: yarn run build:apm
-      - run: PLAYWRIGHT_JUNIT_OUTPUT_NAME=/tmp/report.xml npx playwright test --reporter=junit,list
-      - store_test_results:
-          path: /tmp/report.xml
-      - store_artifacts:
-          path: /tmp/report.xml
-      - store_artifacts:
-          path: ./tests/videos
-      - run: 'yarn dist'
-      - store_artifacts:
-          path: ./binaries
-          prefix: releases
-
   linux:
     <<: *defaults
     steps:
@@ -60,9 +39,52 @@ jobs:
           path: ./binaries
           prefix: releases
 
+  mac:
+    macos:
+      xcode: 12.5.1
+    steps:
+      - checkout
+      - run: brew install nodejs
+      - run: yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
+      - run: yarn run build
+      - run: yarn run build:apm
+      - run: PLAYWRIGHT_JUNIT_OUTPUT_NAME=/tmp/report.xml npx playwright test --reporter=junit,list
+      - store_test_results:
+          path: /tmp/report.xml
+      - store_artifacts:
+          path: /tmp/report.xml
+      - store_artifacts:
+          path: ./tests/videos
+      - run: 'yarn dist'
+      - store_artifacts:
+          path: ./binaries
+          prefix: releases
+
+  windows:
+    machine:
+      image: windows-default
+    resource_class: windows.medium
+    steps:
+      - checkout
+      - run: yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
+      - run: yarn run build
+      - run: yarn run build:apm
+      - run: PLAYWRIGHT_JUNIT_OUTPUT_NAME=/tmp/report.xml npx playwright test --reporter=junit,list
+      - store_test_results:
+          path: /tmp/report.xml
+      - store_artifacts:
+          path: /tmp/report.xml
+      - store_artifacts:
+          path: ./tests/videos
+      - run: 'yarn dist'
+      - store_artifacts:
+          path: ./binaries
+          prefix: releases
+
 workflows:
   version: 2
   default-workflow:
     jobs:
       - linux
       - mac
+      - windows

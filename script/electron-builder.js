@@ -49,11 +49,6 @@ let options = {
     }
   ],
   compression: "normal",
-  "mac": {
-    "icon": "resources/app-icons/atom-community.png",
-    "category": "Development",
-    "target": [{ "target": "dmg" }]
-  },
   "linux": {
     "icon": "resources/app-icons/atom-community.png",
     "category": "Development",
@@ -71,6 +66,19 @@ let options = {
         "target": "rpm",
         "arch": "x64"
       }
+    ]
+  },
+  "mac": {
+    "icon": "resources/app-icons/atom-community.png",
+    "category": "Development",
+    "target": [{ "target": "dmg" }]
+  },
+  "win": {
+    // "icon": "resources/app-icons/atom-community.png",
+    "target": [
+      { "target": "nsis" },
+      { "target": "msi" },
+      { "target": "portable" }
     ]
   },
   "extraMetadata": {
