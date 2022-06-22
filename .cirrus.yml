@@ -62,6 +62,7 @@ windows_task:
     - cat C:/ProgramData/chocolatey/\logs/chocolatey.log
     - refreshenv
     - echo -e $PATH
+  actual_test_script:
     - choco install yarn git python -y
     - npx yarn install || sleep 1 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install
     - npx yarn run build
