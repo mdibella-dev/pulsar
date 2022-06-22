@@ -65,7 +65,7 @@ jobs:
     executor: win/default
     steps:
       - checkout
-      - run: yarn install
+      - run: yarn install || yarn install || yarn install || yarn install || yarn install || yarn install
       - run: yarn run build
       - run: yarn run build:apm
       - run: PLAYWRIGHT_JUNIT_OUTPUT_NAME=/tmp/report.xml npx playwright test --reporter=junit,list
