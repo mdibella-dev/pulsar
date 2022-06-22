@@ -31,3 +31,43 @@ linux_task:
   build_binary_script: yarn dist
   binary_artifacts:
     path: ./binaries
+
+mac_task:
+  macos_instance:
+    image: ghcr.io/cirruslabs/macos-monterey-base:latest
+  test_script:
+    - brew install nodejs git
+    - yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
+    - yarn run build
+    - yarn run build:apm
+    - Xvfb :99 & DISPLAY=:99 PLAYWRIGHT_JUNIT_OUTPUT_NAME=report.xml npx playwright test --reporter=junit,list
+  junit_artifacts:
+    path: report.xml
+    type: text/xml
+    format: junit
+  videos_artifacts:
+    path: ./tests/videos
+  build_binary_script: yarn dist
+  binary_artifacts:
+    path: ./binaries
+
+windows_task:
+  windows_container:
+    image: cirrusci/windowsservercore:2019
+  env:
+    CIRRUS_SHELL: bash
+  test_script:
+    - choco install nodejs git -y
+    - npx yarn install || sleep 1 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install
+    - npx yarn run build
+    - npx yarn run build:apm
+    - Xvfb :99 & DISPLAY=:99 PLAYWRIGHT_JUNIT_OUTPUT_NAME=report.xml npx playwright test --reporter=junit,list
+  junit_artifacts:
+    path: report.xml
+    type: text/xml
+    format: junit
+  videos_artifacts:
+    path: ./tests/videos
+  build_binary_script: npx yarn dist
+  binary_artifacts:
+    path: ./binaries
