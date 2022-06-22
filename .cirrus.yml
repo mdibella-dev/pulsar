@@ -2,9 +2,9 @@ container:
   image: node:lts-slim
 task:
   script:
-    - run: apt-get update
-    - run: export DEBIAN_FRONTEND="noninteractive"
-    - run: apt-get install -y
+    - apt-get update
+    - export DEBIAN_FRONTEND="noninteractive"
+    - apt-get install -y
                 rpm
                 build-essential
                 git
@@ -18,10 +18,10 @@ task:
                 libasound2-dev
                 libnss3
                 xvfb
-    - run: yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
-    - run: yarn run build
-    - run: yarn run build:apm
-    - run: Xvfb :99 & DISPLAY=:99 PLAYWRIGHT_JUNIT_OUTPUT_NAME=/tmp/report.xml npx playwright test --reporter=junit,list
+    - yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
+    - yarn run build
+    - yarn run build:apm
+    - Xvfb :99 & DISPLAY=:99 PLAYWRIGHT_JUNIT_OUTPUT_NAME=/tmp/report.xml npx playwright test --reporter=junit,list
 
   junit_artifacts:
     path: /tmp/report.xml
