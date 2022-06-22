@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  win: circleci/windows@2.2.0 # The Windows orb give you everything you need to start using the Windows executor.
+  win: circleci/windows@4.1.1
 
 defaults: &defaults
   docker:
@@ -62,7 +62,8 @@ jobs:
           path: ./binaries
 
   windows:
-    executor: win/default
+    executor:
+      name: win/default
     steps:
       - checkout
       - run:
