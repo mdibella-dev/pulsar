@@ -56,14 +56,11 @@ windows_task:
   windows_container:
     image: cirrusci/windowsservercore:2019
   env:
-    CIRRUS_SHELL: powershell
-  test_script:
+    CIRRUS_SHELL: bash
+  install_dependencies_script:
     - choco install nodejs --version=16.15.1 -y
-    - cat C:/ProgramData/chocolatey/logs/chocolatey.log
-    - refreshenv
-    - echo $PATH
-  actual_test_script:
     - choco install yarn git python -y
+  test_script:
     - npx yarn install || sleep 1 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install
     - npx yarn run build
     - npx yarn run build:apm
