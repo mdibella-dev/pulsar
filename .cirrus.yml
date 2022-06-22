@@ -36,7 +36,7 @@ mac_task:
   macos_instance:
     image: ghcr.io/cirruslabs/macos-monterey-base:latest
   test_script:
-    - brew install node@16 yarn git
+    - brew install nodejs@16 yarn git
     - yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
     - yarn run build
     - yarn run build:apm
@@ -58,7 +58,7 @@ windows_task:
     CIRRUS_SHELL: bash
   test_script:
     - choco install nodejs --version=16.15.1 -y
-    - choco install yarn npx git -y
+    - choco install yarn git -y
     - npx yarn install || sleep 1 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install
     - npx yarn run build
     - npx yarn run build:apm
