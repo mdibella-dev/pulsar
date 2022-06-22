@@ -49,6 +49,11 @@ let options = {
     }
   ],
   compression: "normal",
+  "mac": {
+    "icon": "resources/app-icons/atom-community.png",
+    "category": "Development",
+    "target": [{ "target": "dmg" }]
+  },
   "linux": {
     "icon": "resources/app-icons/atom-community.png",
     "category": "Development",
@@ -61,6 +66,10 @@ let options = {
       {
         "target": "deb",
         "arch": "x64"
+      },
+      {
+        "target": "rpm",
+        "arch": "x64"
       }
     ]
   },
@@ -68,31 +77,17 @@ let options = {
   }
 }
 
-// generate()
-// generatedPackage = JSON.parse(fs.readFileSync('out/app/package.json'))
-// for(let k in generatedPackage) {
-//   if(k.startsWith('_')) {
-//     options.extraMetadata[k] = generatedPackage[k]
-//   }
-// }
-// builder.build({
-//   // targets: Platform.LINUX.createTarget(),
-//   config: options
-// }).then((result) => {
-//   console.log(JSON.stringify(result))
-// }).catch((error) => {
-//   console.error(error)
-// })
-
 async function main() {
-  const packagesMeta = await packagesMetadata()
+  const package = await fs.readFile('package.json', "utf-8")
+  const packagesMeta = await packagesMetadata(package)
   options.extraMetadata._atomPackages = packagesMeta
   builder.build({
     // targets: Platform.LINUX.createTarget(),
     config: options
   }).then((result) => {
     console.log("Built binaries")
-    console.log(JSON.stringify(result))
+    fs.mkdir('binaries').catch(() => "")
+    Promise.all(result.map(r => fs.copyFile(r, path.join('binaries', path.basename(r)))))
   }).catch((error) => {
     console.error("Error building binaries")
     console.error(error)
@@ -100,8 +95,7 @@ async function main() {
 }
 
 
-async function packagesMetadata() {
-  const package = await fs.readFile('package.json', "utf-8")
+async function packagesMetadata(package) {
   const parsed = JSON.parse(package)
 
   let packagesMetadata = []

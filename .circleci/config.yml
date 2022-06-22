@@ -20,6 +20,10 @@ jobs:
           path: /tmp/report.xml
       - store_artifacts:
           path: ./tests/videos
+      - run: 'yarn dist'
+      - store_artifacts:
+          path: ./binaries
+          prefix: releases
 
   linux:
     <<: *defaults
@@ -28,6 +32,7 @@ jobs:
       - run: apt-get update
       - run: export DEBIAN_FRONTEND="noninteractive"
       - run: apt-get install -y
+                  rpm
                   build-essential
                   git
                   libsecret-1-dev
@@ -50,10 +55,10 @@ jobs:
           path: /tmp/report.xml
       - store_artifacts:
           path: ./tests/videos
-      - run: 'yarn dist --linux'
+      - run: 'yarn dist'
       - store_artifacts:
-          path: dist/?tom*
-
+          path: ./binaries
+          prefix: releases
 
 workflows:
   version: 2
