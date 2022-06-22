@@ -59,9 +59,9 @@ mac_task:
     - arch -x86_64 brew install node@16 yarn git python
     - ln -s /usr/local/opt/python3 /usr/local/bin/python
     - export PATH="/usr/local/bin/python3:$PATH"
-    - arch -x86_64 yarn run build
-    - arch -x86_64 yarn run build:apm
-    - arch -x86_64 yarn dist
+    - arch -x86_64 npx yarn run build
+    - arch -x86_64 npx yarn run build:apm
+    - arch -x86_64 npx yarn dist
   binary_artifacts:
     path: ./binaries/*
 
@@ -69,15 +69,12 @@ windows_task:
   windows_container:
     image: cirrusci/windowsservercore:2019
   env:
-    CIRRUS_SHELL: bash
+    CIRRUS_SHELL: powershell
   test_script:
     - choco install nodejs --version=16.15.1 -y
     - choco install python git -y
-    - bash -c 'echo $PATH'
-    - echo $PATH
-    - export PATH="/c/Program\ Files/Git/bin:/c/Program\ Files/nodejs:/c/Python310:/c/Python310/bin:$PATH"
-    - echo $PATH
-    - npx yarn install || sleep 1 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install
+    - refreshenv
+    - (npx yarn install) -or (npx yarn install) -or (npx yarn install) -or (npx yarn install) -or (npx yarn install)
     - npx yarn run build
     - npx yarn run build:apm
     - Xvfb :99 & DISPLAY=:99 PLAYWRIGHT_JUNIT_OUTPUT_NAME=report.xml npx playwright test --reporter=junit,list
