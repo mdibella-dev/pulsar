@@ -27,7 +27,7 @@ linux_task:
     type: text/xml
     format: junit
   videos_artifacts:
-    path: ./tests/videos/*
+    path: ./tests/videos/**
   build_binary_script: yarn dist
   binary_artifacts:
     path: ./binaries/*
@@ -47,7 +47,7 @@ mac_task:
     type: text/xml
     format: junit
   videos_artifacts:
-    path: ./tests/videos/*
+    path: ./tests/videos/**
   build_binary_script: yarn dist
   binary_artifacts:
     path: ./binaries/*
@@ -72,7 +72,7 @@ windows_task:
     type: text/xml
     format: junit
   videos_artifacts:
-    path: ./tests/videos/*
+    path: ./tests/videos/**
   build_binary_script: npx yarn dist
   binary_artifacts:
     path: ./binaries/*
