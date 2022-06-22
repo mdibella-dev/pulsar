@@ -73,12 +73,10 @@ windows_task:
   test_script:
     - choco install nodejs --version=16.15.1 -y
     - choco install python git -y
+    - bash -c 'echo $PATH'
     - echo $PATH
-    - echo $path
-    - export PATH="C:/Program\ Files/Git/bin:C:/Program\ Files/nodejs:C:/Python310:C:/Python310/bin:$PATH"
-    - export path="C:/Program\ Files/Git/bin:C:/Program\ Files/nodejs:C:/Python310:C:/Python310/bin:$path"
+    - export PATH="/c/Program\ Files/Git/bin:/c/Program\ Files/nodejs:/c/Python310:/c/Python310/bin:$PATH"
     - echo $PATH
-    - echo $path
     - npx yarn install || sleep 1 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install
     - npx yarn run build
     - npx yarn run build:apm
