@@ -36,7 +36,7 @@ mac_task:
   macos_instance:
     image: ghcr.io/cirruslabs/macos-monterey-base:latest
   test_script:
-    - brew install nodejs yarn npx git
+    - brew install nodejs yarn git
     - yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
     - yarn run build
     - yarn run build:apm
