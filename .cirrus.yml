@@ -37,6 +37,7 @@ mac_task:
     image: ghcr.io/cirruslabs/macos-monterey-base:latest
   test_script:
     - brew install node@16 yarn git python
+    - ln -s /opt/homebrew/bin/python3 /opt/homebrew/bin/python
     - export PATH="/opt/homebrew/bin:/opt/homebrew/opt/node@16/bin:$PATH"
     - yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
     - yarn run build
@@ -48,7 +49,9 @@ mac_task:
     format: junit
   videos_artifacts:
     path: ./tests/videos/**
-  build_binary_script: yarn dist
+  build_binary_script:
+    - export PATH="/opt/homebrew/bin:/opt/homebrew/opt/node@16/bin:$PATH"
+    - yarn dist
   binary_artifacts:
     path: ./binaries/*
 
