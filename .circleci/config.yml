@@ -45,6 +45,7 @@ jobs:
   mac:
     macos:
       xcode: 12.5.1
+    resource_class: macos.x86.metal.gen1
     steps:
       - checkout
       - run: brew install nodejs
@@ -74,10 +75,10 @@ jobs:
       - checkout
       - run: choco install nodejs --version=16.15.1 --allow-downgrade -y
       - run:
-          command: npx yarn install || sleep 1 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install
+          command: yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
           shell: bash.exe
-      - run: npx yarn run build
-      - run: npx yarn run build:apm
+      - run: yarn run build
+      - run: yarn run build:apm
       - run: PLAYWRIGHT_JUNIT_OUTPUT_NAME=/tmp/report.xml npx playwright test --reporter=junit,list
       - store_test_results:
           path: /tmp/report.xml
@@ -87,7 +88,7 @@ jobs:
           path: ./tests/videos
       - run:
           name: "Build operating system's binaries"
-          command: 'npx yarn dist'
+          command: 'yarn dist'
           no_output_timeout: 30m
       - store_artifacts:
           path: ./binaries
