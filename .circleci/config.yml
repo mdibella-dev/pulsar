@@ -1,6 +1,4 @@
 version: 2.1
-orbs:
-  win: circleci/windows@4.1.1
 
 defaults: &defaults
   docker:
@@ -37,7 +35,10 @@ jobs:
           path: /tmp/report.xml
       - store_artifacts:
           path: ./tests/videos
-      - run: 'yarn dist'
+      - run:
+          name: "Build operating system's binaries"
+          command: 'yarn dist'
+          no_output_timeout: 30m
       - store_artifacts:
           path: ./binaries
 
@@ -57,13 +58,18 @@ jobs:
           path: /tmp/report.xml
       - store_artifacts:
           path: ./tests/videos
-      - run: 'yarn dist'
+      - run:
+          name: "Build operating system's binaries"
+          command: 'yarn dist'
+          no_output_timeout: 30m
       - store_artifacts:
           path: ./binaries
 
   windows:
-    executor:
-      name: win/default
+    machine:
+      image: 'windows-server-2022-gui:current'
+      resource_class: windows.medium
+      shell: powershell.exe -ExecutionPolicy Bypass
     steps:
       - checkout
       - run:
@@ -78,7 +84,10 @@ jobs:
           path: /tmp/report.xml
       - store_artifacts:
           path: ./tests/videos
-      - run: 'yarn dist'
+      - run:
+          name: "Build operating system's binaries"
+          command: 'yarn dist'
+          no_output_timeout: 30m
       - store_artifacts:
           path: ./binaries
 
