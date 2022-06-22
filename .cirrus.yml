@@ -1,12 +1,7 @@
 container:
   image: node:lts-slim
 task:
-  node_modules_cache:
-    folder: node_modules
-    fingerprint_script: cat yarn.lock
-    populate_script: yarn install
   script:
-    - checkout
     - run: apt-get update
     - run: export DEBIAN_FRONTEND="noninteractive"
     - run: apt-get install -y
