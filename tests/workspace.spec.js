@@ -57,13 +57,14 @@ test.describe('Opening Atom for the first time', () => {
     })
   })
 
-  test('allows to search for packages', async () => {
-    await runCommand(editor, 'Settings View: Open')
-    await editor.page.locator('a.icon', { hasText: 'Install' }).click()
-    await typeInEditor(editor, '.packages', "language-javascript")
-    await expect(editor.page.locator('.package-name', { hasText: 'language-javascript' }).first())
-      .toBeVisible()
-  })
+  // FIXME: mock backend, Atom's servers are unreliable!
+  // test('allows to search for packages', async () => {
+  //   await runCommand(editor, 'Settings View: Open')
+  //   await editor.page.locator('a.icon', { hasText: 'Install' }).click()
+  //   await typeInEditor(editor, '.packages', "language-javascript")
+  //   await expect(editor.page.locator('.package-name', { hasText: 'language-javascript' }).first())
+  //     .toBeVisible()
+  // })
 
   test.describe('the editor have syntax highlight', async () => {
     test.beforeAll(async () => {
