@@ -67,16 +67,17 @@ jobs:
 
   windows:
     machine:
-      image: 'windows-server-2022-gui:current'
+      image: 'windows-server-2019-vs2019:stable'
       resource_class: windows.medium
       shell: powershell.exe -ExecutionPolicy Bypass
     steps:
       - checkout
+      - run: choco install nodejs --version=16.15.1 --allow-downgrade -y
       - run:
-          command: yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
+          command: npx yarn install || sleep 1 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install
           shell: bash.exe
-      - run: yarn run build
-      - run: yarn run build:apm
+      - run: npx yarn run build
+      - run: npx yarn run build:apm
       - run: PLAYWRIGHT_JUNIT_OUTPUT_NAME=/tmp/report.xml npx playwright test --reporter=junit,list
       - store_test_results:
           path: /tmp/report.xml
@@ -86,7 +87,7 @@ jobs:
           path: ./tests/videos
       - run:
           name: "Build operating system's binaries"
-          command: 'yarn dist'
+          command: 'npx yarn dist'
           no_output_timeout: 30m
       - store_artifacts:
           path: ./binaries
