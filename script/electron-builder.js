@@ -100,6 +100,7 @@ async function main() {
   }).catch((error) => {
     console.error("Error building binaries")
     console.error(error)
+    process.exit(1)
   })
 }
 
