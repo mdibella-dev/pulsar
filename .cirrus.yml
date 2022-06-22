@@ -36,7 +36,7 @@ mac_task:
   macos_instance:
     image: ghcr.io/cirruslabs/macos-monterey-base:latest
   test_script:
-    - brew install node@16 yarn git
+    - brew install node@16 yarn git python
     - export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
     - yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
     - yarn run build
@@ -60,7 +60,9 @@ windows_task:
   test_script:
     - choco install nodejs --version=16.15.1 -y
     - cat C:/ProgramData/chocolatey/\logs/chocolatey.log
-    - choco install yarn git -y
+    - refreshenv
+    - echo -e $PATH
+    - choco install yarn git python -y
     - npx yarn install || sleep 1 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn install
     - npx yarn run build
     - npx yarn run build:apm
