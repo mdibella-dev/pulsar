@@ -79,17 +79,13 @@ windows_task:
     - choco install nodejs --version=16.15.1 -y
     - choco install python git visualstudio2019-workload-vctools -y
     - npm config set python 'C:\Python310\python.exe'
-    # - node-gyp configure --msvs_version=2015
-    # - npm config set msbuild_path 'C:\Program Files\Microsoft Visual Studio\2022\Community\Msbuild\Current\Bin\MSBuild.exe'
     - npx yarn install || npx yarn install || npx yarn install || npx yarn install
     - npx yarn run build
-    # - cd apm; npx yarn install; .\node_modules\atom-package-manager\bin\npm rebuild; cd ..
     - npx yarn buid:apm
     - npx playwright test ----reporter=aist
   videos_artifacts:
     path: tests\videos\**
   build_binary_script:
-    # - $env:path = "C:\Python310\Scripts\;C:\Python310\;$env:path;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\User\AppData\Local\Microsoft\WindowsApps;C:\Users\User\AppData\Roaming\npm;C:\Program Files\Microsoft Visual Studio\2022\Community\Msbuild\Current\Bin\"
     - npx yarn dist
   binary_artifacts:
     path: .\binaries\*
