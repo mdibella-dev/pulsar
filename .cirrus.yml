@@ -82,16 +82,12 @@ windows_task:
     # - npm config set msbuild_path 'C:\Program Files\Microsoft Visual Studio\2022\Community\Msbuild\Current\Bin\MSBuild.exe'
     - (npx yarn install) -or (npx yarn install) -or (npx yarn install) -or (npx yarn install) -or (npx yarn install)
     - npx yarn run build
-    # - npx yarn run build:apm
+    - cd apm; npx yarn install; .\node_modules\atom-package-manager\bin\npm rebuild
     - npx playwright test --list
-  junit_artifacts:
-    path: report.xml
-    type: text/xml
-    format: junit
   videos_artifacts:
-    path: ./tests/videos/**
+    path: tests\videos\**
   build_binary_script:
-    - export PATH="C:/Programas/node/bin:C:/Programs/python:C:/Programas/git:$PATH"
+    - $env:path = "C:\Python310\Scripts\;C:\Python310\;$env:path;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\User\AppData\Local\Microsoft\WindowsApps;C:\Users\User\AppData\Roaming\npm;C:\Program Files\Microsoft Visual Studio\2022\Community\Msbuild\Current\Bin\"
     - npx yarn dist
   binary_artifacts:
-    path: ./binaries/*
+    path: .\binaries\*
