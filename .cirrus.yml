@@ -78,6 +78,7 @@ windows_task:
     - choco install nodejs --version=16.15.1 -y
     - choco install python git -y
     - $env:path = "C:\Python310\Scripts\;C:\Python310\;$env:path;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\User\AppData\Local\Microsoft\WindowsApps;C:\Users\User\AppData\Roaming\npm"
+    - npm config set msbuild_path 'C:\Program Files\Microsoft Visual Studio\2022\Community\Msbuild\Current\Bin\MSBuild.exe'
     - (npx yarn install) -or (npx yarn install) -or (npx yarn install) -or (npx yarn install) -or (npx yarn install)
     - npx yarn run build
     - npx yarn run build:apm
