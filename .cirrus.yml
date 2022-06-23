@@ -71,7 +71,7 @@ mac_task:
 
 windows_task:
   windows_container:
-    image: cirrusci/windowsservercore:2019
+    image: cirrusci/windowsservercore:visualstudio2019-2021.12.07
   env:
     CIRRUS_SHELL: powershell
   install_deps_script:
