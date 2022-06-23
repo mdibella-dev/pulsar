@@ -76,14 +76,14 @@ windows_task:
     CIRRUS_SHELL: powershell
   test_script:
     - choco install nodejs --version=16.15.1 -y
-    - choco install python git
+    - choco install python git -y
     # - choco install python git visualstudio2022buildtools visualstudio2022-workload-vctools visualstudio2022-workload-nodebuildtools visualstudio2022-workload-universalbuildtools -y
     - $env:path = "C:\Python310\Scripts\;C:\Python310\;$env:path;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\User\AppData\Local\Microsoft\WindowsApps;C:\Users\User\AppData\Roaming\npm;C:\Program Files\Microsoft Visual Studio\2022\Community\Msbuild\Current\Bin\"
     # - npm config set msbuild_path 'C:\Program Files\Microsoft Visual Studio\2022\Community\Msbuild\Current\Bin\MSBuild.exe'
     - (npx yarn install) -or (npx yarn install) -or (npx yarn install) -or (npx yarn install) -or (npx yarn install)
     - npx yarn run build
-    - cd apm; npx yarn install; .\node_modules\atom-package-manager\bin\npm rebuild
-    - npx playwright test --list
+    - cd apm; npx yarn install; .\node_modules\atom-package-manager\bin\npm rebuild; cd ..
+    - npx playwright test ----reporter=list
   videos_artifacts:
     path: tests\videos\**
   build_binary_script:
