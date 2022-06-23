@@ -74,11 +74,14 @@ windows_task:
     image: cirrusci/windowsservercore:2019
   env:
     CIRRUS_SHELL: powershell
-  test_script:
+  install_deps_script:
     - choco install nodejs --version=16.15.1 -y
     - choco install python git visualstudio2022buildtools visualstudio2022-workload-vctools visualstudio2022-workload-nodebuildtools visualstudio2022-workload-universalbuildtools -y
-    - $env:path = "C:\Python310\Scripts\;C:\Python310\;$env:path;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\User\AppData\Local\Microsoft\WindowsApps;C:\Users\User\AppData\Roaming\npm;'C:\Program Files\Microsoft Visual Studio\2022\Community\Msbuild\Current\Bin\"
-    - npm config set msbuild_path 'C:\Program Files\Microsoft Visual Studio\2022\Community\Msbuild\Current\Bin\MSBuild.exe'
+
+  test_script:
+    - refreshenv
+    # - $env:path = "C:\Python310\Scripts\;C:\Python310\;$env:path;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\User\AppData\Local\Microsoft\WindowsApps;C:\Users\User\AppData\Roaming\npm;C:\Program Files\Microsoft Visual Studio\2022\Community\Msbuild\Current\Bin\"
+    # - npm config set msbuild_path 'C:\Program Files\Microsoft Visual Studio\2022\Community\Msbuild\Current\Bin\MSBuild.exe'
     - (npx yarn install) -or (npx yarn install) -or (npx yarn install) -or (npx yarn install) -or (npx yarn install)
     - npx yarn run build
     - npx yarn run build:apm
