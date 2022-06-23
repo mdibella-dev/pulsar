@@ -74,7 +74,7 @@ let options = {
     "category": "Development"
   },
   "win": {
-    // "icon": "resources/app-icons/atom-community.png",
+    "icon": "resources/app-icons/atom-community.ico",
     "target": [
       { "target": "nsis" },
       { "target": "msi" },
