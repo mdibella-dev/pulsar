@@ -53,6 +53,8 @@ mac_task:
   build_arm_binary_script:
     - export PATH="/opt/homebrew/bin:/opt/homebrew/opt/node@16/bin:$PATH"
     - yarn dist
+  binary_artifacts:
+    path: ./binaries/*
   build_x86_binary_script:
     - arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     - export PATH="/usr/local/bin:$PATH"
@@ -70,12 +72,12 @@ windows_task:
     image: cirrusci/windowsservercore:2019
   env:
     CIRRUS_SHELL: powershell
-  build_script:
+  test_script:
     - choco install nodejs --version=16.15.1 -y
     - choco install python git -y
-    - refreshenv
-  test_script:
-    - refreshenv # Just to be safe...
+    - echo $env:path
+    - $env:path += 'C:\Python310\Scripts\;C:\Python310\;C:\Program Files\nodejs;C:\Program Files\Git\bin'
+    - echo $env:path
     - node --version
     - (npx yarn install) -or (npx yarn install) -or (npx yarn install) -or (npx yarn install) -or (npx yarn install)
     - npx yarn run build
