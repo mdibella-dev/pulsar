@@ -81,8 +81,8 @@ windows_task:
     - npm config set python 'C:\Python310\python.exe'
     - npx yarn install || npx yarn install || npx yarn install || npx yarn install
     - npx yarn run build
-    - npx yarn buid:apm
-    - npx playwright test ----reporter=aist
+    - npx yarn build:apm
+    - npx playwright test ----reporter=list
   videos_artifacts:
     path: tests\videos\**
   build_binary_script:
