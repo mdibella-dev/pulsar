@@ -75,13 +75,17 @@ windows_task:
   env:
     CIRRUS_SHELL: bash
     PATH: C:\Python310\Scripts\;C:\Python310\;%PATH%;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\User\AppData\Local\Microsoft\WindowsApps;C:\Users\User\AppData\Roaming\npm;C:\Program Files\Microsoft Visual Studio\2022\Community\Msbuild\Current\Bin\
-  test_script:
+  install_deps_script:
     - choco install nodejs --version=16.15.1 -y
     - choco install python git visualstudio2019-workload-vctools -y
     - npm config set python 'C:\Python310\python.exe'
+  build_apm_script:
+    - cd apm
+    - npx yarn install
+    - ./node_modules/atom-package-manager/bin/npm rebuild
+  test_script:
     - npx yarn install || npx yarn install || npx yarn install || npx yarn install
     - npx yarn run build
-    - npx yarn build:apm
     - npx playwright test ----reporter=list
   videos_artifacts:
     path: tests\videos\**
