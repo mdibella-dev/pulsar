@@ -71,7 +71,7 @@ mac_task:
 
 windows_task:
   windows_container:
-    image: cirrusci/windowsservercore:visualstudio2019-2021.12.07
+    image: cirrusci/windowsservercore:2019
   env:
     CIRRUS_SHELL: bash
     PATH: C:\Python310\Scripts\;C:\Python310\;%PATH%;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\User\AppData\Local\Microsoft\WindowsApps;C:\Users\User\AppData\Roaming\npm;C:\Program Files\Microsoft Visual Studio\2022\Community\Msbuild\Current\Bin\
