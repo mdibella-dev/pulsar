@@ -45,14 +45,16 @@ jobs:
   mac:
     macos:
       xcode: 12.5.1
-    resource_class: macos.x86.metal.gen1
     steps:
       - checkout
-      - run: brew install nodejs
+      - run: echo A | softwareupdate --install-rosetta
+      - run: brew install node@16 yarn git python
+      - run: ln -s /opt/homebrew/bin/python3 /opt/homebrew/bin/python
+      - run: export PATH="/opt/homebrew/bin:/opt/homebrew/opt/node@16/bin:$PATH"
       - run: yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
       - run: yarn run build
       - run: yarn run build:apm
-      - run: PLAYWRIGHT_JUNIT_OUTPUT_NAME=/tmp/report.xml npx playwright test --reporter=junit,list
+      - run: PLAYWRIGHT_JUNIT_OUTPUT_NAME=report.xml npx playwright test --reporter=junit,list
       - store_test_results:
           path: /tmp/report.xml
       - store_artifacts:
@@ -60,8 +62,23 @@ jobs:
       - store_artifacts:
           path: ./tests/videos
       - run:
-          name: "Build operating system's binaries"
+          name: "Build ARM operating system's binaries"
           command: 'yarn dist'
+          no_output_timeout: 30m
+      - store_artifacts:
+          path: ./binaries
+      - run: arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+      - run: export PATH="/usr/local/bin:$PATH"
+      - run: arch -x86_64 brew install node@16 yarn git python
+      - run: ln -s /usr/local/opt/python3 /usr/local/bin/python
+      - run: export PATH="/usr/local/opt/node@16/bin:/usr/local/bin/python3:$PATH"
+      - run: arch -x86_64 yarn run build
+      - run: arch -x86_64 yarn run build:apm
+      - run: sudo rm -rf /Library/Developer/CommandLineTools
+      - run: arch -x86_64 xcode-select --install
+      - run:
+          name: "Build INTEL operating system's binaries"
+          command: 'arch -x86_64 yarn dist || arch -x86_64 yarn dist'
           no_output_timeout: 30m
       - store_artifacts:
           path: ./binaries
@@ -70,15 +87,16 @@ jobs:
     machine:
       image: 'windows-server-2019-vs2019:stable'
       resource_class: windows.medium
-      shell: powershell.exe -ExecutionPolicy Bypass
+      shell: bash
     steps:
       - checkout
       - run: choco install nodejs --version=16.15.1 --allow-downgrade -y
-      - run:
-          command: yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
-          shell: bash.exe
-      - run: yarn run build
-      - run: yarn run build:apm
+      - run: choco install python git visualstudio2019-workload-vctools -y
+      - run: npm config set python 'C:\Python310\python.exe'
+      - run: cd apm; npx yarn install || npx yarn install
+      - run: cd apm; ./node_modules/atom-package-manager/bin/npm rebuild || ./node_modules/atom-package-manager/bin/npm rebuild
+      - run: npx yarn install || npx yarn install || npx yarn install || npx yarn install
+      - run: npx yarn run build
       - run: PLAYWRIGHT_JUNIT_OUTPUT_NAME=/tmp/report.xml npx playwright test --reporter=junit,list
       - store_test_results:
           path: /tmp/report.xml
@@ -88,7 +106,7 @@ jobs:
           path: ./tests/videos
       - run:
           name: "Build operating system's binaries"
-          command: 'yarn dist'
+          command: 'npx yarn dist'
           no_output_timeout: 30m
       - store_artifacts:
           path: ./binaries
