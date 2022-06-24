@@ -83,7 +83,7 @@ windows_task:
     - cd apm; npx yarn install || npx yarn install
     - ./node_modules/atom-package-manager/bin/npm rebuild || ./node_modules/atom-package-manager/bin/npm rebuild
   test_script:
-    - npx yarn install || npx yarn install || npx yarn install || npx yarn install
+    - npx yarn install || npx yarn install || npx yarn install || npx yarn install || echo "COULD NOT INSTALL, WILL KEEP RUNNING"
     - npx yarn run build
     - npx playwright test --reporter=list
   videos_artifacts:
