@@ -59,14 +59,14 @@ let options = {
         "target": "appimage",
         "arch": "x64"
       },
-      // {
-      //   "target": "deb",
-      //   "arch": "x64"
-      // },
-      //{
-      //  "target": "rpm",
-      //  "arch": "x64"
-      //}
+      {
+        "target": "deb",
+        "arch": "x64"
+      },
+      {
+        "target": "rpm",
+        "arch": "x64"
+      }
     ]
   },
   "mac": {
