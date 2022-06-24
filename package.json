@@ -271,7 +271,7 @@
     "preinstall": "node -e 'process.exit(0)'",
     "test": "node script/test",
     "build": "electron-rebuild",
-    "build:apm": "cd apm; yarn install; ./node_modules/atom-package-manager/bin/npm rebuild",
+    "build:apm": "cd apm; npx yarn install; ./node_modules/atom-package-manager/bin/npm rebuild",
     "start": "electron --enable-logging -f",
     "dist": "node script/electron-builder.js"
   },
