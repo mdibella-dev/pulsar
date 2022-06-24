@@ -85,7 +85,7 @@ windows_task:
   test_script:
     - npx yarn install || npx yarn install || npx yarn install || npx yarn install
     - npx yarn run build
-    - npx playwright test ----reporter=list
+    - npx playwright test --reporter=list
   videos_artifacts:
     path: tests\videos\**
   build_binary_script:
