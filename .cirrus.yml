@@ -43,7 +43,7 @@ mac_task:
     - yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
     - yarn run build
     - yarn run build:apm
-    - Xvfb :99 & DISPLAY=:99 PLAYWRIGHT_JUNIT_OUTPUT_NAME=report.xml npx playwright test --reporter=junit,list
+    - PLAYWRIGHT_JUNIT_OUTPUT_NAME=report.xml npx playwright test --reporter=junit,list
   junit_artifacts:
     path: report.xml
     type: text/xml
