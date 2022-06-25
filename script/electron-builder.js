@@ -77,7 +77,6 @@ let options = {
     "icon": "resources/app-icons/atom-community.ico",
     "target": [
       { "target": "nsis" },
-      { "target": "msi" },
       { "target": "portable" }
     ]
   },
