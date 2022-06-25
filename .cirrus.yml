@@ -83,16 +83,18 @@ windows_task:
     - choco install python git visualstudio2019-workload-vctools -y
     - npm config set python 'C:\Python310\python.exe'
   build_apm_script:
-    - cd apm; npx yarn install || sleep 1 && npx yarn install || sleep 5 && npx yarn install
-    - ./node_modules/atom-package-manager/bin/npm rebuild || ./node_modules/atom-package-manager/bin/npm rebuild
+    - cd apm; npx yarn install || sleep 1 && npx yarn install || sleep 2 && npx yarn cache clean; npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn cache clean; npx yarn install || sleep 2 && npx yarn install
+    - ./node_modules/atom-package-manager/bin/npm rebuild || sleep 1 && ./node_modules/atom-package-manager/bin/npm rebuild || sleep 2 && ./node_modules/atom-package-manager/bin/npm rebuild || sleep 4 && ./node_modules/atom-package-manager/bin/npm rebuild
   test_script:
-    - npx yarn install || sleep 1 && npx yarn install || sleep 2 && npx yarn cache clean; npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn cache clean; npx yarn install || sleep 2 && npx yarn install
+    - npx yarn install --ignore-scripts || sleep 1 && npx yarn install --ignore-scripts || sleep 2 && npx yarn cache clean; npx yarn install --ignore-scripts || sleep 2 && npx yarn install --ignore-scripts || echo "Giving up"
+    - rm -R node_modules/electron
+    - npx yarn install || sleep 1 && npx yarn install || sleep 2 && npx yarn cache clean; npx yarn install || sleep 2 && npx yarn install || echo "Giving up"
     - npx yarn run build
     # - npx playwright test --reporter=list
   videos_artifacts:
     path: tests\videos\**
   build_binary_script:
-    # - sed -i -e "s/[0-9]*-dev/`date -u +%Y%m%d%H`/g" package.json
-    - npx yarn dist
+    - sed -i -e "s/[0-9]*-dev/`date -u +%Y%m%d%H`/g" package.json
+    - npx yarn dist || npx yarn dist || npx yarn dist
   binary_artifacts:
     path: .\binaries\*
