@@ -88,7 +88,7 @@ let options = {
 async function main() {
   const package = await fs.readFile('package.json', "utf-8")
   const packagesMeta = await packagesMetadata(package)
-  //options.extraMetadata._atomPackages = packagesMeta
+  options.extraMetadata._atomPackages = packagesMeta
   builder.build({
     //targets: Platform.LINUX.createTarget(),
     config: options
@@ -135,17 +135,26 @@ function readPackageData(name, version) {
 
 function makeNormalizedPackage(packageData, path) {
   normalizePackageData(packageData)
-  return {
+
+  const main = packageData.main
+  let val = {
     metadata: packageData,
-    "keymaps": {},
-    "menus": {},
-    "grammarPaths": [],
-    "settings": {},
+    // "keymaps": {},
+    // "menus": {},
+    // "grammarPaths": [],
+    // "settings": {},
     "rootDirPath": path,
-    "styleSheetPaths": [
-      //"index.less"
-    ]
+
+    // "styleSheetPaths": [
+    //   "index.less"
+    // ]
   }
+
+  if(main) {
+    val.main = `../node_modules/${packageData.name}/${main}`
+  }
+
+  return val;
 }
 
 function readJSON(file) {
