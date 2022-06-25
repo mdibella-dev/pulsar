@@ -86,7 +86,7 @@ windows_task:
     - cd apm; npx yarn install || sleep 1 && npx yarn install || sleep 5 && npx yarn install
     - ./node_modules/atom-package-manager/bin/npm rebuild || ./node_modules/atom-package-manager/bin/npm rebuild
   test_script:
-    - yarn install || sleep 1 && yarn install || sleep 2 && yarn cache clean; yarn install || sleep 2 && yarn install || sleep 2 && yarn cache clean; yarn install || sleep 2 && yarn install
+    - npx yarn install || sleep 1 && npx yarn install || sleep 2 && npx yarn cache clean; npx yarn install || sleep 2 && npx yarn install || sleep 2 && npx yarn cache clean; npx yarn install || sleep 2 && npx yarn install
     - npx yarn run build
     - npx playwright test --reporter=list
   videos_artifacts:
