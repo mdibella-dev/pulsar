@@ -29,7 +29,7 @@ linux_task:
   videos_artifacts:
     path: ./tests/videos/**
   build_binary_script:
-    - sed -i -e "s/\d*-dev/`date -u +%Y%m%d%H`/g" package.json
+    - sed -i -e "s/[0-9]*-dev/`date -u +%Y%m%d%H`/g" package.json
     - yarn dist
   binary_artifacts:
     path: ./binaries/*
@@ -54,7 +54,7 @@ mac_task:
     path: ./tests/videos/**
   build_arm_binary_script:
     - export PATH="/opt/homebrew/bin:/opt/homebrew/opt/node@16/bin:$PATH"
-    - sed -i -e "s/\d*-dev/`date -u +%Y%m%d%H`/g" package.json
+    - sed -i -e "s/[0-9]*-dev/`date -u +%Y%m%d%H`/g" package.json
     - yarn dist
   binary_artifacts:
     path: ./binaries/*
@@ -92,6 +92,7 @@ windows_task:
   videos_artifacts:
     path: tests\videos\**
   build_binary_script:
+    - sed -i -e "s/[0-9]*-dev/`date -u +%Y%m%d%H`/g" package.json
     - npx yarn dist
   binary_artifacts:
     path: .\binaries\*
