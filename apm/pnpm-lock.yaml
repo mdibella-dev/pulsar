@@ -1,10 +1,10 @@
 lockfileVersion: 5.3
 
 specifiers:
-  atom-package-manager: npm:papm@0.1.1
+  atom-package-manager: npm:papm@0.1.2
 
 dependencies:
-  atom-package-manager: /papm/0.1.1
+  atom-package-manager: /papm/0.1.2
 
 packages:
 
@@ -1305,8 +1305,8 @@ packages:
       aggregate-error: 3.1.0
     dev: false
 
-  /papm/0.1.1:
-    resolution: {integrity: sha512-RdZbtZ9k3qyqhJNcmFSnYqMWKN4v32Er1jHM4dxXzdgVsyrSRN6Mjvbm06LUordyNED2yiC6A+Uq1V0cSX0r3g==}
+  /papm/0.1.2:
+    resolution: {integrity: sha512-yEjGgZFp5LRkrC0C5YtSOTnzkSxzFWGybGLfd4Tx7UqU92vOD8eTfWjMYH7B88I83Seb7qwKzHDssv2ymVviJw==}
     engines: {node: 12 || 14 || 16, pnpm: '6'}
     hasBin: true
     requiresBuild: true
