@@ -1,10 +1,10 @@
 lockfileVersion: 5.3
 
 specifiers:
-  atom-package-manager: github:atom-community/papm#da2c86788b896d2cb725c991d8afa11839b2950a
+  atom-package-manager: npm:papm@0.1.1
 
 dependencies:
-  atom-package-manager: github.com/atom-community/papm/da2c86788b896d2cb725c991d8afa11839b2950a
+  atom-package-manager: /papm/0.1.1
 
 packages:
 
@@ -1305,6 +1305,47 @@ packages:
       aggregate-error: 3.1.0
     dev: false
 
+  /papm/0.1.1:
+    resolution: {integrity: sha512-RdZbtZ9k3qyqhJNcmFSnYqMWKN4v32Er1jHM4dxXzdgVsyrSRN6Mjvbm06LUordyNED2yiC6A+Uq1V0cSX0r3g==}
+    engines: {node: 12 || 14 || 16, pnpm: '6'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@aminya/underscore-plus': 1.9.0
+      '@atom/plist': 0.4.4
+      asar-require: 0.3.0
+      async: 3.2.4
+      colors: 1.4.0
+      first-mate: 7.4.3
+      fs-plus: 3.1.1
+      git-utils: 5.7.3
+      glob: 7.2.3
+      hosted-git-info: 3.0.8
+      keytar: 7.9.0
+      mv: 2.1.1
+      ncp: 2.0.0
+      node-gyp: 9.0.0
+      npm: 7.24.2
+      open: 7.4.2
+      pnpm: 6.32.24
+      q: 1.5.1
+      read: 1.0.7
+      request: 2.88.2
+      resolve: 1.22.1
+      rimraf: 3.0.2
+      season: 6.0.2
+      semver: 7.3.7
+      shx: 0.3.4
+      tar: 6.1.11
+      temp: 0.9.4
+      wordwrap: 1.0.0
+      wrench: 1.5.9
+      yargs: 3.32.0
+    transitivePeerDependencies:
+      - bluebird
+      - supports-color
+    dev: false
+
   /path-is-absolute/1.0.1:
     resolution: {integrity: sha512-AVbw3UJ2e9bq64vSaS9Am0fje1Pa8pbGqTTsmXfaIiMpnr5DlDhfJOuLj9Sf95ZPVDAUerDfEk88MPmPe7UCQg==}
     engines: {node: '>=0.10.0'}
@@ -1869,48 +1910,4 @@ packages:
       string-width: 1.0.2
       window-size: 0.1.4
       y18n: 3.2.2
-    dev: false
-
-  github.com/atom-community/papm/da2c86788b896d2cb725c991d8afa11839b2950a:
-    resolution: {tarball: https://codeload.github.com/atom-community/papm/tar.gz/da2c86788b896d2cb725c991d8afa11839b2950a}
-    name: papm
-    version: 0.1.0
-    engines: {node: 12 || 14 || 16, pnpm: '6'}
-    hasBin: true
-    prepare: true
-    requiresBuild: true
-    dependencies:
-      '@aminya/underscore-plus': 1.9.0
-      '@atom/plist': 0.4.4
-      asar-require: 0.3.0
-      async: 3.2.4
-      colors: 1.4.0
-      first-mate: 7.4.3
-      fs-plus: 3.1.1
-      git-utils: 5.7.3
-      glob: 7.2.3
-      hosted-git-info: 3.0.8
-      keytar: 7.9.0
-      mv: 2.1.1
-      ncp: 2.0.0
-      node-gyp: 9.0.0
-      npm: 7.24.2
-      open: 7.4.2
-      pnpm: 6.32.24
-      q: 1.5.1
-      read: 1.0.7
-      request: 2.88.2
-      resolve: 1.22.1
-      rimraf: 3.0.2
-      season: 6.0.2
-      semver: 7.3.7
-      shx: 0.3.4
-      tar: 6.1.11
-      temp: 0.9.4
-      wordwrap: 1.0.0
-      wrench: 1.5.9
-      yargs: 3.32.0
-    transitivePeerDependencies:
-      - bluebird
-      - supports-color
     dev: false

@@ -6,6 +6,6 @@
     "url": "https://github.com/atom/atom.git"
   },
   "dependencies": {
-    "atom-package-manager": "github:atom-community/papm#da2c86788b896d2cb725c991d8afa11839b2950a"
+    "atom-package-manager": "npm:papm@0.1.1"
   }
 }
