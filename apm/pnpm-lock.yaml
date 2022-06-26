@@ -1,10 +1,10 @@
 lockfileVersion: 5.3
 
 specifiers:
-  atom-package-manager: npm:papm@0.1.0
+  atom-package-manager: github:atom-community/papm#da2c86788b896d2cb725c991d8afa11839b2950a
 
 dependencies:
-  atom-package-manager: /papm/0.1.0
+  atom-package-manager: github.com/atom-community/papm/da2c86788b896d2cb725c991d8afa11839b2950a
 
 packages:
 
@@ -797,6 +797,11 @@ packages:
     resolution: {integrity: sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==}
     dev: false
 
+  /interpret/1.4.0:
+    resolution: {integrity: sha512-agE4QfB2Lkp9uICn7BAqoscw4SZP9kTE2hxiFI3jBPmXJfdqiahTbUuKGsMoN2GtqL9AxhYioAcVvgsb1HvRbA==}
+    engines: {node: '>= 0.10'}
+    dev: false
+
   /invert-kv/1.0.0:
     resolution: {integrity: sha512-xgs2NH9AE66ucSq4cNG1nhSFghr5l6tdL15Pk+jl46bmmBapgoaY/AacXyaDznAqmGL99TiLSQgO/XazFSKYeQ==}
     engines: {node: '>=0.10.0'}
@@ -1300,46 +1305,6 @@ packages:
       aggregate-error: 3.1.0
     dev: false
 
-  /papm/0.1.0:
-    resolution: {integrity: sha512-eervO8NgHeKhW7uETk68S5XefLh8z3cYPHeO4Q9l4iOhMkSYK9KqFp8im4DDhrK43ujtjMNBProVZY+m5f7mEA==}
-    engines: {node: 12 || 14 || 16, pnpm: '6'}
-    hasBin: true
-    requiresBuild: true
-    dependencies:
-      '@aminya/underscore-plus': 1.9.0
-      '@atom/plist': 0.4.4
-      asar-require: 0.3.0
-      async: 3.2.4
-      colors: 1.4.0
-      first-mate: 7.4.3
-      fs-plus: 3.1.1
-      git-utils: 5.7.3
-      glob: 7.2.3
-      hosted-git-info: 3.0.8
-      keytar: 7.9.0
-      mv: 2.1.1
-      ncp: 2.0.0
-      node-gyp: 9.0.0
-      npm: 7.24.2
-      open: 7.4.2
-      pnpm: 6.32.24
-      q: 1.5.1
-      read: 1.0.7
-      request: 2.88.2
-      resolve: 1.22.1
-      rimraf: 3.0.2
-      season: 6.0.2
-      semver: 7.3.7
-      tar: 6.1.11
-      temp: 0.9.4
-      wordwrap: 1.0.0
-      wrench: 1.5.9
-      yargs: 3.32.0
-    transitivePeerDependencies:
-      - bluebird
-      - supports-color
-    dev: false
-
   /path-is-absolute/1.0.1:
     resolution: {integrity: sha512-AVbw3UJ2e9bq64vSaS9Am0fje1Pa8pbGqTTsmXfaIiMpnr5DlDhfJOuLj9Sf95ZPVDAUerDfEk88MPmPe7UCQg==}
     engines: {node: '>=0.10.0'}
@@ -1463,6 +1428,13 @@ packages:
       util-deprecate: 1.0.2
     dev: false
 
+  /rechoir/0.6.2:
+    resolution: {integrity: sha512-HFM8rkZ+i3zrV+4LQjwQ0W+ez98pApMGM3HUrN04j3CqzPOzl9nmP15Y8YXNm8QHGv/eacOVEjqhmWpkRV0NAw==}
+    engines: {node: '>= 0.10'}
+    dependencies:
+      resolve: 1.22.1
+    dev: false
+
   /request/2.88.2:
     resolution: {integrity: sha512-MsvtOrfG9ZcrOwAW+Qi+F6HbD0CWXEh9ou77uOb7FM2WPhwT7smM833PzanhJLsgXjN89Ir6V2PczXNnMpwKhw==}
     engines: {node: '>= 6'}
@@ -1559,6 +1531,25 @@ packages:
 
   /set-blocking/2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
+    dev: false
+
+  /shelljs/0.8.5:
+    resolution: {integrity: sha512-TiwcRcrkhHvbrZbnRcFYMLl30Dfov3HKqzp5tO5b4pt6G/SezKcYhmDg15zXVBswHmctSAQKznqNW2LO5tTDow==}
+    engines: {node: '>=4'}
+    hasBin: true
+    dependencies:
+      glob: 7.2.3
+      interpret: 1.4.0
+      rechoir: 0.6.2
+    dev: false
+
+  /shx/0.3.4:
+    resolution: {integrity: sha512-N6A9MLVqjxZYcVn8hLmtneQWIJtp8IKzMP4eMnx+nqkvXoqinUPCbUFLp2UcWTEIUONhlk0ewxr/jaVGlc+J+g==}
+    engines: {node: '>=6'}
+    hasBin: true
+    dependencies:
+      minimist: 1.2.6
+      shelljs: 0.8.5
     dev: false
 
   /signal-exit/3.0.7:
@@ -1878,4 +1869,48 @@ packages:
       string-width: 1.0.2
       window-size: 0.1.4
       y18n: 3.2.2
+    dev: false
+
+  github.com/atom-community/papm/da2c86788b896d2cb725c991d8afa11839b2950a:
+    resolution: {tarball: https://codeload.github.com/atom-community/papm/tar.gz/da2c86788b896d2cb725c991d8afa11839b2950a}
+    name: papm
+    version: 0.1.0
+    engines: {node: 12 || 14 || 16, pnpm: '6'}
+    hasBin: true
+    prepare: true
+    requiresBuild: true
+    dependencies:
+      '@aminya/underscore-plus': 1.9.0
+      '@atom/plist': 0.4.4
+      asar-require: 0.3.0
+      async: 3.2.4
+      colors: 1.4.0
+      first-mate: 7.4.3
+      fs-plus: 3.1.1
+      git-utils: 5.7.3
+      glob: 7.2.3
+      hosted-git-info: 3.0.8
+      keytar: 7.9.0
+      mv: 2.1.1
+      ncp: 2.0.0
+      node-gyp: 9.0.0
+      npm: 7.24.2
+      open: 7.4.2
+      pnpm: 6.32.24
+      q: 1.5.1
+      read: 1.0.7
+      request: 2.88.2
+      resolve: 1.22.1
+      rimraf: 3.0.2
+      season: 6.0.2
+      semver: 7.3.7
+      shx: 0.3.4
+      tar: 6.1.11
+      temp: 0.9.4
+      wordwrap: 1.0.0
+      wrench: 1.5.9
+      yargs: 3.32.0
+    transitivePeerDependencies:
+      - bluebird
+      - supports-color
     dev: false
