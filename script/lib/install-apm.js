@@ -14,7 +14,7 @@ function installApm(_ci = false, showVersion = true) {
   if (showVersion) {
     childProcess.execFileSync(CONFIG.getApmBinPath(), ['--version'], {
       stdio: 'inherit',
-      env: { ATOM_RESOURCE_PATH: CONFIG.repositoryRootPath },
+      env: { ...process.env, ATOM_RESOURCE_PATH: CONFIG.repositoryRootPath },
     });
   }
 }
