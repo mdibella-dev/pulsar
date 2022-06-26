@@ -87,7 +87,7 @@ let options = {
 async function main() {
   const package = await fs.readFile('package.json', "utf-8")
   const packagesMeta = await packagesMetadata(package)
-  options.extraMetadata._atomPackages = packagesMeta
+  // options.extraMetadata._atomPackages = packagesMeta
   builder.build({
     //targets: Platform.LINUX.createTarget(),
     config: options
