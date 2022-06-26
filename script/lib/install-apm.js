@@ -4,11 +4,11 @@ const childProcess = require('child_process');
 
 const CONFIG = require('../config');
 
-function installApm(ci = false, showVersion = true) {
+function installApm(_ci = false, showVersion = true) {
   console.log('Installing apm');
   childProcess.execFileSync(
     CONFIG.getPnpmBinPath(),
-    ['--loglevel=error', 'install'],
+    ['install'],
     { env: process.env, cwd: CONFIG.apmRootPath }
   );
   if (showVersion) {
