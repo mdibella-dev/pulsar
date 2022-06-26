@@ -28,11 +28,16 @@ steps:
       force32bit: $(IsWinX86)
     displayName: Install Node.js 12.18.3
 
-  - script: npm install --global npm@7
-    displayName: Update npm
+  - script: |
+      npm install --global npm@7
+    displayName: Install npm
 
-  # papm uses this. TODO use npx instead of directly calling shx
-  - script: npm install --global shx
+  - script: |
+      npm install --global pnpm@6
+    displayName: Install pnpm
+
+  - script: |
+      pnpm install --global shx
     displayName: Install shx
 
   - pwsh: |
