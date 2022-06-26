@@ -9,7 +9,7 @@ function installApm(_ci = false, showVersion = true) {
   childProcess.execFileSync(
     CONFIG.getPnpmBinPath(),
     ['install'],
-    { env: process.env, cwd: CONFIG.apmRootPath }
+    { env: process.env, cwd: CONFIG.apmRootPath, stdio: "inherit" }
   );
   if (showVersion) {
     childProcess.execFileSync(CONFIG.getApmBinPath(), ['--version'], {
