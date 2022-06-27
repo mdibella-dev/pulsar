@@ -55,6 +55,8 @@ module.exports = class AtomWindow extends EventEmitter {
         // (Ref: https://github.com/atom/atom/pull/12696#issuecomment-290496960)
         disableBlinkFeatures: 'Auxclick',
         nodeIntegration: true,
+        contextIsolation: false,
+        enableRemoteModule: true,
         webviewTag: true,
 
         // TodoElectronIssue: remote module is deprecated https://www.electronjs.org/docs/breaking-changes#default-changed-enableremotemodule-defaults-to-false
@@ -236,7 +238,7 @@ module.exports = class AtomWindow extends EventEmitter {
       if (result.response === 0) this.browserWindow.destroy();
     });
 
-    this.browserWindow.webContents.on('crashed', async () => {
+    this.browserWindow.webContents.on('render-process-gone', async () => {
       if (this.headless) {
         console.log('Renderer process crashed, exiting');
         this.atomApplication.exit(100);
