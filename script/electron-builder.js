@@ -1,6 +1,7 @@
 const path = require('path')
 const normalizePackageData = require('normalize-package-data');
 const fs = require("fs/promises");
+const generateMetadata = require('./generate-metadata-for-builder')
 
 // Monkey-patch to not remove things I explicitly didn't say so
 // See: https://github.com/electron-userland/electron-builder/issues/6957
@@ -63,10 +64,10 @@ let options = {
         "target": "deb",
         "arch": "x64"
       },
-      {
-        "target": "rpm",
-        "arch": "x64"
-      }
+      // {
+      //   "target": "rpm",
+      //   "arch": "x64"
+      // }
     ]
   },
   "mac": {
@@ -86,8 +87,7 @@ let options = {
 
 async function main() {
   const package = await fs.readFile('package.json', "utf-8")
-  const packagesMeta = await packagesMetadata(package)
-  // options.extraMetadata._atomPackages = packagesMeta
+  options.extraMetadata = generateMetadata(JSON.parse(package))
   builder.build({
     //targets: Platform.LINUX.createTarget(),
     config: options
