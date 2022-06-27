@@ -1,6 +1,7 @@
 const path = require('path')
 const normalizePackageData = require('normalize-package-data');
 const fs = require("fs/promises");
+const generateMetadata = require('./generate-metadata-for-builder')
 
 // Monkey-patch to not remove things I explicitly didn't say so
 // See: https://github.com/electron-userland/electron-builder/issues/6957
@@ -63,10 +64,10 @@ let options = {
         "target": "deb",
         "arch": "x64"
       },
-      {
-        "target": "rpm",
-        "arch": "x64"
-      }
+      // {
+      //   "target": "rpm",
+      //   "arch": "x64"
+      // }
     ]
   },
   "mac": {
@@ -86,8 +87,7 @@ let options = {
 
 async function main() {
   const package = await fs.readFile('package.json', "utf-8")
-  const packagesMeta = await packagesMetadata(package)
-  // options.extraMetadata._atomPackages = packagesMeta
+  options.extraMetadata = generateMetadata(JSON.parse(package))
   builder.build({
     //targets: Platform.LINUX.createTarget(),
     config: options
@@ -100,64 +100,6 @@ async function main() {
     console.error(error)
     process.exit(1)
   })
-}
-
-
-async function packagesMetadata(package) {
-  const parsed = JSON.parse(package)
-
-  let packagesMetadata = []
-  for(let name in parsed.packageDependencies) {
-    const version = parsed.packageDependencies[name]
-    packagesMetadata.push(readPackageData(name, version))
-  }
-
-  let metas = {}
-  const allMetas = await Promise.all(packagesMetadata)
-  allMetas.forEach(meta => {
-    metas[meta.metadata.name] = meta
-  })
-  return metas
-}
-
-function readPackageData(name, version) {
-  let filePath
-  if(version.startsWith('file:')) {
-    filePath = version.replace('file:./', '')
-  } else {
-    filePath = path.join('node_modules', name)
-  }
-  return readJSON(path.join(filePath, 'package.json'))
-    .then(data => makeNormalizedPackage(data, filePath))
-}
-
-
-function makeNormalizedPackage(packageData, path) {
-  normalizePackageData(packageData)
-
-  const main = packageData.main
-  let val = {
-    metadata: packageData,
-    // "keymaps": {},
-    // "menus": {},
-    // "grammarPaths": [],
-    // "settings": {},
-    "rootDirPath": path,
-
-    // "styleSheetPaths": [
-    //   "index.less"
-    // ]
-  }
-
-  if(main) {
-    val.main = `../node_modules/${packageData.name}/${main}`
-  }
-
-  return val;
-}
-
-function readJSON(file) {
-  return fs.readFile(file, "utf-8").then(JSON.parse)
 }
 
 main()
