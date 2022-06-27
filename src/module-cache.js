@@ -178,7 +178,7 @@ function loadExtensions(modulePath, rootPath, rootMetadata, moduleCache) {
   function onDirectory(childPath) {
     // Don't include extensions from bundled packages
     // These are generated and stored in the package's own metadata cache
-    if (rootMetadata.name === 'atom') {
+    if (rootMetadata.name === 'pulsar') {
       const parentPath = path.dirname(childPath);
       if (parentPath === nodeModulesPath) {
         const packageName = path.basename(childPath);

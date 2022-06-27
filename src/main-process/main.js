@@ -12,7 +12,7 @@ const CSON = require('season');
 const yargs = require('yargs');
 const { app } = require('electron');
 
-const version = `Atom    : ${app.getVersion()}
+const version = `Pulsar  : ${app.getVersion()}
 Electron: ${process.versions.electron}
 Chrome  : ${process.versions.chrome}
 Node    : ${process.versions.node}`;
@@ -29,7 +29,7 @@ function isAtomRepoPath(repoPath) {
   if (fs.statSyncNoException(packageJsonPath)) {
     try {
       let packageJson = CSON.readFileSync(packageJsonPath);
-      return packageJson.name === 'atom';
+      return packageJson.name === 'pulsar';
     } catch (e) {
       return false;
     }
@@ -49,7 +49,7 @@ if (args.resourcePath) {
   const defaultRepositoryPath = path.join(
     app.getPath('home'),
     'github',
-    'atom'
+    'pulsar'
   );
 
   if (process.env.ATOM_DEV_RESOURCE_PATH) {

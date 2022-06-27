@@ -12,7 +12,7 @@ module.exports = class ProtocolHandlerInstaller {
 
   async isDefaultProtocolClient() {
     return ipcRenderer.invoke('isDefaultProtocolClient', {
-      protocol: 'atom',
+      protocol: 'pulsar',
       path: process.execPath,
       args: ['--uri-handler', '--']
     });
@@ -24,7 +24,7 @@ module.exports = class ProtocolHandlerInstaller {
     return (
       this.isSupported() &&
       ipcRenderer.invoke('setAsDefaultProtocolClient', {
-        protocol: 'atom',
+        protocol: 'pulsar',
         path: process.execPath,
         args: ['--uri-handler', '--']
       })

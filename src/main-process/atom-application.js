@@ -72,7 +72,7 @@ const getSocketPath = socketSecret => {
   if (process.platform === 'win32') {
     return `\\\\.\\pipe\\atom-${socketName}-sock`;
   } else {
-    return path.join(os.tmpdir(), `atom-${socketName}.sock`);
+    return path.join(os.tmpdir(), `pulsar-${socketName}.sock`);
   }
 };
 
@@ -2038,8 +2038,8 @@ module.exports = class AtomApplication extends EventEmitter {
         type: 'warning',
         title: 'Restart required',
         message:
-          'You will need to restart Atom for this change to take effect.',
-        buttons: ['Restart Atom', 'Cancel']
+          'You will need to restart Pulsar for this change to take effect.',
+        buttons: ['Restart Pulsar', 'Cancel']
       }
     );
     if (result.response === 0) this.restart();

@@ -13,7 +13,7 @@ module.exports = function parseCommandLine(processArgs) {
   const options = yargs(filteredArgs).wrap(yargs.terminalWidth());
   const version = app.getVersion();
   options.usage(
-    dedent`Atom Editor v${version}
+    dedent`Pulsar Editor v${version}
 
     Usage:
       atom
@@ -21,7 +21,7 @@ module.exports = function parseCommandLine(processArgs) {
       atom file[:line[:column]]
 
     One or more paths to files or folders may be specified. If there is an
-    existing Atom window that contains all of the given folders, the paths
+    existing Pulsar window that contains all of the given folders, the paths
     will be opened in that window. Otherwise, they will be opened in a new
     window.
 
@@ -32,7 +32,7 @@ module.exports = function parseCommandLine(processArgs) {
 
     Environment Variables:
 
-      ATOM_DEV_RESOURCE_PATH  The path from which Atom loads source code in dev mode.
+      ATOM_DEV_RESOURCE_PATH  The path from which Pulsar loads source code in dev mode.
                               Defaults to \`~/github/atom\`.
 
       ATOM_HOME               The root path for all configuration files and folders.
@@ -80,7 +80,7 @@ module.exports = function parseCommandLine(processArgs) {
     .string('r')
     .describe(
       'r',
-      'Set the path to the Atom source directory and enable dev-mode.'
+      'Set the path to the Pulsar source directory and enable dev-mode.'
     );
   options
     .boolean('safe')
@@ -128,7 +128,7 @@ module.exports = function parseCommandLine(processArgs) {
   options.string('user-data-dir');
   options
     .boolean('clear-window-state')
-    .describe('clear-window-state', 'Delete all Atom environment state.');
+    .describe('clear-window-state', 'Delete all Pulsar environment state.');
   options
     .boolean('enable-electron-logging')
     .describe(

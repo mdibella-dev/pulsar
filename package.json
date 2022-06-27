@@ -1,9 +1,9 @@
 {
-  "name": "atom",
-  "author": "Atom Community <atom@atom.com.br>",
-  "productName": "Atom",
+  "name": "pulsar",
+  "author": "Pulsar Edit <atom@atom.com.br>",
+  "productName": "Pulsar Edit",
   "version": "1.63.0-dev",
-  "description": "A hackable text editor for the 21st Century.",
+  "description": "A hackable text editor for the 22st Century.",
   "main": "./src/main-process/main.js",
   "repository": {
     "type": "git",

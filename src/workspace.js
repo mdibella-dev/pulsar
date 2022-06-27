@@ -201,7 +201,7 @@ module.exports = class Workspace extends Model {
     this.textEditorRegistry = params.textEditorRegistry;
     this.styleManager = params.styleManager;
     this.draggingItem = false;
-    this.itemLocationStore = new StateStore('AtomPreviousItemLocations', 1);
+    this.itemLocationStore = new StateStore('PulsarPreviousItemLocations', 1);
 
     this.emitter = new Emitter();
     this.openers = [];
@@ -1423,7 +1423,7 @@ module.exports = class Workspace extends Model {
         this.applicationDelegate.confirm(
           {
             message:
-              'Atom will be unresponsive during the loading of very large files.',
+              'Pulsar will be unresponsive during the loading of very large files.',
             detail: 'Do you still want to load this file?',
             buttons: ['Proceed', 'Cancel']
           },

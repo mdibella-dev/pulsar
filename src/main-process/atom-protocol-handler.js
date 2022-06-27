@@ -2,7 +2,7 @@ const { protocol } = require('electron');
 const fs = require('fs-plus');
 const path = require('path');
 
-// Handles requests with 'atom' protocol.
+// Handles requests with 'pulsar' protocol.
 //
 // It's created by {AtomApplication} upon instantiation and is used to create a
 // custom resource loader for 'atom://' URLs.
@@ -28,9 +28,9 @@ module.exports = class AtomProtocolHandler {
     this.registerAtomProtocol();
   }
 
-  // Creates the 'atom' custom protocol handler.
+  // Creates the 'pulsar' custom protocol handler.
   registerAtomProtocol() {
-    protocol.registerFileProtocol('atom', (request, callback) => {
+    protocol.registerFileProtocol('pulsar', (request, callback) => {
       const relativePath = path.normalize(request.url.substr(7));
 
       let filePath;

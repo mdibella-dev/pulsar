@@ -897,7 +897,7 @@ module.exports = class Package {
         Failed to require the main module of '${
           this.name
         }' because it requires one or more incompatible native modules (${nativeModuleNames}).
-        Run \`apm rebuild\` in the package directory and restart Atom to resolve.\
+        Run \`apm rebuild\` in the package directory and restart Pulsar to resolve.\
       `);
     } else {
       const mainModulePath = this.getMainModulePath();

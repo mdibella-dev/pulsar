@@ -85,7 +85,7 @@ class AtomEnvironment {
     // Public: A {NotificationManager} instance
     this.notifications = new NotificationManager();
 
-    this.stateStore = new StateStore('AtomEnvironments', 1);
+    this.stateStore = new StateStore('PulsarEnvironments', 1);
 
     // Public: A {Config} instance
     this.config = new Config({

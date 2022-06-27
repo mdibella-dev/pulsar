@@ -35,9 +35,9 @@ const spawnUpdate = (args, callback) =>
 // the versioned app directories.
 const addCommandsToPath = callback => {
   const atomCmdName = execName.replace('.exe', '.cmd');
-  const apmCmdName = atomCmdName.replace('atom', 'apm');
+  const apmCmdName = atomCmdName.replace('pulsar', 'apm');
   const atomShName = execName.replace('.exe', '');
-  const apmShName = atomShName.replace('atom', 'apm');
+  const apmShName = atomShName.replace('pulsar', 'apm');
 
   const installCommands = callback => {
     const atomCommandPath = path.join(binFolder, atomCmdName);
