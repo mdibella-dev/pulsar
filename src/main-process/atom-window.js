@@ -157,6 +157,8 @@ module.exports = class AtomWindow extends EventEmitter {
       this.browserWindow.webContents.send('did-leave-full-screen');
     });
 
+    //console.log("CONSOLE!")
+    //this.browserWindow.show()
     this.browserWindow.loadURL(
       url.format({
         protocol: 'file',

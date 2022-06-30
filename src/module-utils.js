@@ -1,6 +1,7 @@
 // a require function with both ES5 and ES6 default export support
+const r = eval('require')
 function requireModule(path) {
-  const modul = require(path);
+  const modul = r(path);
   if (modul === null || modul === undefined) {
     // if null do not bother
     return modul;

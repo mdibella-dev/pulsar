@@ -1377,24 +1377,22 @@ module.exports = class AtomApplication extends EventEmitter {
       openedWindow.replaceEnvironment(env);
     } else {
       let resourcePath, windowInitializationScript;
-      if (devMode) {
-        try {
-          windowInitializationScript = require.resolve(
-            path.join(
-              this.devResourcePath,
-              'src',
-              'initialize-application-window'
-            )
-          );
-          resourcePath = this.devResourcePath;
-        } catch (error) {}
-      }
-
-      if (!windowInitializationScript) {
-        windowInitializationScript = require.resolve(
-          '../initialize-application-window'
-        );
-      }
+      // if (devMode) {
+      //   try {
+      //     windowInitializationScript = require.resolve(
+      //       path.join(
+      //         this.devResourcePath,
+      //         'src',
+      //         'initialize-application-window'
+      //       )
+      //     );
+      //     resourcePath = this.devResourcePath;
+      //   } catch (error) {}
+      // }
+      //
+      // if (!windowInitializationScript) {
+      windowInitializationScript = require.resolve('../initialize-application-window');
+      // }
       if (!resourcePath) resourcePath = this.resourcePath;
       if (!windowDimensions)
         windowDimensions = this.getDimensionsForNewWindow();

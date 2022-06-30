@@ -134,7 +134,7 @@
       ? snapshotResult.customRequire('../src/compile-cache.js')
       : require('../src/compile-cache');
     CompileCache.setAtomHomeDirectory(process.env.ATOM_HOME);
-    CompileCache.install(process.resourcesPath, require);
+    CompileCache.install(process.resourcesPath, eval('require'));
 
     const ModuleCache = useSnapshot
       ? snapshotResult.customRequire('../src/module-cache.js')
@@ -183,11 +183,11 @@
 
     const initScriptPath = path.relative(
       entryPointDirPath,
-      getWindowLoadSettings().windowInitializationScript
+      "../initialize-application-window"
     );
     const initialize = useSnapshot
       ? snapshotResult.customRequire(initScriptPath)
-      : require(initScriptPath);
+      : require('../src/initialize-application-window');
 
     StartupTime.addMarker('window:initialize:start');
 

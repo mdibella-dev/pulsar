@@ -65,5 +65,6 @@ if (args.resourcePath) {
   }
 }
 
-const start = require(path.join(resourcePath, 'src', 'main-process', 'start'));
+// const start = require(path.join(resourcePath, 'src', 'main-process', 'start'));
+const start = require('./start');
 start(resourcePath, devResourcePath, startTime);
