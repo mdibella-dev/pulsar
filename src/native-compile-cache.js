@@ -72,7 +72,7 @@ class NativeCompileCache {
       require.main = process.mainModule;
 
       // Enable support to add extra extension types
-      require.extensions = Module._extensions;
+      global.require.extensions = Module._extensions;
       require.cache = Module._cache;
 
       let dirname = path.dirname(filename);

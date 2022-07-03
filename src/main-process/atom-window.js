@@ -78,7 +78,10 @@ module.exports = class AtomWindow extends EventEmitter {
 
     const BrowserWindowConstructor =
       settings.browserWindowConstructor || BrowserWindow;
+    console.log("BW", BrowserWindowConstructor)
+    console.log("OPTS", options)
     this.browserWindow = new BrowserWindowConstructor(options);
+    console.log(this.browserWindow)
 
     Object.defineProperty(this.browserWindow, 'loadSettingsJSON', {
       get: () =>
@@ -157,8 +160,8 @@ module.exports = class AtomWindow extends EventEmitter {
       this.browserWindow.webContents.send('did-leave-full-screen');
     });
 
-    //console.log("CONSOLE!")
-    //this.browserWindow.show()
+    console.log("OPENING", `${this.resourcePath}/static/index.html`)
+    this.browserWindow.show()
     this.browserWindow.loadURL(
       url.format({
         protocol: 'file',

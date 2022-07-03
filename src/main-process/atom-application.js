@@ -164,6 +164,13 @@ module.exports = class AtomApplication extends EventEmitter {
     // take a few seconds to trigger 'error' event, it could be a bug of node
     // or electron, before it's fixed we check the existence of socketPath to
     // speedup startup.
+    console.log('DONE?',
+      socketPath,
+      options.test,
+      options.benchmark,
+      options.benchmarkTest,
+      (process.platform !== 'win32' && !fs.existsSync(socketPath))
+    )
     if (
       !socketPath ||
       options.test ||
@@ -176,14 +183,18 @@ module.exports = class AtomApplication extends EventEmitter {
 
     return new Promise(resolve => {
       const client = net.connect({ path: socketPath }, () => {
+        console.log("Connecting?")
         client.write(encryptOptions(options, socketSecret), () => {
+          console.log("ENDING?")
           client.end();
           app.quit();
           resolve(null);
         });
       });
 
-      client.on('error', () => resolve(createApplication(options)));
+      client.on('error', () => {
+        resolve(createApplication(options))
+      });
     });
   }
 
@@ -1606,13 +1617,7 @@ module.exports = class AtomApplication extends EventEmitter {
       let { resourcePath } = this;
       if (devMode) {
         try {
-          windowInitializationScript = require.resolve(
-            path.join(
-              this.devResourcePath,
-              'src',
-              'initialize-application-window'
-            )
-          );
+          windowInitializationScript = require.resolve('../initialize-application-window');
           resourcePath = this.devResourcePath;
         } catch (error) {}
       }
@@ -1723,13 +1728,9 @@ module.exports = class AtomApplication extends EventEmitter {
     }
 
     try {
-      windowInitializationScript = require.resolve(
-        path.resolve(this.devResourcePath, 'src', 'initialize-test-window')
-      );
+      windowInitializationScript = require.resolve('../initialize-test-window');
     } catch (error) {
-      windowInitializationScript = require.resolve(
-        path.resolve(__dirname, '..', '..', 'src', 'initialize-test-window')
-      );
+      console.error(error)
     }
 
     const testPaths = [];
@@ -1784,17 +1785,11 @@ module.exports = class AtomApplication extends EventEmitter {
 
     try {
       windowInitializationScript = require.resolve(
-        path.resolve(this.devResourcePath, 'src', 'initialize-benchmark-window')
+        '../initialize-benchmark-window'
       );
     } catch (error) {
       windowInitializationScript = require.resolve(
-        path.resolve(
-          __dirname,
-          '..',
-          '..',
-          'src',
-          'initialize-benchmark-window'
-        )
+        '../initialize-benchmark-window'
       );
     }
 
@@ -1846,7 +1841,7 @@ module.exports = class AtomApplication extends EventEmitter {
         if (
           (testRunnerPath = Resolve.sync(packageMetadata.atomTestRunner, {
             basedir: packageRoot,
-            extensions: Object.keys(require.extensions)
+            extensions: Object.keys(global.require.extensions)
           }))
         ) {
           return testRunnerPath;
@@ -1867,12 +1862,10 @@ module.exports = class AtomApplication extends EventEmitter {
   resolveLegacyTestRunnerPath() {
     try {
       return require.resolve(
-        path.resolve(this.devResourcePath, 'spec', 'jasmine-test-runner')
+        '../../spec/jasmine-test-runner'
       );
     } catch (error) {
-      return require.resolve(
-        path.resolve(__dirname, '..', '..', 'spec', 'jasmine-test-runner')
-      );
+      console.error(error)
     }
   }
 

@@ -195,7 +195,7 @@ class PackageTranspilationRegistry {
     Resolve = Resolve || require('resolve');
     return Resolve.sync(spec.transpiler, {
       basedir: spec._config.path,
-      extensions: Object.keys(require.extensions)
+      extensions: Object.keys(global.require.extensions)
     });
   }
 

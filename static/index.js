@@ -139,6 +139,7 @@
     const ModuleCache = useSnapshot
       ? snapshotResult.customRequire('../src/module-cache.js')
       : require('../src/module-cache');
+    console.log("AAAA", getWindowLoadSettings())
     ModuleCache.register(getWindowLoadSettings());
 
     const startCrashReporter = useSnapshot
@@ -181,16 +182,19 @@
       : require('season');
     CSON.setCacheDir(path.join(CompileCache.getCacheDirectory(), 'cson'));
 
-    const initScriptPath = path.relative(
-      entryPointDirPath,
-      "../initialize-application-window"
-    );
-    const initialize = useSnapshot
-      ? snapshotResult.customRequire(initScriptPath)
-      : require('../src/initialize-application-window');
-
+    // const initScriptPath = path.relative(
+    //   entryPointDirPath,
+    //   getWindowLoadSettings().windowInitializationScript
+    // );
+    // const initialize = useSnapshot
+    //   ? snapshotResult.customRequire(initScriptPath)
+    //   : require(initScriptPath);
+    //
+    // console.log("CUSTOM", initScriptPath)
     StartupTime.addMarker('window:initialize:start');
 
+    const initialize = require('../src/initialize-application-window.js')
+    console.log("INIT", initialize)
     return initialize({ blobStore: blobStore }).then(function() {
       StartupTime.addMarker('window:initialize:end');
       electron.ipcRenderer.send('window-command', 'window:loaded');

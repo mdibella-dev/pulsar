@@ -747,6 +747,7 @@ class AtomEnvironment {
   // Restores the full screen and maximized state after the window has resized to
   // prevent resize glitches.
   async displayWindow() {
+    console.log("DISPLAY?")
     await this.restoreWindowDimensions();
     const steps = [this.restoreWindowBackground(), this.show(), this.focus()];
     if (this.windowDimensions && this.windowDimensions.fullScreen) {
@@ -1539,7 +1540,7 @@ or use Pane::saveItemAs for programmatic saving.`);
     const userInitScriptPath = this.getUserInitScriptPath();
     if (userInitScriptPath) {
       try {
-        if (fs.isFileSync(userInitScriptPath)) require(userInitScriptPath);
+      if (fs.isFileSync(userInitScriptPath)) require(userInitScriptPath);
       } catch (error) {
         this.notifications.addError(
           `Failed to load \`${userInitScriptPath}\``,

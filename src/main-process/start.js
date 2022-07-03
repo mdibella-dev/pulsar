@@ -70,10 +70,7 @@ module.exports = function start(resourcePath, devResourcePath, startTime) {
     );
     console.log = previousConsoleLog;
     app.on('ready', function() {
-      const testRunner = require(path.join(
-        args.resourcePath,
-        'spec/main-process/mocha-test-runner'
-      ));
+      const testRunner = require('../../spec/main-process/mocha-test-runner');
       testRunner(args.pathsToOpen);
     });
     return;
