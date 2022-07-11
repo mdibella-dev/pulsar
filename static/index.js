@@ -6,21 +6,30 @@
   const electron = require('electron');
   const path = require('path');
   const Module = require('module');
-  const getWindowLoadSettings = require('../src/get-window-load-settings');
+  // const getWindowLoadSettings = require('../src/get-window-load-settings');
   const getReleaseChannel = require('../src/get-release-channel');
   const StartupTime = require('../src/startup-time');
   const entryPointDirPath = __dirname;
   let blobStore = null;
   let useSnapshot = false;
 
-  const startupMarkers = electron.remote.getCurrentWindow().startupMarkers;
+  electron.ipcRenderer.send('window-start')
+  // const startupMarkers = electron.remote.getCurrentWindow().startupMarkers;
 
-  if (startupMarkers) {
-    StartupTime.importData(startupMarkers);
+  // if (startupMarkers) {
+  //   StartupTime.importData(startupMarkers);
+  // }
+  // StartupTime.addMarker('window:start', startWindowTime);
+
+  let windowLoadSettings = null;
+  async function getWindowLoadSettings() {
+    if (!windowLoadSettings) {
+      windowLoadSettings = await electron.ipcRenderer.invoke('get-window-load-settings')
+    }
+    return windowLoadSettings;
   }
-  StartupTime.addMarker('window:start', startWindowTime);
 
-  window.onload = function() {
+  window.onload = async function() {
     try {
       StartupTime.addMarker('window:onload:start');
       const startTime = Date.now();
@@ -37,9 +46,10 @@
       process.resourcesPath = path.normalize(process.resourcesPath);
 
       setupAtomHome();
+      const loadSettings = await getWindowLoadSettings()
       const devMode =
-        getWindowLoadSettings().devMode ||
-        !getWindowLoadSettings().resourcePath.startsWith(
+        loadSettings.devMode ||
+        !loadSettings.resourcePath.startsWith(
           process.resourcesPath + path.sep
         );
       useSnapshot = !devMode && typeof snapshotResult !== 'undefined';
@@ -99,7 +109,7 @@
       NativeCompileCache.setV8Version(process.versions.v8);
       NativeCompileCache.install();
 
-      if (getWindowLoadSettings().profileStartup) {
+      if ((await getWindowLoadSettings()).profileStartup) {
         profileStartup(Date.now() - startTime);
       } else {
         StartupTime.addMarker('window:setup-window:start');
@@ -109,6 +119,7 @@
         setLoadTime(Date.now() - startTime);
       }
     } catch (error) {
+      console.error(error)
       handleSetupError(error);
     }
     StartupTime.addMarker('window:onload:end');
@@ -121,15 +132,15 @@
   }
 
   function handleSetupError(error) {
-    const currentWindow = electron.remote.getCurrentWindow();
-    currentWindow.setSize(800, 600);
-    currentWindow.center();
-    currentWindow.show();
-    currentWindow.openDevTools();
-    console.error(error.stack || error);
+    // const currentWindow = remote.getCurrentWindow();
+    // currentWindow.setSize(800, 600);
+    // currentWindow.center();
+    // currentWindow.show();
+    // currentWindow.openDevTools();
+    // console.error(error.stack || error);
   }
 
-  function setupWindow() {
+  async function setupWindow() {
     const CompileCache = useSnapshot
       ? snapshotResult.customRequire('../src/compile-cache.js')
       : require('../src/compile-cache');
@@ -139,7 +150,7 @@
     const ModuleCache = useSnapshot
       ? snapshotResult.customRequire('../src/module-cache.js')
       : require('../src/module-cache');
-    ModuleCache.register(getWindowLoadSettings());
+    ModuleCache.register(await getWindowLoadSettings());
 
     const startCrashReporter = useSnapshot
       ? snapshotResult.customRequire('../src/crash-reporter-start.js')
@@ -164,7 +175,7 @@
       return documentRegisterElement(type, options);
     };
 
-    const { userSettings, appVersion } = getWindowLoadSettings();
+    const { userSettings, appVersion } = await getWindowLoadSettings();
     const uploadToServer =
       userSettings &&
       userSettings.core &&
@@ -183,7 +194,7 @@
 
     const initScriptPath = path.relative(
       entryPointDirPath,
-      getWindowLoadSettings().windowInitializationScript
+      (await getWindowLoadSettings()).windowInitializationScript
     );
     const initialize = useSnapshot
       ? snapshotResult.customRequire(initScriptPath)
@@ -210,18 +221,18 @@
       });
     }
 
-    const webContents = electron.remote.getCurrentWindow().webContents;
-    if (webContents.devToolsWebContents) {
-      profile();
-    } else {
-      webContents.once('devtools-opened', () => {
-        setTimeout(profile, 1000);
-      });
-      webContents.openDevTools();
-    }
+    // const webContents = remote.getCurrentWindow().webContents;
+    // if (webContents.devToolsWebContents) {
+    //   profile();
+    // } else {
+    //   webContents.once('devtools-opened', () => {
+    //     setTimeout(profile, 1000);
+    //   });
+    //   webContents.openDevTools();
+    // }
   }
 
-  function setupAtomHome() {
+  async function setupAtomHome() {
     if (process.env.ATOM_HOME) {
       return;
     }
@@ -229,8 +240,9 @@
     // Ensure ATOM_HOME is always set before anything else is required
     // This is because of a difference in Linux not inherited between browser and render processes
     // https://github.com/atom/atom/issues/5412
-    if (getWindowLoadSettings() && getWindowLoadSettings().atomHome) {
-      process.env.ATOM_HOME = getWindowLoadSettings().atomHome;
+    const settings = await getWindowLoadSettings();
+    if (settings && settings.atomHome) {
+      process.env.ATOM_HOME = settings.atomHome;
     }
   }
 })();
