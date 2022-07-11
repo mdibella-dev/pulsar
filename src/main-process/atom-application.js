@@ -925,6 +925,22 @@ module.exports = class AtomApplication extends EventEmitter {
     );
 
     this.disposable.add(
+      ipcHelpers.on(ipcMain, 'window-start', (event) => {
+        const startupMarkers = BrowserWindow.fromWebContents(event.sender).startupMarkers;
+        if (startupMarkers) {
+          StartupTime.importData(startupMarkers);
+        }
+        StartupTime.addMarker('window:start', startWindowTime);
+      })
+    )
+
+    // this.disposable.add(
+    ipcMain.handle('get-window-load-settings', (event) =>
+      JSON.parse(BrowserWindow.fromWebContents(event.sender).loadSettingsJSON)
+    )
+    // )
+
+    this.disposable.add(
       ipcHelpers.on(ipcMain, 'window-command', (event, command, ...args) => {
         const window = BrowserWindow.fromWebContents(event.sender);
         return window && window.emit(command, ...args);

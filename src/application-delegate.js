@@ -37,6 +37,7 @@ module.exports = class ApplicationDelegate {
   }
 
   getCurrentWindow() {
+    console.log("Get Current Window?", remote.getCurrentWindow())
     return remote.getCurrentWindow();
   }
 
