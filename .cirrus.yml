@@ -22,12 +22,13 @@ linux_task:
     - ./node_modules/.bin/electron-rebuild
     - yarn run build:apm
     - Xvfb :99 & DISPLAY=:99 PLAYWRIGHT_JUNIT_OUTPUT_NAME=report.xml npx playwright test --reporter=junit,list
-  junit_artifacts:
-    path: report.xml
-    type: text/xml
-    format: junit
-  videos_artifacts:
-    path: ./tests/videos/**
+    always:
+      videos_artifacts:
+        path: ./tests/videos/**
+      junit_artifacts:
+        path: report.xml
+        type: text/xml
+        format: junit
   build_binary_script:
     - sed -i -e "s/[0-9]*-dev/`date -u +%Y%m%d%H`/g" package.json
     - yarn dist
@@ -50,8 +51,9 @@ mac_task:
     path: report.xml
     type: text/xml
     format: junit
-  videos_artifacts:
-    path: ./tests/videos/**
+    always:
+      videos_artifacts:
+        path: ./tests/videos/**
   build_arm_binary_script:
     - export PATH="/opt/homebrew/bin:/opt/homebrew/opt/node@16/bin:$PATH"
     - sed -i -e "s/[0-9]*-dev/`date -u +%Y%m%d%H`/g" package.json
