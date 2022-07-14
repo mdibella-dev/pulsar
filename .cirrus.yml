@@ -1,13 +1,6 @@
 linux_task:
   container:
     image: node:lts-slim
-  always:
-    videos_artifacts:
-      path: ./tests/videos/**
-    junit_artifacts:
-      path: report.xml
-      type: text/xml
-      format: junit
   test_script:
     - apt-get update
     - export DEBIAN_FRONTEND="noninteractive"
@@ -29,6 +22,13 @@ linux_task:
     - ./node_modules/.bin/electron-rebuild
     - yarn run build:apm
     - Xvfb :99 & DISPLAY=:99 PLAYWRIGHT_JUNIT_OUTPUT_NAME=report.xml npx playwright test --reporter=junit,list
+  always:
+    videos_artifacts:
+      path: ./tests/videos/**
+    junit_artifacts:
+      path: report.xml
+      type: text/xml
+      format: junit
   build_binary_script:
     - sed -i -e "s/[0-9]*-dev/`date -u +%Y%m%d%H`/g" package.json
     - yarn dist
@@ -38,13 +38,6 @@ linux_task:
 mac_task:
   macos_instance:
     image: ghcr.io/cirruslabs/macos-monterey-base:latest
-  always:
-    videos_artifacts:
-      path: ./tests/videos/**
-    junit_artifacts:
-      path: report.xml
-      type: text/xml
-      format: junit
   test_script:
     - echo A | softwareupdate --install-rosetta
     - brew install node@16 yarn git python
@@ -54,6 +47,13 @@ mac_task:
     - ./node_modules/.bin/electron-rebuild
     - yarn run build:apm
     - PLAYWRIGHT_JUNIT_OUTPUT_NAME=report.xml npx playwright test --reporter=junit,list
+  always:
+    videos_artifacts:
+      path: ./tests/videos/**
+    junit_artifacts:
+      path: report.xml
+      type: text/xml
+      format: junit
   build_arm_binary_script:
     - export PATH="/opt/homebrew/bin:/opt/homebrew/opt/node@16/bin:$PATH"
     - sed -i -e "s/[0-9]*-dev/`date -u +%Y%m%d%H`/g" package.json
