@@ -72,7 +72,7 @@ let options = {
   },
   "mac": {
     "icon": "resources/app-icons/atom-community.png",
-    "category": "Development"
+    "category": "Development",
     "target": [
       { "target": "dmg" },
       { "target": "zip" },
