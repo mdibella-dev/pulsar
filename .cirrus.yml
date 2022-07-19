@@ -19,15 +19,16 @@ linux_task:
                 libnss3
                 xvfb
     - yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
-    - yarn run build
+    - ./node_modules/.bin/electron-rebuild
     - yarn run build:apm
     - Xvfb :99 & DISPLAY=:99 PLAYWRIGHT_JUNIT_OUTPUT_NAME=report.xml npx playwright test --reporter=junit,list
-  junit_artifacts:
-    path: report.xml
-    type: text/xml
-    format: junit
-  videos_artifacts:
-    path: ./tests/videos/**
+  always:
+    videos_artifacts:
+      path: ./tests/videos/**
+    junit_artifacts:
+      path: report.xml
+      type: text/xml
+      format: junit
   build_binary_script:
     - sed -i -e "s/[0-9]*-dev/`date -u +%Y%m%d%H`/g" package.json
     - yarn dist
@@ -43,15 +44,16 @@ mac_task:
     - ln -s /opt/homebrew/bin/python3 /opt/homebrew/bin/python
     - export PATH="/opt/homebrew/bin:/opt/homebrew/opt/node@16/bin:$PATH"
     - yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
-    - yarn run build
+    - ./node_modules/.bin/electron-rebuild
     - yarn run build:apm
     - PLAYWRIGHT_JUNIT_OUTPUT_NAME=report.xml npx playwright test --reporter=junit,list
-  junit_artifacts:
-    path: report.xml
-    type: text/xml
-    format: junit
-  videos_artifacts:
-    path: ./tests/videos/**
+  always:
+    videos_artifacts:
+      path: ./tests/videos/**
+    junit_artifacts:
+      path: report.xml
+      type: text/xml
+      format: junit
   build_arm_binary_script:
     - export PATH="/opt/homebrew/bin:/opt/homebrew/opt/node@16/bin:$PATH"
     - sed -i -e "s/[0-9]*-dev/`date -u +%Y%m%d%H`/g" package.json
@@ -64,7 +66,7 @@ mac_task:
     - arch -x86_64 brew install node@16 yarn git python
     - ln -s /usr/local/opt/python3 /usr/local/bin/python
     - export PATH="/usr/local/opt/node@16/bin:/usr/local/bin/python3:$PATH"
-    - arch -x86_64 yarn run build
+    - arch -x86_64 ./node_modules/.bin/electron-rebuild
     - arch -x86_64 yarn run build:apm
     - sudo rm -rf /Library/Developer/CommandLineTools
     - arch -x86_64 xcode-select --install
@@ -89,7 +91,7 @@ windows_task:
     - npx yarn install --ignore-scripts || sleep 1 && npx yarn install --ignore-scripts || sleep 2 && npx yarn cache clean; npx yarn install --ignore-scripts || sleep 2 && npx yarn install --ignore-scripts || echo "Giving up"
     - rm -R node_modules/electron
     - npx yarn install || sleep 1 && npx yarn install || sleep 2 && npx yarn cache clean; npx yarn install || sleep 2 && npx yarn install || echo "Giving up"
-    - npx yarn run build
+    - node ./node_modules/.bin/electron-rebuild
     # - npx playwright test --reporter=list
   videos_artifacts:
     path: tests\videos\**
