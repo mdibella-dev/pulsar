@@ -39,7 +39,7 @@ mac_task:
   macos_instance:
     image: ghcr.io/cirruslabs/macos-monterey-base:latest
   test_script:
-    - echo A | softwareupdate --install-rosetta
+    # - echo A | softwareupdate --install-rosetta
     - brew install node@16 yarn git python
     - ln -s /opt/homebrew/bin/python3 /opt/homebrew/bin/python
     - export PATH="/opt/homebrew/bin:/opt/homebrew/opt/node@16/bin:$PATH"
