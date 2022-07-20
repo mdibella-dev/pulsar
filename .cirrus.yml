@@ -45,6 +45,7 @@ mac_task:
     - export PATH="/opt/homebrew/bin:/opt/homebrew/opt/node@16/bin:$PATH"
     - yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
     - ./node_modules/.bin/electron-rebuild
+    - yarn build
     - yarn run build:apm
     - PLAYWRIGHT_JUNIT_OUTPUT_NAME=report.xml npx playwright test --reporter=junit,list
   always:
@@ -60,19 +61,19 @@ mac_task:
     - yarn dist
   binary_artifacts:
     path: ./binaries/*
-  build_x86_binary_script:
-    - arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-    - export PATH="/usr/local/bin:$PATH"
-    - arch -x86_64 brew install node@16 yarn git python
-    - ln -s /usr/local/opt/python3 /usr/local/bin/python
-    - export PATH="/usr/local/opt/node@16/bin:/usr/local/bin/python3:$PATH"
-    - arch -x86_64 ./node_modules/.bin/electron-rebuild
-    - arch -x86_64 yarn run build:apm
-    - sudo rm -rf /Library/Developer/CommandLineTools
-    - arch -x86_64 xcode-select --install
-    - arch -x86_64 yarn dist || arch -x86_64 yarn dist
-  binary_artifacts:
-    path: ./binaries/*
+  # build_x86_binary_script:
+  #   - arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  #   - export PATH="/usr/local/bin:$PATH"
+  #   - arch -x86_64 brew install node@16 yarn git python
+  #   - ln -s /usr/local/opt/python3 /usr/local/bin/python
+  #   - export PATH="/usr/local/opt/node@16/bin:/usr/local/bin/python3:$PATH"
+  #   - arch -x86_64 ./node_modules/.bin/electron-rebuild
+  #   - arch -x86_64 yarn run build:apm
+  #   - sudo rm -rf /Library/Developer/CommandLineTools
+  #   - arch -x86_64 xcode-select --install
+  #   - arch -x86_64 yarn dist || arch -x86_64 yarn dist
+  # binary_artifacts:
+  #   path: ./binaries/*
 
 windows_task:
   windows_container:
