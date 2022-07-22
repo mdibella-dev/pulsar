@@ -76,7 +76,7 @@ let options = {
     "target": [
       { "target": "dmg" },
       { "target": "zip" },
-      { "target": "pkg" }
+      // { "target": "pkg" }
     ]
   },
   "win": {
