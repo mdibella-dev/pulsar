@@ -95,6 +95,81 @@
     lodash "^4.17.15"
     tmp-promise "^3.0.2"
 
+"@neutron-editor/first-mate@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@neutron-editor/first-mate/-/first-mate-0.0.2.tgz#36d36df30dc2a8ecb407654b52b3f5b5aaf46cb7"
+  integrity sha512-6jGaqU0LYTHBq1HaZ7FHnZQt9RDGuQA8fGg2O2iSSWwTnfuggkNwDrffWo/d4nScG41m65o7hWSczu6e0V3URw==
+  dependencies:
+    "@neutron-editor/oniguruma" "^0.0.1"
+    emissary "^1"
+    event-kit "^2.2.0"
+    fs-plus "^3.0.0"
+    grim "^2.0.1"
+    season "^6.0.2"
+    underscore-plus "^1"
+
+"@neutron-editor/git-utils@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@neutron-editor/git-utils/-/git-utils-0.0.2.tgz#44f2e5a46b01bfc32f63eab57a096e1f743fab88"
+  integrity sha512-vBG7V0Qj7zrYhhx3CuiQSP+7v470UOLaCgOQ2W5IiH8YcTO54oLeRxsy2tXoHbXWudTui9NzpVdk9dfZ25jlZQ==
+  dependencies:
+    fs-plus "^3.0.0"
+    nan "^2.14.2"
+
+"@neutron-editor/keymap@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@neutron-editor/keymap/-/keymap-0.0.2.tgz#75cd53b4fbc7d4f441012bc45e9a85f659986c18"
+  integrity sha512-YqjyZttuHg7KUjWkCsfOjiDqZRIOBBge6ypGbgKEKEGIMwZANZAktM4iFXzu+3bib4wxpVZk/n1KjZLvpvCXRA==
+  dependencies:
+    "@neutron-editor/pathwatcher" "^0.0.1"
+    clear-cut "^2"
+    emissary "^1.1.0"
+    event-kit "^1.0.0"
+    fs-plus "^3.0.0"
+    grim "^1.2.1"
+    keyboard-layout "2.0.17"
+    property-accessors "^1"
+    season "^6.0.2"
+
+"@neutron-editor/oniguruma@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@neutron-editor/oniguruma/-/oniguruma-0.0.1.tgz#a00193c703babb49724d0baf770edbc705803c52"
+  integrity sha512-vWAd4wRxHh6dK9IKxv5oFzbuzez9LZPore6seBjv09g4MZFKuYhxz8JavHnAW8QRMtRP9k88e73/RM70r1b1Eg==
+  dependencies:
+    nan "^2.14.0"
+
+"@neutron-editor/pathwatcher@0.0.1", "@neutron-editor/pathwatcher@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@neutron-editor/pathwatcher/-/pathwatcher-0.0.1.tgz#6a2c8fa81ea0dc890149dd02f032233e4a829c0e"
+  integrity sha512-n7J6DZSezUpOpQr+6x3SfPSnORo8Dz25zSxymJXAvslX9zfkIuNmTErgD94J1dBaGl+VA93EvfGvMhEe+Rzt0Q==
+  dependencies:
+    async "~0.2.10"
+    emissary "^1.3.2"
+    event-kit "^2.1.0"
+    fs-plus "^3.0.0"
+    grim "^2.0.1"
+    iconv-lite "~0.4.4"
+    nan "^2.10.0"
+    underscore-plus "~1.x"
+
+"@neutron-editor/text-buffer@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@neutron-editor/text-buffer/-/text-buffer-0.0.1.tgz#67cec1e94c967be9ccb0b2b052021aa2e1826d1f"
+  integrity sha512-Q+Hjy5bXC6w5MuNRnH4DOE0nxotuh5Kf7Vos8roCUJc1QsumWSieOUPXgCHmR0AXiiLWk938/hsBqsNll5laeQ==
+  dependencies:
+    delegato "^1.0.0"
+    diff "^2.2.1"
+    emissary "^1.0.0"
+    event-kit "^2.4.0"
+    fs-admin "^0.19.0"
+    fs-plus "^3.0.0"
+    grim "^2.0.2"
+    mkdirp "^0.5.1"
+    serializable "^1.0.3"
+    superstring "^2.4.4"
+    underscore-plus "^1.0.0"
+    winattr "^3.0.0"
+
 "@npmcli/fs@^1.0.0":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@npmcli/fs/-/fs-1.1.1.tgz#72f719fe935e687c56a4faecf3c03d06ba593257"
@@ -671,21 +746,6 @@ atom-grammar-test@^0.6.3, atom-grammar-test@^0.6.4:
     chevrotain "^0.18.0"
     escape-string-regexp "^1.0.5"
 
-atom-keymap@8.2.15:
-  version "8.2.15"
-  resolved "https://registry.yarnpkg.com/atom-keymap/-/atom-keymap-8.2.15.tgz#e191c8b3104a8f41af35b4d8841308116226f5ce"
-  integrity sha512-oYDDhro613LsRRlk8gfgOu3/uWWrhQ2gEDm4DEK/B8Rrg6ajBBKmAeNWWVDSNzwr+dysatOEBBWbIAor84ijgg==
-  dependencies:
-    clear-cut "^2"
-    emissary "^1.1.0"
-    event-kit "^1.0.0"
-    fs-plus "^3.0.0"
-    grim "^1.2.1"
-    keyboard-layout "2.0.17"
-    pathwatcher "^8.0.0"
-    property-accessors "^1"
-    season "^6.0.2"
-
 "atom-light-syntax@file:packages/atom-light-syntax":
   version "0.29.1"
 
@@ -1029,13 +1089,6 @@ brace-expansion@^2.0.1:
   integrity sha512-XnAIvQ8eM+kC6aULx6wuQiwVsnzsi9d3WxzV3FpWTGA19F621kwdbsAcFKXgKUHZWsy+mY6iL1sHTxWEFCytDA==
   dependencies:
     balanced-match "^1.0.0"
-
-"bracket-matcher@https://www.atom.io/api/packages/bracket-matcher/versions/0.92.0/tarball":
-  version "0.92.0"
-  resolved "https://www.atom.io/api/packages/bracket-matcher/versions/0.92.0/tarball#fe75cb7dd3f286d9f20b1d1edd7fec085730a866"
-  dependencies:
-    first-mate "^7.4.1"
-    underscore-plus "1.x"
 
 breakable@~1.0.0:
   version "1.0.0"
@@ -2530,19 +2583,6 @@ find-up@3.0.0, find-up@^3.0.0:
   dependencies:
     locate-path "^3.0.0"
 
-first-mate@7.4.3, first-mate@^7.4.1:
-  version "7.4.3"
-  resolved "https://registry.yarnpkg.com/first-mate/-/first-mate-7.4.3.tgz#058b9b6d2f43e38a5f0952669338cff2c46ae2dd"
-  integrity sha512-PtZUpaPmcV5KV4Rw5TfwczEnExN+X1o3Q/G82E4iRJ0tW91fm3Yi7pa5t4cBH8r3D6EyoBKvfpG2jKE+TZ0/nw==
-  dependencies:
-    emissary "^1"
-    event-kit "^2.2.0"
-    fs-plus "^3.0.0"
-    grim "^2.0.1"
-    oniguruma "^7.2.3"
-    season "^6.0.2"
-    underscore-plus "^1"
-
 flat@^4.1.0:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/flat/-/flat-4.1.1.tgz#a392059cc382881ff98642f5da4dde0a959f309b"
@@ -2844,22 +2884,6 @@ getpass@^0.1.1:
   version "1.3.9"
   dependencies:
     atom-select-list "^0.7.0"
-
-git-utils@5.7.1:
-  version "5.7.1"
-  resolved "https://registry.yarnpkg.com/git-utils/-/git-utils-5.7.1.tgz#f26e95f8cc05b475b2b8b09151b68f3788c8a173"
-  integrity sha512-+mWdJDq9emWoq6GzzrGEB7SIBmAk0lNNv2wgNkgwTVZUkAFkWvgRsJ+Kvs3d1QQD6WG6vczti2WLpjmh2Twtlw==
-  dependencies:
-    fs-plus "^3.0.0"
-    nan "^2.14.0"
-
-git-utils@^5.6.0:
-  version "5.7.3"
-  resolved "https://registry.yarnpkg.com/git-utils/-/git-utils-5.7.3.tgz#3b53983204678313b305bbf278c07dc015ba2155"
-  integrity sha512-in1hjFfmzY86gKBt+YMTaVyCGtX2WTnN0uPj37bI5HsrnU2oj8OFcWOEzOI5PxQXPMxFxtvRebOHAOGB8M125w==
-  dependencies:
-    fs-plus "^3.0.0"
-    nan "^2.14.2"
 
 github-from-package@0.0.0:
   version "0.0.0"
@@ -4614,6 +4638,10 @@ node-addon-api@^3.1.0:
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-3.2.1.tgz#81325e0a2117789c0128dab65e7e38f07ceba161"
   integrity sha512-mmcei9JghVNDYydghQmeDX8KoAm0FAiYyIcUt/N4nhyAipB17pllZQDOJD2fotxABnt4Mdz+dKTO7eftLg4d0A==
 
+"node-addon-api@git+https://github.com/nodejs/node-addon-api.git":
+  version "5.0.0"
+  resolved "git+https://github.com/nodejs/node-addon-api.git#efd67876e1141460d2c117fa85455ad894b9cfec"
+
 node-api-version@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/node-api-version/-/node-api-version-0.1.4.tgz#1ed46a485e462d55d66b5aa1fe2821720dedf080"
@@ -4834,13 +4862,6 @@ onetime@^5.1.0:
   dependencies:
     mimic-fn "^2.1.0"
 
-oniguruma@^7.2.3:
-  version "7.2.3"
-  resolved "https://registry.yarnpkg.com/oniguruma/-/oniguruma-7.2.3.tgz#e0b0b415302de8cdd6564e57a1a822ac0ab57012"
-  integrity sha512-PZZcE0yfg8Q1IvaJImh21RUTHl8ep0zwwyoE912KqlWVrsGByjjj29sdACcD1BFyX2bLkfuOJeP+POzAGVWtbA==
-  dependencies:
-    nan "^2.14.0"
-
 "open-on-github@https://www.atom.io/api/packages/open-on-github/versions/1.3.2/tarball":
   version "1.3.2"
   resolved "https://www.atom.io/api/packages/open-on-github/versions/1.3.2/tarball#1e1d9496b24bf608cc6cc06e68e4e93ac6cf760f"
@@ -4993,20 +5014,6 @@ pathval@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/pathval/-/pathval-1.1.1.tgz#8534e77a77ce7ac5a2512ea21e0fdb8fcf6c3d8d"
   integrity sha512-Dp6zGqpTdETdR63lehJYPeIOqpiNBNtc7BpWSLrOje7UaIsE5aY92r/AunQA7rsXvet3lrJ3JnZX29UPTKXyKQ==
-
-pathwatcher@^8.0.0, pathwatcher@^8.1.0, pathwatcher@^8.1.2:
-  version "8.1.2"
-  resolved "https://registry.yarnpkg.com/pathwatcher/-/pathwatcher-8.1.2.tgz#86eca6a16493dfb29347b88c91627b45720ab5b9"
-  integrity sha512-3izRU4DDQ9qVeASauP4Hlp49OhKPcedRYke9iHa0Jh1I+XlC9wYng/NycHh41k5F8wGndA23YYDCtO3KLAFPMg==
-  dependencies:
-    async "~0.2.10"
-    emissary "^1.3.2"
-    event-kit "^2.1.0"
-    fs-plus "^3.0.0"
-    grim "^2.0.1"
-    iconv-lite "~0.4.4"
-    nan "^2.10.0"
-    underscore-plus "~1.x"
 
 pause-stream@0.0.11:
   version "0.0.11"
@@ -5163,7 +5170,7 @@ prebuild-install@^5.0.0, prebuild-install@^5.3.3:
     tunnel-agent "^0.6.0"
     which-pm-runs "^1.0.0"
 
-prebuild-install@^6.0.0, prebuild-install@^6.0.1:
+prebuild-install@^6.0.0:
   version "6.1.4"
   resolved "https://registry.yarnpkg.com/prebuild-install/-/prebuild-install-6.1.4.tgz#ae3c0142ad611d58570b89af4986088a4937e00f"
   integrity sha512-Z4vpywnK1lBg+zdPCVCsKq0xO66eEV9rWo2zrROGGiRS4JtueBOdlB1FnY8lcy7JsUud/Q3ijUxyWN26Ika0vQ==
@@ -5643,13 +5650,11 @@ sax@^1.2.4:
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
 
-scandal@^3.2.0:
+"scandal@file:../scandal":
   version "3.2.0"
-  resolved "https://registry.yarnpkg.com/scandal/-/scandal-3.2.0.tgz#29e75f8050fc53b6e6c00c61b7711b874356fb03"
-  integrity sha512-kXICe3ygxwyyO3Ur+k49UzQlu8yrdQgzD03eMgV8sMWDom9q4qpEvZuQRUcbyAujC1TpISPRUPoirOIO1bRxcQ==
   dependencies:
+    "@neutron-editor/git-utils" "^0.0.2"
     argparse "^1.0.2"
-    git-utils "^5.6.0"
     isbinaryfile "^2.0.4"
     minimatch "^2.0.9"
     split "^1.0.0"
@@ -6234,8 +6239,9 @@ sumchecker@^3.0.1:
   dependencies:
     debug "^4.1.0"
 
-superstring@^2.4.4, "superstring@file:../superstring":
+superstring@^2.4.4, "superstring@https://github.com/pulsar-edit/superstring.git#context-aware":
   version "2.4.4"
+  resolved "https://github.com/pulsar-edit/superstring.git#45bb3e4f333d55b1176caaf8684745079e00d0a1"
   dependencies:
     nan "^2.14.2"
 
@@ -6387,25 +6393,6 @@ temp@^0.9.0, temp@~0.9.0:
   dependencies:
     mkdirp "^0.5.1"
     rimraf "~2.6.2"
-
-text-buffer@^13.18.5:
-  version "13.18.6"
-  resolved "https://registry.yarnpkg.com/text-buffer/-/text-buffer-13.18.6.tgz#0191a6185177b26e3560cb07988701ac2d30ae9f"
-  integrity sha512-kgtWyJL9ktX0+ynDxUILaB/XGsaMOSzbKgyyDO9s4sN6X8Cq+ZIMNRDDMG29iztK8nZxuynzcuo1vHQojpdT9A==
-  dependencies:
-    delegato "^1.0.0"
-    diff "^2.2.1"
-    emissary "^1.0.0"
-    event-kit "^2.4.0"
-    fs-admin "^0.19.0"
-    fs-plus "^3.0.0"
-    grim "^2.0.2"
-    mkdirp "^0.5.1"
-    pathwatcher "^8.1.0"
-    serializable "^1.0.3"
-    superstring "^2.4.4"
-    underscore-plus "^1.0.0"
-    winattr "^3.0.0"
 
 through@2, through@2.3.x, through@~2.3, through@~2.3.1, through@~2.3.8:
   version "2.3.8"
@@ -6574,18 +6561,18 @@ tree-sitter-typescript@0.20.1:
     nan "^2.14.0"
 
 "tree-sitter@file:../node-tree-sitter":
-  version "0.20.0"
+  version "0.15.13"
   dependencies:
     nan "^2.14.0"
-    prebuild-install "^6.0.1"
+    node-addon-api "git+https://github.com/nodejs/node-addon-api.git"
+    prebuild-install "^5.0.0"
 
-"tree-view@https://www.atom.io/api/packages/tree-view/versions/0.229.1/tarball":
+"tree-view@file:../../neutron/packages/tree-view":
   version "0.229.1"
-  resolved "https://www.atom.io/api/packages/tree-view/versions/0.229.1/tarball#f95938fe9aefbcdfed186d6285c3b014e435eee8"
   dependencies:
+    "@neutron-editor/pathwatcher" "^0.0.1"
     fs-plus "^3.0.0"
     minimatch "~0.3.0"
-    pathwatcher "^8.1.0"
     temp "~0.9.0"
     underscore-plus "^1.0.0"
 

@@ -49,20 +49,20 @@ module.exports = class AtomWindow extends EventEmitter {
         // this should result in faster CI builds, and an improvement in the
         // local development experience when running specs through the UI (which
         // now won't pause when e.g. minimizing the window).
-        backgroundThrottling: !this.isSpec,
+        // backgroundThrottling: !this.isSpec,
         // Disable the `auxclick` feature so that `click` events are triggered in
         // response to a middle-click.
         // (Ref: https://github.com/atom/atom/pull/12696#issuecomment-290496960)
-        disableBlinkFeatures: 'Auxclick',
+        // disableBlinkFeatures: 'Auxclick',
         nodeIntegration: true,
         contextIsolation: false,
-        enableRemoteModule: true,
-        webviewTag: true,
+        // enableRemoteModule: true,
+        // webviewTag: true,
 
-        // TodoElectronIssue: remote module is deprecated https://www.electronjs.org/docs/breaking-changes#default-changed-enableremotemodule-defaults-to-false
-        enableRemoteModule: true,
-        // node support in threads
-        nodeIntegrationInWorker: true
+        // // TodoElectronIssue: remote module is deprecated https://www.electronjs.org/docs/breaking-changes#default-changed-enableremotemodule-defaults-to-false
+        // enableRemoteModule: true,
+        // // node support in threads
+        // nodeIntegrationInWorker: true
       },
       simpleFullscreen: this.getSimpleFullscreen()
     };
@@ -81,6 +81,7 @@ module.exports = class AtomWindow extends EventEmitter {
     this.browserWindow = new BrowserWindowConstructor(options);
 
     this.browserWindow.show()
+    this.browserWindow.webContents.openDevTools()
     Object.defineProperty(this.browserWindow, 'loadSettingsJSON', {
       get: () =>
         JSON.stringify(
@@ -140,41 +141,41 @@ module.exports = class AtomWindow extends EventEmitter {
 
     if (!this.loadSettings.env) this.env = this.loadSettings.env;
 
-    this.browserWindow.on('window:loaded', () => {
-      this.disableZoom();
-      this.emit('window:loaded');
-      this.resolveLoadedPromise();
-    });
-
-    this.browserWindow.on('window:locations-opened', () => {
-      this.emit('window:locations-opened');
-    });
-
-    this.browserWindow.on('enter-full-screen', () => {
-      this.browserWindow.webContents.send('did-enter-full-screen');
-    });
-
-    this.browserWindow.on('leave-full-screen', () => {
-      this.browserWindow.webContents.send('did-leave-full-screen');
-    });
-
+    // this.browserWindow.on('window:loaded', () => {
+    //   this.disableZoom();
+    //   this.emit('window:loaded');
+    //   this.resolveLoadedPromise();
+    // });
+    //
+    // this.browserWindow.on('window:locations-opened', () => {
+    //   this.emit('window:locations-opened');
+    // });
+    //
+    // this.browserWindow.on('enter-full-screen', () => {
+    //   this.browserWindow.webContents.send('did-enter-full-screen');
+    // });
+    //
+    // this.browserWindow.on('leave-full-screen', () => {
+    //   // this.browserWindow.webContents.send('did-leave-full-screen');
+    // });
+    //
     this.browserWindow.loadURL(
       url.format({
         protocol: 'file',
         pathname: `${this.resourcePath}/static/index.html`,
-        slashes: true
+        // slashes: true
       })
     );
-
-    this.browserWindow.showSaveDialog = this.showSaveDialog.bind(this);
-
-    if (this.isSpec) this.browserWindow.focusOnWebView();
-
-    const hasPathToOpen = !(
-      locationsToOpen.length === 1 && locationsToOpen[0].pathToOpen == null
-    );
-    if (hasPathToOpen && !this.isSpecWindow())
-      this.openLocations(locationsToOpen);
+    //
+    // this.browserWindow.showSaveDialog = this.showSaveDialog.bind(this);
+    //
+    // if (this.isSpec) this.browserWindow.focusOnWebView();
+    //
+    // const hasPathToOpen = !(
+    //   locationsToOpen.length === 1 && locationsToOpen[0].pathToOpen == null
+    // );
+    // if (hasPathToOpen && !this.isSpecWindow())
+    //   this.openLocations(locationsToOpen);
   }
 
   hasProjectPaths() {
@@ -239,7 +240,8 @@ module.exports = class AtomWindow extends EventEmitter {
       if (result.response === 0) this.browserWindow.destroy();
     });
 
-    this.browserWindow.webContents.on('render-process-gone', async () => {
+    this.browserWindow.webContents.on('render-process-gone', async (...args) => {
+      console.log("ERROR", args)
       if (this.headless) {
         console.log('Renderer process crashed, exiting');
         this.atomApplication.exit(100);

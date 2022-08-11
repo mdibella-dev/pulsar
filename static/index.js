@@ -19,7 +19,7 @@
   // if (startupMarkers) {
   //   StartupTime.importData(startupMarkers);
   // }
-  // StartupTime.addMarker('window:start', startWindowTime);
+  StartupTime.addMarker('window:start', startWindowTime);
 
   let windowLoadSettings = null;
   async function getWindowLoadSettings() {
@@ -132,12 +132,12 @@
   }
 
   function handleSetupError(error) {
-    // const currentWindow = remote.getCurrentWindow();
-    // currentWindow.setSize(800, 600);
-    // currentWindow.center();
-    // currentWindow.show();
-    // currentWindow.openDevTools();
-    // console.error(error.stack || error);
+  //   // const currentWindow = remote.getCurrentWindow();
+  //   // currentWindow.setSize(800, 600);
+  //   // currentWindow.center();
+  //   // currentWindow.show();
+  //   // currentWindow.openDevTools();
+  //   // console.error(error.stack || error);
   }
 
   async function setupWindow() {
@@ -196,41 +196,42 @@
       entryPointDirPath,
       (await getWindowLoadSettings()).windowInitializationScript
     );
+
     const initialize = useSnapshot
       ? snapshotResult.customRequire(initScriptPath)
       : require(initScriptPath);
 
-    StartupTime.addMarker('window:initialize:start');
-
+    // StartupTime.addMarker('window:initialize:start');
+    //
     return initialize({ blobStore: blobStore }).then(function() {
       StartupTime.addMarker('window:initialize:end');
       electron.ipcRenderer.send('window-command', 'window:loaded');
     });
   }
-
-  function profileStartup(initialTime) {
-    function profile() {
-      console.profile('startup');
-      const startTime = Date.now();
-      setupWindow().then(function() {
-        setLoadTime(Date.now() - startTime + initialTime);
-        console.profileEnd('startup');
-        console.log(
-          'Switch to the Profiles tab to view the created startup profile'
-        );
-      });
-    }
-
-    // const webContents = remote.getCurrentWindow().webContents;
-    // if (webContents.devToolsWebContents) {
-    //   profile();
-    // } else {
-    //   webContents.once('devtools-opened', () => {
-    //     setTimeout(profile, 1000);
-    //   });
-    //   webContents.openDevTools();
-    // }
-  }
+  //
+  // function profileStartup(initialTime) {
+  //   function profile() {
+  //     console.profile('startup');
+  //     const startTime = Date.now();
+  //     setupWindow().then(function() {
+  //       setLoadTime(Date.now() - startTime + initialTime);
+  //       console.profileEnd('startup');
+  //       console.log(
+  //         'Switch to the Profiles tab to view the created startup profile'
+  //       );
+  //     });
+  //   }
+  //
+  //   // const webContents = remote.getCurrentWindow().webContents;
+  //   // if (webContents.devToolsWebContents) {
+  //   //   profile();
+  //   // } else {
+  //   //   webContents.once('devtools-opened', () => {
+  //   //     setTimeout(profile, 1000);
+  //   //   });
+  //   //   webContents.openDevTools();
+  //   // }
+  // }
 
   async function setupAtomHome() {
     if (process.env.ATOM_HOME) {

@@ -930,7 +930,7 @@ module.exports = class AtomApplication extends EventEmitter {
         if (startupMarkers) {
           StartupTime.importData(startupMarkers);
         }
-        StartupTime.addMarker('window:start', startWindowTime);
+        // StartupTime.addMarker('window:start', startWindowTime);
       })
     )
 
