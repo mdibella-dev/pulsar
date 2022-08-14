@@ -1,0 +1,36 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches:
+    - master
+jobs:
+  tests:
+    name: tests
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, macos-latest, windows-2019]
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+    env:
+      ATOM_GITHUB_BABEL_ENV: coverage
+      MOCHA_TIMEOUT: 60000
+      UNTIL_TIMEOUT: 30000
+    steps:
+    - name: Checkout the latest code
+      uses: actions/checkout@v2
+
+    - name: install dependencies
+      run: yarn install
+
+    - name: build dependencies
+      run: yarn build
+
+    - name: Run the tests on sane OSes
+      if: ${{ !contains(matrix.os, 'windows') }}
+      run: node script/run-package-tests.js
+
+    - name: Run the tests on Windows
+      if: ${{ contains(matrix.os, 'windows') }}
+      continue-on-error: true # due to https://github.com/atom/github/pull/2459#issuecomment-624725972
+      run: node script\run-package-tests.js
