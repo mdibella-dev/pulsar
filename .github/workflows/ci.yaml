@@ -1,4 +1,4 @@
-name: ci
+name: CI tests for Atom
 on: push
 jobs:
   tests:
