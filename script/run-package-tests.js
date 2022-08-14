@@ -15,8 +15,10 @@ for(let pack in packJson.packageDependencies) {
 }
 
 // console.log('yarn', 'start', '--test', ...packagePath)
-cp.spawnSync('yarn', ['start', '--test', ...packagePath], {
+const res = cp.spawnSync('yarn', ['start', '--test', ...packagePath], {
   cwd: process.cwd(),
   detached: true,
   stdio: "inherit"
 })
+
+process.exit(res.status)
