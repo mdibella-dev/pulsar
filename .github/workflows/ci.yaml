@@ -19,14 +19,11 @@ jobs:
     - name: install dependencies
       run: yarn install || yarn install || yarn install || yarn install
 
-    - name: start virtual X on Linux
-      if: ${{ contains(matrix.os, 'ubuntu') }}
-      run: apt-get -y install xvfb && Xvfb :99 & export DISPLAY=:99
-
     - name: build dependencies
       run: yarn build
 
     - name: Run the tests on sane OSes
+      uses: GabrielBB/xvfb-action@v1
       if: ${{ !contains(matrix.os, 'windows') }}
       run: node script/run-package-tests.js
 
