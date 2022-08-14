@@ -1,4 +1,4 @@
-name: CI tests for Atom
+name: CI tests for Pulsar
 on: push
 jobs:
   tests:
