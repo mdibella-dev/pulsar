@@ -66,6 +66,11 @@ describe 'Tree-sitter based Java grammar', ->
       row += 1
     tokens
 
+  searchScopes = (tokens, scopes) ->
+    tokens.filter (token) =>
+      scopes.every (s) =>
+        token.scopes.indexOf(s) != -1
+
   printTokens = (tokens) ->
     console.log()
     for token, i in tokens
@@ -255,17 +260,19 @@ describe 'Tree-sitter based Java grammar', ->
       f = Test.A1_B2_C3;
     '''
 
-    expect(tokens[0][2]).toEqual value: 'CONSTANT_STR', scopes: ['source.java', 'constant.other']
-    expect(tokens[1][2]).toEqual value: 'CONST0', scopes: ['source.java', 'constant.other']
-    expect(tokens[2][2]).toEqual value: 'CONST_1', scopes: ['source.java', 'constant.other']
-    expect(tokens[3][2]).toEqual value: 'A1_B2_C3', scopes: ['source.java', 'constant.other']
-    expect(tokens[4][2]).toEqual value: 'A$_B$_C$', scopes: ['source.java', 'constant.other']
-    expect(tokens[5][3]).toEqual value: 'CONSTANT', scopes: ['source.java', 'constant.other']
-    expect(tokens[6][6]).toEqual value: 'CONSTANT_ANOTHER', scopes: ['source.java', 'constant.other']
-    expect(tokens[7][5]).toEqual value: 'MAX_VALUE', scopes: ['source.java', 'constant.other']
-    expect(tokens[8][3]).toEqual value: 'A1_B2_C3', scopes: ['source.java', 'constant.other']
-    expect(tokens[9][3]).toEqual value: 'A1_B2_C$', scopes: ['source.java', 'constant.other']
-    expect(tokens[10][5]).toEqual value: 'A1_B2_C3', scopes: ['source.java', 'constant.other']
+    relevantScopes = ['source.java', 'constant.other']
+    findConstants = (line) => searchScopes(tokens[line], relevantScopes).map((e) => e.value)
+    expect(findConstants(0)).toEqual ['CONSTANT_STR']
+    expect(findConstants(1)).toEqual ['CONST0']
+    expect(findConstants(2)).toEqual ['CONST_1']
+    expect(findConstants(3)).toEqual ['A1_B2_C3']
+    expect(findConstants(4)).toEqual ['A$_B$_C$']
+    expect(findConstants(5)).toEqual ['CONSTANT']
+    expect(findConstants(6)).toEqual ['CONSTANT_ANOTHER']
+    expect(findConstants(7)).toEqual ['MAX_VALUE']
+    expect(findConstants(8)).toEqual ['A1_B2_C3']
+    expect(findConstants(9)).toEqual ['A1_B2_C$']
+    expect(findConstants(10)).toEqual ['A1_B2_C3']
 
   it 'tokenizes constants in switch statement', ->
     tokens = tokenizeLines '''
@@ -472,18 +479,17 @@ describe 'Tree-sitter based Java grammar', ->
       }
     '''
 
-    expect(tokens[1][1]).toEqual value: 'void', scopes: ['source.java', 'meta.class.body', 'meta.method', 'storage.type']
-    expect(tokens[2][1]).toEqual value: 'boolean', scopes: ['source.java', 'meta.class.body', 'meta.method', 'storage.type']
-    expect(tokens[3][1]).toEqual value: 'int', scopes: ['source.java', 'meta.class.body', 'meta.method', 'storage.type']
-    expect(tokens[4][1]).toEqual value: 'long', scopes: ['source.java', 'meta.class.body', 'meta.method', 'storage.type']
-    expect(tokens[5][1]).toEqual value: 'float', scopes: ['source.java', 'meta.class.body', 'meta.method', 'storage.type']
-    expect(tokens[6][1]).toEqual value: 'double', scopes: ['source.java', 'meta.class.body', 'meta.method', 'storage.type']
-    expect(tokens[7][1]).toEqual value: 'int', scopes: ['source.java', 'meta.class.body', 'meta.method', 'storage.type']
-    expect(tokens[8][1]).toEqual value: 'T', scopes: ['source.java', 'meta.class.body', 'meta.method', 'storage.type']
-    expect(tokens[9][1]).toEqual value: 'java', scopes: ['source.java', 'meta.class.body', 'meta.method', 'storage.type']
-    expect(tokens[9][3]).toEqual value: 'util', scopes: ['source.java', 'meta.class.body', 'meta.method', 'storage.type']
-    expect(tokens[9][5]).toEqual value: 'List', scopes: ['source.java', 'meta.class.body', 'meta.method', 'storage.type']
-    expect(tokens[9][7]).toEqual value: 'T', scopes: ['source.java', 'meta.class.body', 'meta.method', 'storage.type']
+    relevantScopes = ['source.java', 'meta.class.body', 'meta.method', 'storage.type']
+    findTypes = (line) => searchScopes(tokens[line], relevantScopes).map((e) => e.value)
+    expect(findTypes(1)).toEqual ['void']
+    expect(findTypes(2)).toEqual ['boolean']
+    expect(findTypes(3)).toEqual ['int']
+    expect(findTypes(4)).toEqual ['long']
+    expect(findTypes(5)).toEqual ['float']
+    expect(findTypes(6)).toEqual ['double']
+    expect(findTypes(7)).toEqual ['int']
+    expect(findTypes(8)).toEqual ['T']
+    expect(findTypes(9)).toEqual ['java', 'util', 'List', 'T']
 
   it 'tokenizes type casting', ->
     tokens = tokenizeLines '''
@@ -1046,34 +1052,34 @@ describe 'Tree-sitter based Java grammar', ->
     tokens = tokenizeLines '''
       class A {
         void func() {
-          func("arg");
-          obj.func("arg");
-          obj.prop1.prop2.func();
-          obj.prop1.func().prop2.func();
-          super.func("arg");
-          super.prop1.func("arg");
-          this.func("arg");
-          this.prop1.func("arg");
-          this.prop1.prop2.func("arg");
-          this.prop1.func().func("arg");
-          property.super.func("arg");
+          func1("arg");
+          obj.func2("arg");
+          obj.prop1.prop2.func3();
+          obj.prop1.func4().prop2.func5();
+          super.func6("arg");
+          super.prop1.func7("arg");
+          this.func8("arg");
+          this.prop1.func9("arg");
+          this.prop1.prop2.func10("arg");
+          this.prop1.func11().func12("arg");
+          property.super.func13("arg");
         }
       }
     '''
 
-    expect(tokens[2][1]).toEqual value: 'func', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'entity.name.function']
-    expect(tokens[3][3]).toEqual value: 'func', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'entity.name.function']
-    expect(tokens[4][7]).toEqual value: 'func', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'entity.name.function']
-    expect(tokens[5][5]).toEqual value: 'func', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'entity.name.function']
-    expect(tokens[5][11]).toEqual value: 'func', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'entity.name.function']
-    expect(tokens[6][3]).toEqual value: 'func', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'entity.name.function']
-    expect(tokens[7][5]).toEqual value: 'func', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'entity.name.function']
-    expect(tokens[8][3]).toEqual value: 'func', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'entity.name.function']
-    expect(tokens[9][5]).toEqual value: 'func', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'entity.name.function']
-    expect(tokens[10][7]).toEqual value: 'func', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'entity.name.function']
-    expect(tokens[11][5]).toEqual value: 'func', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'entity.name.function']
-    expect(tokens[11][9]).toEqual value: 'func', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'entity.name.function']
-    expect(tokens[12][5]).toEqual value: 'func', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'entity.name.function']
+    relevantScopes = ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'entity.name.function']
+    findMethods = (line) => searchScopes(tokens[line], relevantScopes).map((e) => e.value)
+    expect(findMethods(2)).toEqual ['func1']
+    expect(findMethods(3)).toEqual ['func2']
+    expect(findMethods(4)).toEqual ['func3']
+    expect(findMethods(5)).toEqual ['func4', 'func5']
+    expect(findMethods(6)).toEqual ['func6']
+    expect(findMethods(7)).toEqual ['func7']
+    expect(findMethods(8)).toEqual ['func8']
+    expect(findMethods(9)).toEqual ['func9']
+    expect(findMethods(10)).toEqual ['func10']
+    expect(findMethods(11)).toEqual ['func11', 'func12']
+    expect(findMethods(12)).toEqual ['func13']
 
   it 'tokenizes method references', ->
     tokens = tokenizeLines '''
@@ -1119,20 +1125,25 @@ describe 'Tree-sitter based Java grammar', ->
     tokens = tokenizeLines '''
       class A {
         void func() {
-          var1 = Test.class;
-          var2 = com.test.Test.class;
-          var5 = Test.staticProperty;
+          var1 = Test1.class;
+          var2 = com.test.Test2.class;
+          var5 = Test3.staticProperty;
           System.out.println("test");
           Arrays.sort(array);
         }
       }
     '''
 
-    expect(tokens[2][4]).toEqual value: 'Test', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'storage.type']
-    # TODO: it would be good to fix the scope for "com.test" component of the class name
-    expect(tokens[3][3]).toEqual value: ' com', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body']
-    expect(tokens[3][5]).toEqual value: 'test', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body']
-    expect(tokens[3][7]).toEqual value: 'Test', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'storage.type']
-    expect(tokens[4][4]).toEqual value: 'Test', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'storage.type']
-    expect(tokens[5][1]).toEqual value: 'System', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'storage.type']
-    expect(tokens[6][1]).toEqual value: 'Arrays', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'storage.type']
+    relevantScopes = ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body', 'storage.type']
+    findFieldAccesses = (line) => searchScopes(tokens[line], relevantScopes).map((e) => e.value)
+
+    expect(findFieldAccesses(2)).toEqual ['Test1']
+    expect(findFieldAccesses(3)).toEqual ['Test2']
+    expect(findFieldAccesses(4)).toEqual ['Test3']
+    expect(findFieldAccesses(5)).toEqual ['System']
+    expect(findFieldAccesses(6)).toEqual ['Arrays']
+    # TODO: originally, there was a comment to fix "the scope for 'com.test' component of the class name"
+    # Not exactly sure what this means, but maybe it was supposed to tokenize diferently?
+    # Original test below:
+    # expect(tokens[3][3]).toEqual value: ' com', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body']
+    # expect(tokens[3][5]).toEqual value: 'test', scopes: ['source.java', 'meta.class.body', 'meta.method', 'meta.method.body']
