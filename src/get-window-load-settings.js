@@ -1,10 +1,10 @@
-const remote = require('electron').remote;
+const { ipcRenderer } = require('electron');
 
 let windowLoadSettings = null;
 
 module.exports = () => {
   if (!windowLoadSettings) {
-    windowLoadSettings = JSON.parse(remote.getCurrentWindow().loadSettingsJSON);
+    windowLoadSettings = JSON.parse(ipcRenderer.sendSync('window-load-settings'));
   }
   return windowLoadSettings;
 };
