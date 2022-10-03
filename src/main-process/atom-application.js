@@ -934,6 +934,27 @@ module.exports = class AtomApplication extends EventEmitter {
       })
     )
 
+    ipcMain.on('call-method-on-current-window', (event, method, ...args) => {
+      const currWindow = BrowserWindow.fromWebContents(event.sender)
+      const result = currWindow[method](...args)
+      event.returnValue = result
+    })
+
+    ipcMain.on('call-method-on-current-window', (event, method, ...args) => {
+      const currWindow = BrowserWindow.fromWebContents(event.sender)
+      event.returnValue = currWindow[method](...args);
+    })
+
+    ipcMain.on('window-load-settings', (event, method, ...args) => {
+      const currWindow = BrowserWindow.fromWebContents(event.sender)
+      event.returnValue = currWindow.loadSettingsJSON;
+    })
+
+    ipcMain.on('work-area-size', (event) => {
+      event.returnValue = screen.getPrimaryDisplay().workAreaSize;
+    })
+
+
     // this.disposable.add(
     ipcMain.handle('get-window-load-settings', (event) =>
       JSON.parse(BrowserWindow.fromWebContents(event.sender).loadSettingsJSON)

@@ -3,6 +3,14 @@ const ipcHelpers = require('./ipc-helpers');
 const { Emitter, Disposable } = require('event-kit');
 const getWindowLoadSettings = require('./get-window-load-settings');
 
+const remoteBrowserWindow = {
+  getSize: () => ipcRenderer.sendSync('call-method-on-current-window', 'getSize'),
+  getPosition: () => ipcRenderer.sendSync('call-method-on-current-window', 'getPosition'),
+  isMaximized: () => ipcRenderer.sendSync('call-method-on-current-window', 'isMaximized'),
+  isFullScreen: () => ipcRenderer.sendSync('call-method-on-current-window', 'isFullScreen'),
+  setMenuBarVisibility: (v) => ipcRenderer.sendSync('call-method-on-current-window', 'setMenuBarVisibility', v)
+}
+
 module.exports = class ApplicationDelegate {
   constructor() {
     this.pendingSettingsUpdateCount = 0;
@@ -37,8 +45,7 @@ module.exports = class ApplicationDelegate {
   }
 
   getCurrentWindow() {
-    console.log("Get Current Window?", remote.getCurrentWindow())
-    return remote.getCurrentWindow();
+    return remoteBrowserWindow
   }
 
   closeWindow() {
@@ -55,7 +62,7 @@ module.exports = class ApplicationDelegate {
   }
 
   getWindowSize() {
-    const [width, height] = Array.from(remote.getCurrentWindow().getSize());
+    const [width, height] = Array.from(this.getCurrentWindow().getSize());
     return { width, height };
   }
 
@@ -64,7 +71,7 @@ module.exports = class ApplicationDelegate {
   }
 
   getWindowPosition() {
-    const [x, y] = Array.from(remote.getCurrentWindow().getPosition());
+    const [x, y] = Array.from(this.getCurrentWindow().getPosition());
     return { x, y };
   }
 
@@ -101,7 +108,7 @@ module.exports = class ApplicationDelegate {
   }
 
   isWindowMaximized() {
-    return remote.getCurrentWindow().isMaximized();
+    return this.getCurrentWindow().isMaximized();
   }
 
   maximizeWindow() {
@@ -113,7 +120,7 @@ module.exports = class ApplicationDelegate {
   }
 
   isWindowFullScreen() {
-    return remote.getCurrentWindow().isFullScreen();
+    return this.getCurrentWindow().isFullScreen();
   }
 
   setWindowFullScreen(fullScreen = false) {
@@ -185,11 +192,11 @@ module.exports = class ApplicationDelegate {
   }
 
   setWindowMenuBarVisibility(visible) {
-    return remote.getCurrentWindow().setMenuBarVisibility(visible);
+    this.getCurrentWindow().setMenuBarVisibility(visible);
   }
 
   getPrimaryDisplayWorkAreaSize() {
-    return remote.screen.getPrimaryDisplay().workAreaSize;
+    return ipcRenderer.sendSync('work-area-size')
   }
 
   getUserDefault(key, type) {
