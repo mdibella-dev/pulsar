@@ -1,6 +1,6 @@
 const fs = require('fs-plus');
 const path = require('path');
-const KeymapManager = require('atom-keymap');
+const KeymapManager = require('@neutron-editor/keymap');
 const CSON = require('season');
 
 const buildMetadata = require('../package.json');

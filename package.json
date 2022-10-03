@@ -295,7 +295,7 @@
   },
   "devDependencies": {
     "@playwright/test": "1.22.2",
-    "electron": "12.2.3",
+    "electron": "15.5.7",
     "electron-builder": "23.3.1",
     "electron-rebuild": "3.2.7",
     "playwright": "1.22.2",
