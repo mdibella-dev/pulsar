@@ -1,6 +1,7 @@
-const TextBuffer = require('@neutron-editor/text-buffer');
+const TextBuffer = require('text-buffer');
 const { Point, Range } = TextBuffer;
-const { File, Directory } = require('@neutron-editor/pathwatcher');
+const File = require('../src/file');
+const Directory = require('../src/directory');
 const { Emitter, Disposable, CompositeDisposable } = require('event-kit');
 const BufferedNodeProcess = require('../src/buffered-node-process');
 const BufferedProcess = require('../src/buffered-process');
