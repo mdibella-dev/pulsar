@@ -283,7 +283,11 @@ scopes:
 
   # Method access and reference
 
+<<<<<<< HEAD
   'method_invocation > method_invocation_name > identifier': 'entity.name.function'
+=======
+  'method_invocation > identifier': 'entity.name.function'
+>>>>>>> origin/master
 
   # Method reference
   'method_reference > "::"': 'keyword.control.method'

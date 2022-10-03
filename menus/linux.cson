@@ -179,7 +179,10 @@
 
   {
     label: '&Packages'
-    submenu: []
+    submenu: [
+      { label: 'Open Package Manager', command: 'settings-view:view-installed-packages' }
+      { type: 'separator' }
+    ]
   }
 
   {
@@ -196,7 +199,7 @@
       { label: 'Report Issue', command: 'application:report-issue' }
       { label: 'Search Issues', command: 'application:search-issues' }
       { type: 'separator' }
-      { label: 'About Atom', command: 'application:about' }
+      { label: 'About Pulsar', command: 'application:about' }
       { type: 'separator' }
     ]
   }

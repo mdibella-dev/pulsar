@@ -590,6 +590,7 @@ describe('Config', () => {
         ).toBe(55);
 
         advanceClock(150);
+        
         savedSettings.length = 0;
 
         atom.config.unset('foo.bar.baz', { scopeSelector: '.source.coffee' });
@@ -601,6 +602,7 @@ describe('Config', () => {
         ).toBe(20);
 
         advanceClock(150);
+
         expect(savedSettings[0]['.coffee.source']).toEqual({
           foo: {
             bar: {
@@ -612,6 +614,7 @@ describe('Config', () => {
         atom.config.unset('foo.bar.ok', { scopeSelector: '.source.coffee' });
 
         advanceClock(150);
+
         expect(savedSettings.length).toBe(2);
         expect(savedSettings[1]['.coffee.source']).toBeUndefined();
       });

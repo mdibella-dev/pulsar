@@ -1,6 +1,13 @@
 linux_task:
+<<<<<<< HEAD
   container:
     image: node:lts-slim
+=======
+  alias: linux
+  container:
+    image: node:lts-slim
+    memory: 8G
+>>>>>>> origin/master
   test_script:
     - apt-get update
     - export DEBIAN_FRONTEND="noninteractive"
@@ -18,6 +25,7 @@ linux_task:
                 libasound2-dev
                 libnss3
                 xvfb
+<<<<<<< HEAD
     - yarn install || sleep 1 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install || sleep 2 && yarn install
     - yarn run build
     - yarn run build:apm
@@ -69,16 +77,88 @@ mac_task:
     - sudo rm -rf /Library/Developer/CommandLineTools
     - arch -x86_64 xcode-select --install
     - arch -x86_64 yarn dist || arch -x86_64 yarn dist
+=======
+    - git submodule init
+    - git submodule update
+    - sed -i -e "s/[0-9]*-dev/`date -u +%Y%m%d%H`/g" package.json
+    - yarn install || yarn install
+    - yarn build
+    - yarn run build:apm
+    - Xvfb :99 & DISPLAY=:99 PLAYWRIGHT_JUNIT_OUTPUT_NAME=report.xml npx playwright test --reporter=junit,list
+  always:
+    videos_artifacts:
+      path: ./tests/videos/**
+    junit_artifacts:
+      path: report.xml
+      type: text/xml
+      format: junit
+  build_binary_script:
+    - yarn dist || yarn dist
+  binary_artifacts:
+    path: ./binaries/*
+
+silicon_mac_task:
+  alias: mac
+  macos_instance:
+    image: ghcr.io/cirruslabs/macos-monterey-base:latest
+    memory: 8G
+  test_script:
+    - sed -i -e "s/[0-9]*-dev/`date -u +%Y%m%d%H`/g" package.json
+    - brew install node@16 yarn git python
+    - git submodule init
+    - git submodule update
+    - ln -s /opt/homebrew/bin/python3 /opt/homebrew/bin/python
+    - export PATH="/opt/homebrew/bin:/opt/homebrew/opt/node@16/bin:$PATH"
+    - yarn install || yarn install
+    - yarn build
+    - yarn run build:apm
+    - PLAYWRIGHT_JUNIT_OUTPUT_NAME=report.xml npx playwright test --reporter=junit,list
+  always:
+    videos_artifacts:
+      path: ./tests/videos/**
+    junit_artifacts:
+      path: report.xml
+      type: text/xml
+      format: junit
+  build_arm_binary_script:
+    - export PATH="/opt/homebrew/bin:/opt/homebrew/opt/node@16/bin:$PATH"
+    - yarn dist || yarn dist
+  binary_artifacts:
+    path: ./binaries/*
+  build_x86_dependencies_script:
+    - echo A | softwareupdate --install-rosetta
+    - arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    - export PATH="/usr/local/bin:$PATH"
+    - arch -x86_64 brew install node@16 yarn git python
+    - export PATH="/usr/local/opt/node@16/bin:/usr/local/bin/python3:$PATH"
+    - yarn install || yarn install
+    - ln -s /usr/local/opt/python3 /usr/local/bin/python
+    - arch -x86_64 npx yarn install || arch -x86_64 npx yarn install
+    - arch -x86_64 npx yarn build
+    - arch -x86_64 npx yarn run build:apm
+  dist_x86_binary_script:
+    - export PATH="/opt/homebrew/bin:/opt/homebrew/opt/node@16/bin:$PATH"
+    - sudo rm -rf /Library/Developer/CommandLineTools
+    - arch -x86_64 xcode-select --install
+    - arch -x86_64 npx yarn dist || arch -x86_64 npx yarn dist
+>>>>>>> origin/master
   binary_artifacts:
     path: ./binaries/*
 
 windows_task:
+<<<<<<< HEAD
   windows_container:
     image: cirrusci/windowsservercore:visualstudio2019-2021.12.07
+=======
+  alias: windows
+  windows_container:
+    image: cirrusci/windowsservercore:visualstudio2022-2022.06.23
+>>>>>>> origin/master
   env:
     CIRRUS_SHELL: bash
     PATH: C:\Python310\Scripts\;C:\Python310\;%PATH%;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\User\AppData\Local\Microsoft\WindowsApps;C:\Users\User\AppData\Roaming\npm;C:\Program Files\Microsoft Visual Studio\2022\Community\Msbuild\Current\Bin\
   install_deps_script:
+<<<<<<< HEAD
     - choco install nodejs --version=16.15.1 -y
     - choco install python git visualstudio2019-workload-vctools -y
     - npm config set python 'C:\Python310\python.exe'
@@ -90,6 +170,22 @@ windows_task:
     - rm -R node_modules/electron
     - npx yarn install || sleep 1 && npx yarn install || sleep 2 && npx yarn cache clean; npx yarn install || sleep 2 && npx yarn install || echo "Giving up"
     - npx yarn run build
+=======
+    - choco install nodejs --version=14.15.0 -y
+    - choco install python git visualstudio2019-workload-vctools -y
+    - git submodule init
+    - git submodule update
+    - npm config set python 'C:\Python310\python.exe'
+  build_apm_script:
+    - cd ppm; npx yarn install --ignore-engines || npx yarn install --ignore-engines || npx yarn cache clean; npx yarn install --ignore-engines || npx yarn install --ignore-engines
+  install_without_scripts_script:
+    - npx yarn install --ignore-scripts --ignore-engines || sleep 1 && npx yarn install --ignore-engines --ignore-scripts || sleep 2 && npx yarn cache clean; npx yarn install --ignore-engines --ignore-scripts || sleep 2 && npx yarn install --ignore-engines --ignore-scripts || echo "Giving up"
+  rebuild_for_electron_script:
+    - npx yarn build || npx yarn build || npx yarn build
+  # install_only_electron_script:
+  #   - rm -R node_modules/electron
+  #   - npx yarn install --ignore-engines || npx yarn install --ignore-engines || npx yarn cache clean; npx yarn install --ignore-engines || npx yarn install --ignore-engines
+>>>>>>> origin/master
     # - npx playwright test --reporter=list
   videos_artifacts:
     path: tests\videos\**

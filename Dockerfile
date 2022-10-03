@@ -15,8 +15,13 @@ RUN DEBIAN_FRONTEND="noninteractive" \
         libasound2-dev \
         libnss3
 
+<<<<<<< HEAD
 COPY . /atom
 WORKDIR /atom
+=======
+COPY . /pulsar
+WORKDIR /pulsar
+>>>>>>> origin/master
 
 # Github's package registry is REALLY not responding
 # FIXME: Remove the additional retries when we migrate away from it

@@ -29,7 +29,7 @@ export default class Reporter {
     return {
       apiKey: API_KEY,
       notifier: {
-        name: 'Atom',
+        name: 'Pulsar',
         version: LIB_VERSION,
         url: 'https://www.atom.io'
       },
@@ -120,16 +120,10 @@ export default class Reporter {
   }
 
   shouldReport(error) {
-    if (this.alwaysReport) return true; // Used in specs
-    if (atom.config.get('core.telemetryConsent') !== 'limited') return false;
-    if (atom.inDevMode()) return false;
-
-    const topFrame = this.parseStackTrace(error)[0];
-    const fileName = topFrame ? topFrame.getFileName() : null;
-    return (
-      fileName &&
-      (this.isBundledFile(fileName) || this.isTeletypeFile(fileName))
-    );
+    // Since the `core.telemetryConsent` variable has been removed, this has no good way 
+    // to check if should report to the remote. So we will just always return false 
+    // to report to remote. But still allow reporting locally.
+    return false;
   }
 
   parseStackTrace(error) {
@@ -245,7 +239,7 @@ export default class Reporter {
     ) {
       this.requestPrivateMetadataConsent(
         error,
-        'The Atom team would like to collect the following information to resolve this error:',
+        'The Pulsar team would like to collect the following information to resolve this error:',
         error => this.reportUncaughtException(error)
       );
       return;
@@ -269,7 +263,7 @@ export default class Reporter {
     ) {
       this.requestPrivateMetadataConsent(
         error,
-        'The Atom team would like to collect some information to resolve an unexpected condition:',
+        'The Pulsar team would like to collect some information to resolve an unexpected condition:',
         error => this.reportFailedAssertion(error)
       );
       return;

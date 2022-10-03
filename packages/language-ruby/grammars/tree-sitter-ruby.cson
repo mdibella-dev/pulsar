@@ -3,6 +3,7 @@ scopeName: 'source.ruby'
 type: 'tree-sitter'
 parser: 'tree-sitter-ruby'
 
+<<<<<<< HEAD
 fileTypes: [
   'rb',
   'rake',
@@ -12,6 +13,8 @@ fileTypes: [
   'Gemfile'
 ]
 
+=======
+>>>>>>> origin/master
 injectionRegex: 'rb|ruby'
 
 firstLineRegex: [
@@ -22,6 +25,18 @@ firstLineRegex: [
   'vim\\b.*\\bset\\b.*\\b(filetype|ft|syntax)=ruby'
 ]
 
+<<<<<<< HEAD
+=======
+fileTypes: [
+  'rb',
+  'rake',
+  'Podfile',
+  'Brewfile',
+  'Rakefile',
+  'Gemfile'
+]
+
+>>>>>>> origin/master
 comments:
   start: '# '
 

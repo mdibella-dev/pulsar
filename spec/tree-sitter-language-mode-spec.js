@@ -8,7 +8,7 @@ const { Point } = TextBuffer;
 const TextEditor = require('../src/text-editor');
 const TreeSitterGrammar = require('../src/tree-sitter-grammar');
 const TreeSitterLanguageMode = require('../src/tree-sitter-language-mode');
-const Random = require('../script/node_modules/random-seed');
+const Random = require('random-seed');
 const { getRandomBufferRange, buildRandomLines } = require('./helpers/random');
 
 const cGrammarPath = require.resolve('language-c/grammars/tree-sitter-c.cson');
@@ -926,7 +926,7 @@ describe('TreeSitterLanguageMode', () => {
         atom.grammars.addGrammar(jsGrammar);
         atom.grammars.addGrammar(htmlGrammar);
 
-        buffer.setText('<% // js comment %>\n<% b() %>');
+        buffer.setText('<% // js comment %> b\n<% b() %>');
         const languageMode = new TreeSitterLanguageMode({
           buffer,
           grammar: ejsGrammar,
@@ -940,7 +940,7 @@ describe('TreeSitterLanguageMode', () => {
             { text: ' ', scopes: [] },
             { text: '// js comment ', scopes: ['comment'] },
             { text: '%>', scopes: ['directive'] },
-            { text: '', scopes: ['html'] }
+            { text: ' b', scopes: ['html'] }
           ],
           [
             { text: '<%', scopes: ['directive'] },
