@@ -43,6 +43,7 @@ let editor
 test.describe('Opening Atom for the first time', () => {
   test.beforeAll(async () => {
     editor = await openAtom("atom-home-tests", "opening-first-time")
+    await runCommand(editor, 'Window: Toggle Dev Tools')
   })
 
   test.afterAll(async () => {
