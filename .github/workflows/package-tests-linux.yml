@@ -2,8 +2,11 @@ name: Package tests for Pulsar on Linux
 on:
   - push
   - pull_request
+
 env:
   APM_PATH: ./apm/node_modules/atom-package-manager/bin/apm
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   setup:
     name: Build Editor
