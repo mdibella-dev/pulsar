@@ -17,7 +17,7 @@ module.exports = function(filter) {
   }
 
   // console.log('yarn', 'start', '--test', ...packagePath)
-  const res = cp.spawnSync('yarn', ['start', '--test', ...packagePath], {
+  const res = cp.spawnSync('yarn', ['start', '--test', ...packagePath, '-- --disable-gpu'], {
     cwd: process.cwd(),
     detached: true,
     stdio: "inherit"
