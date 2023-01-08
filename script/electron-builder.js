@@ -41,7 +41,7 @@ const Platform = builder.Platform
 
 
 const pngIcon = 'resources/app-icons/beta.png'
-const icoIcon = 'resources/app-icons/beta.ico'
+const icoIcon = 'resources/win/pulsar.ico'
 
 let options = {
   "appId": "dev.pulsar-edit.pulsar",
