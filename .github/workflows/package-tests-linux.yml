@@ -168,5 +168,5 @@ jobs:
     - name: Run ${{ matrix.package }} Tests
       uses: GabrielBB/xvfb-action@v1
       with:
-        run: yarn start --test node_modules/${{ matrix.package }}/spec
+        run: yarn start --test node_modules/${{ matrix.package }}
         # run: node -e "require('./script/run-package-tests')(/${{ matrix.package }}/)"
