@@ -29,6 +29,9 @@ jobs:
     - name: build the editor
       run: yarn dist appimage && mv binaries/Pulsar*AppImage pulsar.appimage
 
+    - name: test the editor
+      run: ./pulsar.appimage -- version
+
     - name: Cache node_modules
       id: cache-node
       uses: actions/cache@v3
