@@ -162,6 +162,11 @@ jobs:
         path: pulsar.appimage
         key: pulsar-$env:GITHUB_SHA
 
+    - name: Log ${{ matrix.package }} Tests
+      uses: GabrielBB/xvfb-action@v1
+      with:
+        run: echo "Dir"; ls -a; echo "Node"; ls node_modules
+
     - name: Run ${{ matrix.package }} Tests
       uses: GabrielBB/xvfb-action@v1
       with:
