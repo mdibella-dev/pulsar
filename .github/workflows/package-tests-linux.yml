@@ -27,7 +27,7 @@ jobs:
       run: yarn build:apm
 
     - name: build the editor
-      run: yarn dist deb && dpkg -i binaries/*deb && apt-get -f install -y
+      run: yarn dist deb && sudo dpkg -i binaries/*deb && sudo apt-get -f install -y
 
     - name: test the editor
       run: pulsar -- version
