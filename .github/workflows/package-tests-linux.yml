@@ -163,12 +163,8 @@ jobs:
         key: pulsar-$env:GITHUB_SHA
 
     - name: Log ${{ matrix.package }} Tests
-      uses: GabrielBB/xvfb-action@v1
-      with:
-        run: echo "Dir"; ls -a; echo "Node"; ls node_modules
+      run: echo "Dir"; ls -a; echo "Node"; ls node_modules
 
     - name: Run ${{ matrix.package }} Tests
-      uses: GabrielBB/xvfb-action@v1
-      with:
-        run: cd node_modules/${{ matrix.package }} && ls; ls ../..; ../../pulsar.appimage --test spec
+      run: cd node_modules/${{ matrix.package }} && ls; ls ../..; ../../pulsar.appimage --test spec
         # run: node -e "require('./script/run-package-tests')(/${{ matrix.package }}/)"
