@@ -166,5 +166,5 @@ jobs:
       run: echo "Dir"; ls -a; echo "Node"; ls node_modules/${{ matrix.package }}
 
     - name: Run ${{ matrix.package }} Tests
-      run: apt-get update && apt-get install -y xvfb && Xvfb :1 & cd node_modules/${{ matrix.package }} && DISPLAY=:1 ../../pulsar.appimage --test spec
+      run: sudo apt-get update && sudo apt-get install -y xvfb && Xvfb :1 & cd node_modules/${{ matrix.package }} && DISPLAY=:1 ../../pulsar.appimage --test spec
         # run: node -e "require('./script/run-package-tests')(/${{ matrix.package }}/)"
