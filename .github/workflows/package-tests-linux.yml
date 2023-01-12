@@ -165,5 +165,5 @@ jobs:
     - name: Run ${{ matrix.package }} Tests
       uses: GabrielBB/xvfb-action@v1
       with:
-        run: cd node_modules/${{ matrix.package }} && if [[ -f spec ]]; then ../../pulsar.appimage --test spec; fi
+        run: cd node_modules/${{ matrix.package }} && ../../pulsar.appimage --test spec
         # run: node -e "require('./script/run-package-tests')(/${{ matrix.package }}/)"
