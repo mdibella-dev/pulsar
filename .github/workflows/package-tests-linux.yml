@@ -1,6 +1,8 @@
 name: Package tests for Pulsar on Linux
 on:
   - pull_request
+env:
+  ATOM_JASMINE_REPORTER: list
 jobs:
   setup:
     name: Build Editor
@@ -163,7 +165,7 @@ jobs:
         key: pulsar-$env:GITHUB_SHA
 
     - name: Install Pulsar
-      run: sudo dpkg -i pulsar.deb && sudo apt-get -f install -y 
+      run: sudo dpkg -i pulsar.deb && sudo apt-get -f install -y
 
     - name: Install xvfb
       run: sudo apt-get install -y xvfb
