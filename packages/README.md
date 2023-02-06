@@ -13,7 +13,7 @@ See [RFC 003](https://github.com/atom/atom/blob/master/docs/rfcs/003-consolidate
 | **atom-dark-ui** | [`./atom-dark-ui`](./atom-dark-ui) | |
 | **atom-light-syntax** | [`./atom-light-syntax`](./atom-light-syntax) | |
 | **atom-light-ui** | [`./atom-light-ui`](./atom-light-ui) | |
-| **autocomplete-atom-api** | [`atom/autocomplete-atom-api`][autocomplete-atom-api] |  |
+| **autocomplete-atom-api** | [`pulsar-edit/autocomplete-atom-api`][autocomplete-atom-api] |  |
 | **autocomplete-css** | [`./autocomplete-css`](./autocomplete-css) |  |
 | **autocomplete-html** | [`./autocomplete-html`](./autocomplete-html) |  |
 | **autocomplete-plus** | [`atom/autocomplete-plus`][autocomplete-plus] |  |
@@ -39,7 +39,7 @@ See [RFC 003](https://github.com/atom/atom/blob/master/docs/rfcs/003-consolidate
 | **grammar-selector** | [`./grammar-selector`](./grammar-selector) | |
 | **image-view** | [`./image-view`](./image-view) | |
 | **incompatible-packages** | [`./incompatible-packages`](./incompatible-packages) | |
-| **keybinding-resolver** | [`atom/keybinding-resolver`][keybinding-resolver] | [#18275](https://github.com/atom/atom/issues/18275) |
+| **keybinding-resolver** | [`pulsar-edit/keybinding-resolver`][keybinding-resolver] | [#18275](https://github.com/atom/atom/issues/18275) |
 | **language-c** | [`./language-c`](./language-c) |  |
 | **language-clojure** | [`./language-clojure`](./language-clojure) |  |
 | **language-coffee-script** | [`./language-coffee-script`](./language-coffee-script) |  |
@@ -76,8 +76,8 @@ See [RFC 003](https://github.com/atom/atom/blob/master/docs/rfcs/003-consolidate
 | **language-yaml** | [`./language-yaml`](./language-yaml) |  |
 | **line-ending-selector** | [`./line-ending-selector`](./line-ending-selector) | |
 | **link** | [`./link`](./link) | |
-| **markdown-preview** | [`atom/markdown-preview`][markdown-preview] |  |
-| **notifications** | [`atom/notifications`][notifications] | [#18277](https://github.com/atom/atom/issues/18277) |
+| **markdown-preview** | [`pulsar-edit/markdown-preview`][markdown-preview] |  |
+| **notifications** | [`pulsar-edit/notifications`][notifications] | [#18277](https://github.com/atom/atom/issues/18277) |
 | **one-dark-syntax** | [`./one-dark-syntax`](./one-dark-syntax) | |
 | **one-dark-ui** | [`./one-dark-ui`](./one-dark-ui) | |
 | **one-light-syntax** | [`./one-light-syntax`](./one-light-syntax) | |
@@ -88,7 +88,7 @@ See [RFC 003](https://github.com/atom/atom/blob/master/docs/rfcs/003-consolidate
 | **snippets** | [`pulsar-edit/snippets`][snippets] |  |
 | **solarized-dark-syntax** | [`./solarized-dark-syntax`](./solarized-dark-syntax) | |
 | **solarized-light-syntax** | [`./solarized-light-syntax`](./solarized-light-syntax) | |
-| **spell-check** | [`atom/spell-check`][spell-check] |  |
+| **spell-check** | [`pulsar-edit/spell-check`][spell-check] |  |
 | **status-bar** | [`./status-bar`](./status-bar) | |
 | **styleguide** | [`pulsar-edit/styleguide`][styleguide] | [#18283](https://github.com/atom/atom/issues/18283) |
 | **symbols-view** | [`pulsar-edit/symbols-view`][symbols-view] |  |
@@ -98,7 +98,7 @@ See [RFC 003](https://github.com/atom/atom/blob/master/docs/rfcs/003-consolidate
 | **update-package-dependencies** | [`./update-package-dependencies`](./update-package-dependencies) | |
 | **welcome** | [`./welcome`](./welcome) | |
 | **whitespace** | [`./whitespace`](./whitespace) |  |
-| **wrap-guide** | [`atom/wrap-guide`][wrap-guide] | [#18286](https://github.com/atom/atom/issues/18286) |
+| **wrap-guide** | [`pulsar/wrap-guide`][wrap-guide] | [#18286](https://github.com/atom/atom/issues/18286) |
 
 [autocomplete-atom-api]: https://github.com/pulsar-edit/autocomplete-atom-api
 [autocomplete-plus]: https://github.com/pulsar-edit/autocomplete-plus
